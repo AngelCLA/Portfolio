@@ -1,0 +1,29 @@
+---
+import ExperienceItem from "./ExperienceItem.astro";
+const EXPERIENCE = [
+  {
+    date: "Actualmente...",
+    title: "Desarrollador",
+    company: "Universidad Politecnica del Mar y la Sierra",
+    description:
+      "Desarrollo y mantenimiento de sistemas institucionales. Implementación de nuevas funcionalidades y optimización de rendimiento en aplicaciones web internas. Colaboración con equipos multidisciplinarios para mejorar la experiencia del usuario.",
+  },
+  {
+    date: "Mayo 2024",
+    title: "UX-UI Designer",
+    company: "Ajal Games",
+    description:
+      "Colaboración en el diseño de una red social. Creación de wireframes y prototipos interactivos para mejorar la experiencia del usuario. Investigación de tendencias de diseño y aplicación de mejores prácticas en UX/UI.",
+  },
+];
+---
+
+<ol class="relative mt-16">
+  {
+    EXPERIENCE.map((experience) => (
+      <li class="">
+        <ExperienceItem {...experience} />
+      </li>
+    ))
+  }
+</ol>
