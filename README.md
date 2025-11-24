@@ -1,5 +1,5 @@
 # 👨🏻‍💻 Portfolio para programadores y desarrolladores
-<p>Idea by <a href="https://github.com/midudev>Midudev</a></p>
+<p>Idea by <a href="https://github.com/midudev">Midudev</a></p>
 
 <div align="center">
 <a href="https://porfolio.dev/](https://www.claangel.site/)">
