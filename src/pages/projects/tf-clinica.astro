@@ -1,0 +1,168 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import SectionContainer from "@/components/SectionContainer.astro";
+import LinkButton from "@/components/LinkButton.astro";
+import Link from "@/components/icons/Link.astro";
+import GitHub from "@/components/icons/GitHub.astro";
+import Php from "@/components/icons/Php.astro";
+import Mustache from "@/components/icons/Mustache.astro";
+import Tailwind from "@/components/icons/Tailwind.astro";
+import ProjectGallery from "@/components/ProjectGallery.astro";
+import Moodle from "@/components/icons/Moodle.astro";
+
+const project = {
+  title: "TF-Clinica - Sistema de gestión para clínica de fisioterapia",
+  subtitle:
+    "Plataforma integral para la gestión de la clínica de fisioterapia de la Universidad Politécnica del Mar y la Sierra.",
+  description:
+    "Plataforma integral para la gestión de la clínica de fisioterapia de la Universidad Politécnica del Mar y la Sierra. Desarrollada con PHP puro, Tailwind CSS y Supabase ofrece una experiencia de usuario fluida y eficiente para estudiantes y profesores.",
+  link: "https://edi.upmys.edu.mx/",
+  images: [
+    "/projects/tfclinicapng.png",
+    "/projects/tfclinicapng.png",
+    "/projects/tfclinicapng.png",
+    "/projects/tfclinicapng.png",
+  ],
+  tags: [
+    { name: "Moodle", class: "bg-gray-800/80 text-white", icon: Moodle },
+    { name: "PHP", class: "bg-[#4f5b93]/80 text-white", icon: Php },
+    { name: "Mustache", class: "bg-gray-100/80 text-[#000]", icon: Mustache },
+    {
+      name: "Tailwind CSS",
+      class: "bg-[#003159]/80 text-white",
+      icon: Tailwind,
+    },
+  ],
+};
+---
+
+<Layout
+  title={`${project.title} - Proyecto de CLAAngel`}
+  description={project.description}
+>
+  <main class="px-4">
+    <SectionContainer class="py-16 md:py-24">
+      <a
+        href="/projects"
+        class="inline-flex items-center text-sm text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 mb-8 transition-colors"
+      >
+        ← Volver a proyectos
+      </a>
+
+      <article class="max-w-4xl mx-auto">
+        <header class="mb-8">
+          <h1
+            class="text-4xl md:text-5xl font-bold text-gray-900 dark:text-gray-100 mb-4"
+          >
+            {project.title}
+          </h1>
+          <p class="text-xl text-gray-600 dark:text-gray-400 mb-6">
+            {project.subtitle}
+          </p>
+
+          <ul class="flex flex-wrap gap-2 mb-6">
+            {
+              project.tags.map((tag) => (
+                <li>
+                  <span
+                    class={`flex gap-x-2 rounded-full text-xs ${tag.class} py-2 px-3`}
+                  >
+                    <tag.icon class="size-4" />
+                    {tag.name}
+                  </span>
+                </li>
+              ))
+            }
+          </ul>
+        </header>
+
+        <ProjectGallery images={project.images} title={project.title} />
+
+        <div class="flex w-full items-center justify-center gap-4 mb-10">
+          <LinkButton href={project.link}>
+            <Link class="size-4" />
+            Preview
+          </LinkButton>
+        </div>
+        <div class="prose prose-lg max-w-none">
+          <h2 class="text-2xl mb-2 font-bold text-purple-400">
+            Sobre el proyecto
+          </h2>
+          <p class="text-gray-800 dark:text-gray-300">
+            {project.description}
+          </p>
+
+          <h2 class="text-2xl mb-2 mt-6 font-bold text-purple-400">
+            Características principales
+          </h2>
+          <ul class="space-y-2 text-gray-700 dark:text-gray-300">
+            <li class="flex items-start gap-2">
+              <span class="text-purple-600 dark:text-purple-400">•</span>
+              <span>Sistema de evaluación integral basado en Moodle</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-purple-600 dark:text-purple-400">•</span>
+              <span>Interfaz moderna y responsive con Tailwind CSS</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-purple-600 dark:text-purple-400">•</span>
+              <span>Gestión eficiente de estudiantes y profesores</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-purple-600 dark:text-purple-400">•</span>
+              <span>Generación automática de reportes y estadísticas</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-purple-600 dark:text-purple-400">•</span>
+              <span>Sistema de calificaciones automatizado</span>
+            </li>
+          </ul>
+
+          <h2 class="text-2xl mb-2 mt-6 font-bold text-purple-400">
+            Tecnologías utilizadas
+          </h2>
+          <p class="text-gray-700 dark:text-gray-300 mb-3">
+            El desarrollo se realizó integrando herramientas que permiten
+            flexibilidad, personalización y una interfaz intuitiva.
+          </p>
+
+          <ul class="space-y-2 text-gray-700 dark:text-gray-300">
+            <li class="flex items-start gap-2">
+              <span class="text-purple-600 dark:text-purple-400">•</span>
+              <span
+                ><strong>Moodle</strong> como fundamento del sistema educativo.</span
+              >
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-purple-600 dark:text-purple-400">•</span>
+              <span
+                ><strong>PHP personalizado</strong> para ajustar funciones a las
+                necesidades institucionales.</span
+              >
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-purple-600 dark:text-purple-400">•</span>
+              <span
+                ><strong>Tailwind CSS</strong> para un diseño moderno, accesible
+                y consistente.</span
+              >
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-purple-600 dark:text-purple-400">•</span>
+              <span
+                ><strong>Mustache</strong> como sistema de plantillas para la generación
+                de contenido dinámico.</span
+              >
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-purple-600 dark:text-purple-400">•</span>
+              <span
+                ><strong>MariaDB</strong> para la gestión de base de datos.</span
+              >
+            </li>
+          </ul>
+        </div>
+      </article>
+    </SectionContainer>
+  </main>
+</Layout>

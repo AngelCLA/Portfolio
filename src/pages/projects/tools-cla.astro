@@ -1,0 +1,157 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import SectionContainer from "@/components/SectionContainer.astro";
+import LinkButton from "@/components/LinkButton.astro";
+import Link from "@/components/icons/Link.astro";
+import GitHub from "@/components/icons/GitHub.astro";
+import Php from "@/components/icons/Php.astro";
+import Mustache from "@/components/icons/Mustache.astro";
+import Tailwind from "@/components/icons/Tailwind.astro";
+import ProjectGallery from "@/components/ProjectGallery.astro";
+import Moodle from "@/components/icons/Moodle.astro";
+
+const project = {
+  title: "ToolsCLA - Colección de herramientas",
+  subtitle:
+    "Plataforma gratuita con herramientas para agilizar la carga de actividades.",
+  description:
+    "Plataforma gratuita con herramientas para agilizar la carga de actividades. Creada desde cero con HTML, JS y Tailwind CSS..",
+  link: "https://edi.upmys.edu.mx/",
+  images: [
+    "/projects/toolscla.png",
+    "/projects/toolscla.png",
+    "/projects/toolscla.png",
+    "/projects/toolscla.png",
+  ],
+  tags: [
+    { name: "Moodle", class: "bg-gray-800/80 text-white", icon: Moodle },
+    { name: "PHP", class: "bg-[#4f5b93]/80 text-white", icon: Php },
+    { name: "Mustache", class: "bg-gray-100/80 text-[#000]", icon: Mustache },
+    {
+      name: "Tailwind CSS",
+      class: "bg-[#003159]/80 text-white",
+      icon: Tailwind,
+    },
+  ],
+};
+---
+
+<Layout
+  title={`${project.title} - Proyecto de CLAAngel`}
+  description={project.description}
+>
+  <main class="px-4">
+    <SectionContainer class="py-16 md:py-24">
+      <a
+        href="/projects"
+        class="inline-flex items-center text-sm text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 mb-8 transition-colors"
+      >
+        ← Volver a proyectos
+      </a>
+
+      <article class="max-w-4xl mx-auto">
+        <header class="mb-8">
+          <h1
+            class="text-4xl md:text-5xl font-bold text-gray-900 dark:text-gray-100 mb-4"
+          >
+            {project.title}
+          </h1>
+          <p class="text-xl text-gray-600 dark:text-gray-400 mb-6">
+            {project.subtitle}
+          </p>
+
+          <ul class="flex flex-wrap gap-2 mb-6">
+            {
+              project.tags.map((tag) => (
+                <li>
+                  <span
+                    class={`flex gap-x-2 rounded-full text-xs ${tag.class} py-2 px-3`}
+                  >
+                    <tag.icon class="size-4" />
+                    {tag.name}
+                  </span>
+                </li>
+              ))
+            }
+          </ul>
+        </header>
+
+        <ProjectGallery images={project.images} title={project.title} />
+
+        <div class="flex w-full items-center justify-center gap-4 mb-10">
+          <LinkButton href={project.link}>
+            <Link class="size-4" />
+            Preview
+          </LinkButton>
+        </div>
+        <div class="prose prose-lg max-w-none">
+          <h2 class="text-2xl mb-2 font-bold text-purple-400">
+            Sobre el proyecto
+          </h2>
+          <p class="text-gray-800 dark:text-gray-300">
+            {project.description}
+          </p>
+
+          <h2 class="text-2xl mb-2 mt-6 font-bold text-purple-400">
+            Características principales
+          </h2>
+          <ul class="space-y-2 text-gray-700 dark:text-gray-300">
+            <li class="flex items-start gap-2">
+              <span class="text-purple-600 dark:text-purple-400">•</span>
+              <span>Herramientas gratuitas y de código abierto</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-purple-600 dark:text-purple-400">•</span>
+              <span>Interfaz intuitiva y fácil de usar</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-purple-600 dark:text-purple-400">•</span>
+              <span>Optimización de tareas repetitivas</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-purple-600 dark:text-purple-400">•</span>
+              <span>Completamente responsive y accesible</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-purple-600 dark:text-purple-400">•</span>
+              <span>Sin necesidad de registro o instalación</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-purple-600 dark:text-purple-400">•</span>
+              <span>Actualizaciones constantes con nuevas herramientas</span>
+            </li>
+          </ul>
+
+          <h2 class="text-2xl mb-2 mt-6 font-bold text-purple-400">
+            Tecnologías utilizadas
+          </h2>
+          <p class="text-gray-700 dark:text-gray-300 mb-3">
+            El desarrollo se realizó integrando herramientas que permiten
+            flexibilidad, personalización y una interfaz intuitiva.
+          </p>
+
+          <ul class="space-y-2 text-gray-700 dark:text-gray-300">
+            <li class="flex items-start gap-2">
+              <span class="text-purple-600 dark:text-purple-400">•</span>
+              <span
+                >Proyecto desarrollado con tecnologías web estándar: HTML5 para
+                la estructura, JavaScript vanilla para la funcionalidad, y
+                Tailwind CSS para un diseño moderno y adaptable. Todo el código
+                es de código abierto y está disponible en GitHub.
+              </span>
+            </li>
+          </ul>
+
+          <h2 class="text-2xl mb-2 mt-6 font-bold text-purple-400">
+            Proyecto de código abierto
+          </h2>
+          <p class="text-gray-700 dark:text-gray-300 mb-3">
+            Este proyecto es completamente de código abierto. Puedes ver el
+            código, contribuir con mejoras o reportar problemas en el
+            repositorio de GitHub. ¡Las contribuciones son bienvenidas!
+          </p>
+        </div>
+      </article>
+    </SectionContainer>
+  </main>
+</Layout>

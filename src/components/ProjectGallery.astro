@@ -1,0 +1,166 @@
+---
+interface Props {
+  images: string[];
+  title: string;
+}
+
+const { images, title } = Astro.props;
+---
+
+<div class="mb-12">
+  <div class="flex flex-col md:flex-row gap-4">
+    <!-- Imagen principal -->
+    <div class="w-full md:w-3/4">
+      <img
+        id="mainImage"
+        src={images[0]}
+        alt={title}
+        class="w-full h-auto md:h-[500px] object-cover rounded-xl shadow-xl border border-gray-200 dark:border-gray-800 cursor-pointer hover:opacity-90 transition-all duration-500 ease-in-out hover:scale-[1.02]"
+      />
+    </div>
+
+    <!-- Thumbnails laterales -->
+    <div class="w-full md:w-1/4 flex md:flex-col gap-4 md:h-[500px]">
+      {
+        images.map((image, index) => (
+          <button
+            type="button"
+            class="thumbnail-btn flex-1 overflow-hidden rounded-lg border-2 border-gray-300 dark:border-gray-700 hover:border-blue-500 dark:hover:border-blue-400 transition-all cursor-pointer"
+            data-image={image}
+          >
+            <img
+              src={image}
+              alt={`${title} - Thumbnail ${index + 1}`}
+              class="w-full h-full object-cover"
+            />
+          </button>
+        ))
+      }
+    </div>
+  </div>
+</div>
+
+<!-- Modal para vista completa de la imagen -->
+<div
+  id="imageModal"
+  class="fixed inset-0 bg-black z-50 hidden items-center justify-center p-4 transition-all duration-500 ease-out"
+  style="background-color: rgba(0, 0, 0, 0);"
+>
+  <button
+    id="closeModal"
+    class="absolute top-4 right-4 text-white text-4xl hover:text-gray-300 hover:rotate-90 transition-all duration-300 z-10"
+    aria-label="Cerrar"
+  >
+    &times;
+  </button>
+  <img
+    id="modalImage"
+    src=""
+    alt=""
+    class="max-w-full max-h-full object-contain transform scale-75 opacity-0 transition-all duration-300 ease-out"
+  />
+</div>
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const mainImage = document.getElementById("mainImage") as HTMLImageElement;
+    const thumbnails = document.querySelectorAll(".thumbnail-btn");
+    const imageModal = document.getElementById("imageModal");
+    const modalImage = document.getElementById(
+      "modalImage"
+    ) as HTMLImageElement;
+    const closeModal = document.getElementById("closeModal");
+
+    // Cambiar imagen principal al hacer clic en thumbnails
+    thumbnails.forEach((thumbnail) => {
+      thumbnail.addEventListener("click", () => {
+        const newImage = thumbnail.getAttribute("data-image");
+        if (newImage && mainImage) {
+          // Fade out
+          mainImage.style.opacity = "0";
+          mainImage.style.transform = "scale(0.95)";
+
+          setTimeout(() => {
+            mainImage.src = newImage;
+            // Fade in
+            mainImage.style.opacity = "1";
+            mainImage.style.transform = "scale(1)";
+          }, 300);
+
+          // Remover borde activo de todos los thumbnails
+          thumbnails.forEach((t) => {
+            t.classList.remove("border-blue-500", "dark:border-blue-400");
+            t.classList.add("border-gray-300", "dark:border-gray-700");
+          });
+
+          // Agregar borde activo al thumbnail seleccionado
+          thumbnail.classList.remove("border-gray-300", "dark:border-gray-700");
+          thumbnail.classList.add("border-blue-500", "dark:border-blue-400");
+        }
+      });
+    });
+
+    // Marcar el primer thumbnail como activo por defecto
+    if (thumbnails.length > 0) {
+      thumbnails[0].classList.remove("border-gray-300", "dark:border-gray-700");
+      thumbnails[0].classList.add("border-blue-500", "dark:border-blue-400");
+    }
+
+    // Abrir modal al hacer clic en la imagen principal
+    mainImage?.addEventListener("click", () => {
+      if (modalImage && imageModal) {
+        modalImage.src = mainImage.src;
+        modalImage.alt = mainImage.alt;
+        imageModal.classList.remove("hidden");
+        imageModal.classList.add("flex");
+        document.body.style.overflow = "hidden"; // Prevenir scroll
+
+        // Animar entrada del modal
+        requestAnimationFrame(() => {
+          requestAnimationFrame(() => {
+            (imageModal as HTMLElement).style.backgroundColor =
+              "rgba(0, 0, 0, 0.95)";
+            modalImage.style.transform = "scale(1)";
+            modalImage.style.opacity = "1";
+          });
+        });
+      }
+    });
+
+    // Cerrar modal
+    const closeModalFunc = () => {
+      if (imageModal && modalImage) {
+        // Animar salida del modal
+        (imageModal as HTMLElement).style.backgroundColor = "rgba(0, 0, 0, 0)";
+        modalImage.style.transform = "scale(0.75)";
+        modalImage.style.opacity = "0";
+
+        setTimeout(() => {
+          imageModal.classList.add("hidden");
+          imageModal.classList.remove("flex");
+          document.body.style.overflow = ""; // Restaurar scroll
+        }, 500);
+      }
+    };
+
+    closeModal?.addEventListener("click", closeModalFunc);
+
+    // Cerrar modal al hacer clic fuera de la imagen
+    imageModal?.addEventListener("click", (e) => {
+      if (e.target === imageModal) {
+        closeModalFunc();
+      }
+    });
+
+    // Cerrar modal con la tecla Escape
+    document.addEventListener("keydown", (e) => {
+      if (
+        e.key === "Escape" &&
+        imageModal &&
+        !imageModal.classList.contains("hidden")
+      ) {
+        closeModalFunc();
+      }
+    });
+  });
+</script>
