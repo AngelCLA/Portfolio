@@ -5,10 +5,10 @@ import LinkButton from "@/components/LinkButton.astro";
 import Link from "@/components/icons/Link.astro";
 import GitHub from "@/components/icons/GitHub.astro";
 import Php from "@/components/icons/Php.astro";
-import Mustache from "@/components/icons/Mustache.astro";
+import Supabase from "@/components/icons/Supabase.astro";
 import Tailwind from "@/components/icons/Tailwind.astro";
 import ProjectGallery from "@/components/ProjectGallery.astro";
-import Moodle from "@/components/icons/Moodle.astro";
+import JavaScript from "@/components/icons/Code.astro";
 
 const project = {
   title: "TF-Clinica - Sistema de gestión para clínica de fisioterapia",
@@ -16,22 +16,22 @@ const project = {
     "Plataforma integral para la gestión de la clínica de fisioterapia de la Universidad Politécnica del Mar y la Sierra.",
   description:
     "Plataforma integral para la gestión de la clínica de fisioterapia de la Universidad Politécnica del Mar y la Sierra. Desarrollada con PHP puro, Tailwind CSS y Supabase ofrece una experiencia de usuario fluida y eficiente para estudiantes y profesores.",
-  link: "https://edi.upmys.edu.mx/",
+  link: "blank",
   images: [
-    "/projects/tfclinicapng.png",
-    "/projects/tfclinicapng.png",
-    "/projects/tfclinicapng.png",
-    "/projects/tfclinicapng.png",
+    "/projects/tf-clinica/TF-Clinica-1.png",
+    "/projects/tf-clinica/TF-Clinica-2.png",
+    "/projects/tf-clinica/TF-Clinica-3.png",
+    "/projects/tf-clinica/TF-Clinica-4.png",
   ],
   tags: [
-    { name: "Moodle", class: "bg-gray-800/80 text-white", icon: Moodle },
     { name: "PHP", class: "bg-[#4f5b93]/80 text-white", icon: Php },
-    { name: "Mustache", class: "bg-gray-100/80 text-[#000]", icon: Mustache },
     {
       name: "Tailwind CSS",
       class: "bg-[#003159]/80 text-white",
       icon: Tailwind,
     },
+    { name: "Supabase", class: "bg-[#121212]/80 text-white", icon: Supabase },
+    { name: "Supabase", class: "bg-[#121212]/80 text-white", icon: JavaScript },
   ],
 };
 ---
@@ -79,10 +79,7 @@ const project = {
         <ProjectGallery images={project.images} title={project.title} />
 
         <div class="flex w-full items-center justify-center gap-4 mb-10">
-          <LinkButton href={project.link}>
-            <Link class="size-4" />
-            Preview
-          </LinkButton>
+          <LinkButton> Nota: Proyecto cerrado al público </LinkButton>
         </div>
         <div class="prose prose-lg max-w-none">
           <h2 class="text-2xl mb-2 font-bold text-purple-400">
@@ -95,69 +92,183 @@ const project = {
           <h2 class="text-2xl mb-2 mt-6 font-bold text-purple-400">
             Características principales
           </h2>
+
           <ul class="space-y-2 text-gray-700 dark:text-gray-300">
             <li class="flex items-start gap-2">
               <span class="text-purple-600 dark:text-purple-400">•</span>
-              <span>Sistema de evaluación integral basado en Moodle</span>
+              <span
+                >Registro completo de pacientes: datos personales, historial
+                clínico y evolución terapéutica.</span
+              >
             </li>
+
             <li class="flex items-start gap-2">
               <span class="text-purple-600 dark:text-purple-400">•</span>
-              <span>Interfaz moderna y responsive con Tailwind CSS</span>
+              <span
+                >Interfaz moderna, limpia y responsive con Tailwind CSS.</span
+              >
             </li>
+
             <li class="flex items-start gap-2">
               <span class="text-purple-600 dark:text-purple-400">•</span>
-              <span>Gestión eficiente de estudiantes y profesores</span>
+              <span
+                >Historial centralizado y accesible desde cualquier dispositivo.</span
+              >
             </li>
+
             <li class="flex items-start gap-2">
               <span class="text-purple-600 dark:text-purple-400">•</span>
-              <span>Generación automática de reportes y estadísticas</span>
+              <span
+                >Buscador inteligente con filtros por nombre, fecha, terapeuta o
+                tipo de terapia.</span
+              >
             </li>
+
             <li class="flex items-start gap-2">
               <span class="text-purple-600 dark:text-purple-400">•</span>
-              <span>Sistema de calificaciones automatizado</span>
+              <span
+                >Agenda dinámica para programar, reagendar o cancelar sesiones
+                rápidamente.</span
+              >
+            </li>
+
+            <li class="flex items-start gap-2">
+              <span class="text-purple-600 dark:text-purple-400">•</span>
+              <span
+                >Autenticación segura mediante Supabase Auth con control de
+                roles y permisos.</span
+              >
+            </li>
+
+            <li class="flex items-start gap-2">
+              <span class="text-purple-600 dark:text-purple-400">•</span>
+              <span
+                >Dashboard con indicadores clave: sesiones por día, pacientes
+                activos y progreso general.</span
+              >
+            </li>
+
+            <li class="flex items-start gap-2">
+              <span class="text-purple-600 dark:text-purple-400">•</span>
+              <span
+                >Registros de sesiones con notas clínicas, ejercicios aplicados
+                e imágenes opcionales.</span
+              >
+            </li>
+
+            <li class="flex items-start gap-2">
+              <span class="text-purple-600 dark:text-purple-400">•</span>
+              <span
+                >Sincronización en tiempo real con Supabase para mantener la
+                información siempre actualizada.</span
+              >
+            </li>
+
+            <li class="flex items-start gap-2">
+              <span class="text-purple-600 dark:text-purple-400">•</span>
+              <span
+                >Diseño modular en PHP puro, permitiendo fácil mantenimiento y
+                escalabilidad.</span
+              >
+            </li>
+
+            <li class="flex items-start gap-2">
+              <span class="text-purple-600 dark:text-purple-400">•</span>
+              <span
+                >Exportación de reportes en PDF o Excel para control
+                administrativo.</span
+              >
+            </li>
+
+            <li class="flex items-start gap-2">
+              <span class="text-purple-600 dark:text-purple-400">•</span>
+              <span
+                >Registro de terapeutas con sus horarios, especialidades y
+                sesiones asignadas.</span
+              >
             </li>
           </ul>
 
           <h2 class="text-2xl mb-2 mt-6 font-bold text-purple-400">
             Tecnologías utilizadas
           </h2>
+
           <p class="text-gray-700 dark:text-gray-300 mb-3">
             El desarrollo se realizó integrando herramientas que permiten
-            flexibilidad, personalización y una interfaz intuitiva.
+            flexibilidad, rendimiento y una interfaz intuitiva, adaptada a las
+            necesidades de una clínica de terapia física.
           </p>
 
           <ul class="space-y-2 text-gray-700 dark:text-gray-300">
             <li class="flex items-start gap-2">
               <span class="text-purple-600 dark:text-purple-400">•</span>
               <span
-                ><strong>Moodle</strong> como fundamento del sistema educativo.</span
+                ><strong>PHP puro</strong> como base del proyecto, permitiendo un
+                control total sobre la lógica y arquitectura.</span
               >
             </li>
+
             <li class="flex items-start gap-2">
               <span class="text-purple-600 dark:text-purple-400">•</span>
               <span
-                ><strong>PHP personalizado</strong> para ajustar funciones a las
-                necesidades institucionales.</span
+                ><strong>Tailwind CSS</strong> para construir una interfaz moderna,
+                responsiva y altamente personalizable.</span
               >
             </li>
+
             <li class="flex items-start gap-2">
               <span class="text-purple-600 dark:text-purple-400">•</span>
               <span
-                ><strong>Tailwind CSS</strong> para un diseño moderno, accesible
-                y consistente.</span
+                ><strong>Supabase</strong> como backend en la nube, proporcionando
+                autenticación segura, API REST automática y almacenamiento gestionado.</span
               >
             </li>
+
             <li class="flex items-start gap-2">
               <span class="text-purple-600 dark:text-purple-400">•</span>
               <span
-                ><strong>Mustache</strong> como sistema de plantillas para la generación
-                de contenido dinámico.</span
+                ><strong>Supabase Auth</strong> para manejar sesiones, roles y perfiles
+                de usuarios.</span
               >
             </li>
+
             <li class="flex items-start gap-2">
               <span class="text-purple-600 dark:text-purple-400">•</span>
               <span
-                ><strong>MariaDB</strong> para la gestión de base de datos.</span
+                ><strong>Supabase Postgres</strong> para el almacenamiento estructurado
+                de información clínica y registros de sesiones.</span
+              >
+            </li>
+
+            <li class="flex items-start gap-2">
+              <span class="text-purple-600 dark:text-purple-400">•</span>
+              <span
+                ><strong>Supabase Storage</strong> para la gestión de imágenes o documentos
+                asociados a pacientes y terapeutas.</span
+              >
+            </li>
+
+            <li class="flex items-start gap-2">
+              <span class="text-purple-600 dark:text-purple-400">•</span>
+              <span
+                ><strong>JavaScript Vanilla</strong> para añadir interactividad, validaciones
+                y una experiencia fluida sin frameworks adicionales.</span
+              >
+            </li>
+
+            <li class="flex items-start gap-2">
+              <span class="text-purple-600 dark:text-purple-400">•</span>
+              <span
+                ><strong>HTML5</strong> como estructura principal y base semántica
+                del sistema.</span
+              >
+            </li>
+
+            <li class="flex items-start gap-2">
+              <span class="text-purple-600 dark:text-purple-400">•</span>
+              <span
+                ><strong>Git y GitHub</strong> para control de versiones, documentación
+                del progreso y despliegue continuo.</span
               >
             </li>
           </ul>
