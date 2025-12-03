@@ -5,11 +5,14 @@ import Tailwind from "./icons/Tailwind.astro";
 import Link from "./icons/Link.astro";
 import LinkButton from "./LinkButton.astro";
 import NextJS from "./icons/NextJS.astro";
+import JavaScript from "./icons/JavaScript.astro";
+import Mustache from "./icons/Mustache.astro";
+import Supabase from "./icons/Supabase.astro";
 
 const TAGS = {
   PHP: {
     name: "PHP",
-    class: "bg-[#734f96] text-white",
+    class: "bg-[#4f5b93]/80 text-white",
     icon: Php,
   },
   NEXT: {
@@ -22,35 +25,50 @@ const TAGS = {
     class: "bg-[#003159] text-white",
     icon: Tailwind,
   },
+  JAVASCRIPT: {
+    name: "JavaScript",
+    class: "bg-[#f0db4f]/90 text-black",
+    icon: JavaScript,
+  },
+  MUSTACHE: {
+    name: "Mustache",
+    class: "bg-gray-100/80 text-black",
+    icon: Mustache,
+  },
+  SUPABASE: {
+    name: "Supabase",
+    class: "bg-[#121212] text-white",
+    icon: Supabase,
+  },
 };
 const PROJECTS = [
   {
     slug: "edi-upmys",
     title: "EDI-UPMYS - Plataforma para la evaluación de conocimientos",
     description:
-      "Plataforma integral para la evaluación de conocimientos y habilidades académicas en la Universidad Politécnica del Mar y la Sierra. Desarrollada con Moodle, PHP y Tailwind CSS, ofrece una experiencia de usuario fluida y eficiente para estudiantes y profesores.",
+      "Plataforma integral para evaluar conocimientos y habilidades académicas dentro de la Universidad Politécnica del Mar y la Sierra, diseñada para ofrecer una experiencia clara, fluida y eficiente tanto para estudiantes como para profesores.",
     link: "https://edi.upmys.edu.mx/",
-    image: "/projects/edi-upmys.png",
-    tags: [TAGS.PHP, TAGS.TAILWIND],
+    image: "/projects/edi-upmys/edi.png",
+    tags: [TAGS.PHP, TAGS.TAILWIND, TAGS.MUSTACHE, TAGS.JAVASCRIPT],
   },
   {
     slug: "tf-clinica",
     title: "TF-Clinica - Sistema de gestión para clínica de fisioterapia",
     description:
-      "Plataforma integral para la gestión de la clínica de fisioterapia de la Universidad Politécnica del Mar y la Sierra. Creada desde cero con PHP, JS, Tailwind CSS y Supabase.",
-    link: "https://clinica.tecnologiasdelainformacion.site/",
-    image: "/projects/tf-clinica.png",
-    tags: [TAGS.PHP, TAGS.TAILWIND],
+      "Plataforma integral para la gestión operativa de la clínica de fisioterapia de la Universidad Politécnica del Mar y la Sierra, optimizada para mejorar la organización, el seguimiento clínico y la atención al usuario.",
+    link: "",
+    image: "/projects/tf-clinica/TF-Clinica.png",
+    tags: [TAGS.PHP, TAGS.TAILWIND, TAGS.JAVASCRIPT, TAGS.SUPABASE],
   },
   {
     slug: "tools-cla",
     title: "ToolsCLA - Colección de herramientas",
     description:
-      "Plataforma gratuita con herramientas para agilizar la carga de actividades. Creada desde cero con HTML, JS y Tailwind CSS.",
+      "Herramienta gratuita y de código abierto pensada para acelerar la carga de actividades y reducir procesos repetitivos, brindando una experiencia más fluida.",
     link: "https://tools.claangel.site/",
     github: "https://github.com/AngelCLA/CLA-Tools",
-    image: "/projects/tools-cla.png",
-    tags: [TAGS.TAILWIND],
+    image: "/projects/tools-cla/tools-cla.png",
+    tags: [TAGS.TAILWIND, TAGS.JAVASCRIPT],
   },
 ];
 ---

@@ -7,8 +7,8 @@ import GitHub from "@/components/icons/GitHub.astro";
 import Php from "@/components/icons/Php.astro";
 import Mustache from "@/components/icons/Mustache.astro";
 import Tailwind from "@/components/icons/Tailwind.astro";
+import JavaScript from "@/components/icons/JavaScript.astro";
 import ProjectGallery from "@/components/ProjectGallery.astro";
-import Moodle from "@/components/icons/Moodle.astro";
 
 const project = {
   title: "ToolsCLA - Colección de herramientas",
@@ -16,21 +16,24 @@ const project = {
     "Plataforma gratuita con herramientas para agilizar la carga de actividades.",
   description:
     "Plataforma gratuita con herramientas para agilizar la carga de actividades. Creada desde cero con HTML, JS y Tailwind CSS..",
-  link: "https://edi.upmys.edu.mx/",
+  link: "https://tools.claangel.site/",
+  link2: "https://github.com/AngelCLA/CLA-Tools",
   images: [
-    "/projects/toolscla.png",
-    "/projects/toolscla.png",
-    "/projects/toolscla.png",
-    "/projects/toolscla.png",
+    "/projects/tools-cla/tools-cla-1.png",
+    "/projects/tools-cla/tools-cla-2.png",
+    "/projects/tools-cla/tools-cla-3.png",
+    "/projects/tools-cla/tools-cla-4.png",
   ],
   tags: [
-    { name: "Moodle", class: "bg-gray-800/80 text-white", icon: Moodle },
-    { name: "PHP", class: "bg-[#4f5b93]/80 text-white", icon: Php },
-    { name: "Mustache", class: "bg-gray-100/80 text-[#000]", icon: Mustache },
     {
       name: "Tailwind CSS",
       class: "bg-[#003159]/80 text-white",
       icon: Tailwind,
+    },
+    {
+      name: "JavaScript",
+      class: "bg-[#f0db4f]/90 text-black",
+      icon: JavaScript,
     },
   ],
 };
@@ -43,7 +46,7 @@ const project = {
   <main class="px-4">
     <SectionContainer class="py-16 md:py-24">
       <a
-        href="/projects"
+        href="javascript:history.back()"
         class="inline-flex items-center text-sm text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 mb-8 transition-colors"
       >
         ← Volver a proyectos
@@ -67,7 +70,7 @@ const project = {
                   <span
                     class={`flex gap-x-2 rounded-full text-xs ${tag.class} py-2 px-3`}
                   >
-                    <tag.icon class="size-4" />
+                    <tag.icon className="size-4" />
                     {tag.name}
                   </span>
                 </li>
@@ -81,75 +84,131 @@ const project = {
         <div class="flex w-full items-center justify-center gap-4 mb-10">
           <LinkButton href={project.link}>
             <Link class="size-4" />
-            Preview
+            Ir al sitio
+          </LinkButton>
+          <LinkButton href={project.link2} variant="secondary">
+            <GitHub class="size-4" />
+            Código
           </LinkButton>
         </div>
         <div class="prose prose-lg max-w-none">
-          <h2 class="text-2xl mb-2 font-bold text-purple-400">
+          <h2
+            class="text-2xl mb-2 font-bold text-purple-600 dark:text-purple-500"
+          >
             Sobre el proyecto
           </h2>
-          <p class="text-gray-800 dark:text-gray-300">
-            {project.description}
-          </p>
+          <p
+            class="text-gray-800 dark:text-gray-300"
+            set:html={project.description}
+          />
 
-          <h2 class="text-2xl mb-2 mt-6 font-bold text-purple-400">
+          <h2
+            class="text-2xl mb-2 mt-6 font-bold text-purple-600 dark:text-purple-500"
+          >
             Características principales
           </h2>
-          <ul class="space-y-2 text-gray-700 dark:text-gray-300">
-            <li class="flex items-start gap-2">
-              <span class="text-purple-600 dark:text-purple-400">•</span>
-              <span>Herramientas gratuitas y de código abierto</span>
-            </li>
-            <li class="flex items-start gap-2">
-              <span class="text-purple-600 dark:text-purple-400">•</span>
-              <span>Interfaz intuitiva y fácil de usar</span>
-            </li>
-            <li class="flex items-start gap-2">
-              <span class="text-purple-600 dark:text-purple-400">•</span>
-              <span>Optimización de tareas repetitivas</span>
-            </li>
-            <li class="flex items-start gap-2">
-              <span class="text-purple-600 dark:text-purple-400">•</span>
-              <span>Completamente responsive y accesible</span>
-            </li>
-            <li class="flex items-start gap-2">
-              <span class="text-purple-600 dark:text-purple-400">•</span>
-              <span>Sin necesidad de registro o instalación</span>
-            </li>
-            <li class="flex items-start gap-2">
-              <span class="text-purple-600 dark:text-purple-400">•</span>
-              <span>Actualizaciones constantes con nuevas herramientas</span>
-            </li>
-          </ul>
 
-          <h2 class="text-2xl mb-2 mt-6 font-bold text-purple-400">
+          <div class="grid md:grid-cols-2 gap-4 mt-4">
+            <div
+              class="p-4 bg-gray-100 dark:bg-gray-800/20 rounded-xl shadow-sm"
+            >
+              <h4
+                class="font-semibold text-purple-500 dark:text-purple-400 mb-1"
+              >
+                Herramientas gratuitas y de código abierto
+              </h4>
+              <p class="text-sm">Interfaz intuitiva y fácil de usar.</p>
+            </div>
+
+            <div
+              class="p-4 bg-gray-100 dark:bg-gray-800/20 rounded-xl shadow-sm"
+            >
+              <h4
+                class="font-semibold text-purple-500 dark:text-purple-400 mb-1"
+              >
+                Optimización de tareas repetitivas
+              </h4>
+              <p class="text-sm">Completamente responsive y accesible.</p>
+            </div>
+
+            <div
+              class="p-4 bg-gray-100 dark:bg-gray-800/20 rounded-xl shadow-sm"
+            >
+              <h4
+                class="font-semibold text-purple-500 dark:text-purple-400 mb-1"
+              >
+                Sin necesidad de registro o instalación
+              </h4>
+              <p class="text-sm">
+                Actualizaciones constantes con nuevas herramientas.
+              </p>
+            </div>
+
+            <div
+              class="p-4 bg-gray-100 dark:bg-gray-800/20 rounded-xl shadow-sm"
+            >
+              <h4
+                class="font-semibold text-purple-500 dark:text-purple-400 mb-1"
+              >
+                Proyecto de código abierto
+              </h4>
+              <p class="text-sm">
+                Puedes contribuir en el repositorio de GitHub.
+              </p>
+            </div>
+          </div>
+
+          <h2
+            class="text-2xl mb-2 mt-6 font-bold text-purple-600 dark:text-purple-500"
+          >
             Tecnologías utilizadas
           </h2>
+
           <p class="text-gray-700 dark:text-gray-300 mb-3">
             El desarrollo se realizó integrando herramientas que permiten
             flexibilidad, personalización y una interfaz intuitiva.
           </p>
 
-          <ul class="space-y-2 text-gray-700 dark:text-gray-300">
-            <li class="flex items-start gap-2">
-              <span class="text-purple-600 dark:text-purple-400">•</span>
-              <span
-                >Proyecto desarrollado con tecnologías web estándar: HTML5 para
-                la estructura, JavaScript vanilla para la funcionalidad, y
-                Tailwind CSS para un diseño moderno y adaptable. Todo el código
-                es de código abierto y está disponible en GitHub.
-              </span>
-            </li>
-          </ul>
+          <div class="grid md:grid-cols-2 gap-4">
+            <div
+              class="p-4 bg-gray-100 dark:bg-gray-800/20 rounded-xl shadow-sm"
+            >
+              <h4
+                class="font-semibold text-purple-500 dark:text-purple-400 mb-1"
+              >
+                HTML5
+              </h4>
+              <p class="text-sm text-gray-700 dark:text-gray-300">
+                Estructura semántica clara y optimizada para accesibilidad.
+              </p>
+            </div>
 
-          <h2 class="text-2xl mb-2 mt-6 font-bold text-purple-400">
-            Proyecto de código abierto
-          </h2>
-          <p class="text-gray-700 dark:text-gray-300 mb-3">
-            Este proyecto es completamente de código abierto. Puedes ver el
-            código, contribuir con mejoras o reportar problemas en el
-            repositorio de GitHub. ¡Las contribuciones son bienvenidas!
-          </p>
+            <div
+              class="p-4 bg-gray-100 dark:bg-gray-800/20 rounded-xl shadow-sm"
+            >
+              <h4
+                class="font-semibold text-purple-500 dark:text-purple-400 mb-1"
+              >
+                Tailwind CSS
+              </h4>
+              <p class="text-sm text-gray-700 dark:text-gray-300">
+                Diseño moderno, accesible y consistente.
+              </p>
+            </div>
+
+            <div
+              class="p-4 bg-gray-100 dark:bg-gray-800/20 rounded-xl shadow-sm"
+            >
+              <h4
+                class="font-semibold text-purple-500 dark:text-purple-400 mb-1"
+              >
+                Mustache
+              </h4>
+              <p class="text-sm text-gray-700 dark:text-gray-300">
+                Sistema de plantillas para contenido dinámico.
+              </p>
+            </div>
+          </div>
         </div>
       </article>
     </SectionContainer>

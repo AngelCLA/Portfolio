@@ -3,7 +3,7 @@ import Layout from "@/layouts/Layout.astro";
 import SectionContainer from "@/components/SectionContainer.astro";
 import LinkButton from "@/components/LinkButton.astro";
 import Link from "@/components/icons/Link.astro";
-import GitHub from "@/components/icons/GitHub.astro";
+import JavaScript from "@/components/icons/JavaScript.astro";
 import Php from "@/components/icons/Php.astro";
 import Mustache from "@/components/icons/Mustache.astro";
 import Tailwind from "@/components/icons/Tailwind.astro";
@@ -15,7 +15,7 @@ const project = {
   subtitle:
     "Plataforma integral para la evaluación de conocimientos y habilidades académicas",
   description:
-    "Plataforma integral para la evaluación de conocimientos y habilidades académicas en la Universidad Politécnica del Mar y la Sierra. Desarrollada con Moodle, PHP y Tailwind CSS, ofrece una experiencia de usuario fluida y eficiente para estudiantes y profesores.",
+    "La Plataforma Integral para la Evaluación del Examen Diagnóstico de Ingreso (EDI) de la Universidad Politécnica del Mar y la Sierra es un entorno diseñado para modernizar la forma en que se gestionan y aplican las evaluaciones académicas institucionales. Construida sobre Moodle y personalizada con PHP, Mustache y Tailwind CSS, esta solución ofrece un sistema robusto, confiable y visualmente actualizado, alineado con las necesidades de profesores, administradores y aspirantes de nuevo ingreso.<br><br>El proyecto no solo adapta la funcionalidad tradicional de Moodle, sino que la transforma para ofrecer una experiencia más limpia, intuitiva y eficiente. Se optimizaron elementos clave como la navegación, la presentación de cuestionarios, el flujo de calificaciones y la experiencia general del usuario, permitiendo que cada evaluación sea más clara, rápida y accesible desde cualquier dispositivo.<br><br>Gracias a su estructura modular y al uso de tecnologías flexibles, la plataforma facilita tareas como el seguimiento del rendimiento, la generación de reportes y la gestión de estudiantes y profesores. En conjunto, se convierte en una herramienta académica sólida y moderna, preparada para sostener evaluaciones a gran escala dentro de la institución.",
   link: "https://edi.upmys.edu.mx/",
   images: [
     "/projects/edi-upmys/edi-1.png",
@@ -31,6 +31,11 @@ const project = {
       name: "Tailwind CSS",
       class: "bg-[#003159]/80 text-white",
       icon: Tailwind,
+    },
+    {
+      name: "JavaScript",
+      class: "bg-[#f0db4f]/90 text-black",
+      icon: JavaScript,
     },
   ],
 };
@@ -81,86 +86,146 @@ const project = {
         <div class="flex w-full items-center justify-center gap-4 mb-10">
           <LinkButton href={project.link}>
             <Link class="size-4" />
-            Preview
+            Ir al sitio
           </LinkButton>
         </div>
         <div class="prose prose-lg max-w-none">
-          <h2 class="text-2xl mb-2 font-bold text-purple-400">
+          <h2
+            class="text-2xl mb-2 font-bold text-purple-600 dark:text-purple-500"
+          >
             Sobre el proyecto
           </h2>
-          <p class="text-gray-800 dark:text-gray-300">
-            {project.description}
-          </p>
+          <p
+            class="text-gray-800 dark:text-gray-300"
+            set:html={project.description}
+          />
 
-          <h2 class="text-2xl mb-2 mt-6 font-bold text-purple-400">
+          <h2
+            class="text-2xl mb-2 mt-6 font-bold text-purple-600 dark:text-purple-500"
+          >
             Características principales
           </h2>
-          <ul class="space-y-2 text-gray-700 dark:text-gray-300">
-            <li class="flex items-start gap-2">
-              <span class="text-purple-600 dark:text-purple-400">•</span>
-              <span>Sistema de evaluación integral basado en Moodle</span>
-            </li>
-            <li class="flex items-start gap-2">
-              <span class="text-purple-600 dark:text-purple-400">•</span>
-              <span>Interfaz moderna y responsive con Tailwind CSS</span>
-            </li>
-            <li class="flex items-start gap-2">
-              <span class="text-purple-600 dark:text-purple-400">•</span>
-              <span>Gestión eficiente de estudiantes y profesores</span>
-            </li>
-            <li class="flex items-start gap-2">
-              <span class="text-purple-600 dark:text-purple-400">•</span>
-              <span>Generación automática de reportes y estadísticas</span>
-            </li>
-            <li class="flex items-start gap-2">
-              <span class="text-purple-600 dark:text-purple-400">•</span>
-              <span>Sistema de calificaciones automatizado</span>
-            </li>
-          </ul>
 
-          <h2 class="text-2xl mb-2 mt-6 font-bold text-purple-400">
+          <div class="grid md:grid-cols-2 gap-4 mt-4">
+            <div
+              class="p-4 bg-gray-100 dark:bg-gray-800/20 rounded-xl shadow-sm"
+            >
+              <h4
+                class="font-semibold text-purple-500 dark:text-purple-400 mb-1"
+              >
+                Sistema de evaluación integral basado en Moodle
+              </h4>
+              <p class="text-sm">
+                Interfaz moderna y responsive con Tailwind CSS.
+              </p>
+            </div>
+
+            <div
+              class="p-4 bg-gray-100 dark:bg-gray-800/20 rounded-xl shadow-sm"
+            >
+              <h4
+                class="font-semibold text-purple-500 dark:text-purple-400 mb-1"
+              >
+                Gestión eficiente de estudiantes y profesores
+              </h4>
+              <p class="text-sm">
+                Generación automática de reportes y estadísticas.
+              </p>
+            </div>
+
+            <div
+              class="p-4 bg-gray-100 dark:bg-gray-800/20 rounded-xl shadow-sm"
+            >
+              <h4
+                class="font-semibold text-purple-500 dark:text-purple-400 mb-1"
+              >
+                Sistema de calificaciones automatizado
+              </h4>
+              <p class="text-sm">Evaluaciones rápidas y precisas.</p>
+            </div>
+
+            <div
+              class="p-4 bg-gray-100 dark:bg-gray-800/20 rounded-xl shadow-sm"
+            >
+              <h4
+                class="font-semibold text-purple-500 dark:text-purple-400 mb-1"
+              >
+                Moodle personalizado
+              </h4>
+              <p class="text-sm">Ajustado a las necesidades institucionales.</p>
+            </div>
+          </div>
+
+          <h2
+            class="text-2xl mb-2 mt-6 font-bold text-purple-600 dark:text-purple-500"
+          >
             Tecnologías utilizadas
           </h2>
+
           <p class="text-gray-700 dark:text-gray-300 mb-3">
-            El desarrollo se realizó integrando herramientas que permiten
-            flexibilidad, personalización y una interfaz intuitiva.
+            El desarrollo de esta plataforma se llevó a cabo integrando un
+            conjunto de tecnologías que permiten construir un entorno robusto,
+            flexible y completamente alineado con las necesidades académicas de
+            la universidad. <br />Cada herramienta fue seleccionada por su
+            capacidad para ofrecer rendimiento, escalabilidad y una experiencia
+            de usuario clara y accesible. Gracias a esta combinación, el sistema
+            mantiene una operación estable, personalizable y con una curva de
+            aprendizaje baja para administradores y docentes.
           </p>
 
-          <ul class="space-y-2 text-gray-700 dark:text-gray-300">
-            <li class="flex items-start gap-2">
-              <span class="text-purple-600 dark:text-purple-400">•</span>
-              <span
-                ><strong>Moodle</strong> como fundamento del sistema educativo.</span
+          <div class="grid md:grid-cols-2 gap-4">
+            <div
+              class="p-4 bg-gray-100 dark:bg-gray-800/20 rounded-xl shadow-sm"
+            >
+              <h4
+                class="font-semibold text-purple-500 dark:text-purple-400 mb-1"
               >
-            </li>
-            <li class="flex items-start gap-2">
-              <span class="text-purple-600 dark:text-purple-400">•</span>
-              <span
-                ><strong>PHP personalizado</strong> para ajustar funciones a las
-                necesidades institucionales.</span
+                Moodle
+              </h4>
+              <p class="text-sm text-gray-700 dark:text-gray-300">
+                Como fundamento del sistema educativo.
+              </p>
+            </div>
+
+            <div
+              class="p-4 bg-gray-100 dark:bg-gray-800/20 rounded-xl shadow-sm"
+            >
+              <h4
+                class="font-semibold text-purple-500 dark:text-purple-400 mb-1"
               >
-            </li>
-            <li class="flex items-start gap-2">
-              <span class="text-purple-600 dark:text-purple-400">•</span>
-              <span
-                ><strong>Tailwind CSS</strong> para un diseño moderno, accesible
-                y consistente.</span
+                PHP personalizado
+              </h4>
+              <p class="text-sm text-gray-700 dark:text-gray-300">
+                Ajustado a las necesidades institucionales.
+              </p>
+            </div>
+
+            <div
+              class="p-4 bg-gray-100 dark:bg-gray-800/20 rounded-xl shadow-sm"
+            >
+              <h4
+                class="font-semibold text-purple-500 dark:text-purple-400 mb-1"
               >
-            </li>
-            <li class="flex items-start gap-2">
-              <span class="text-purple-600 dark:text-purple-400">•</span>
-              <span
-                ><strong>Mustache</strong> como sistema de plantillas para la generación
-                de contenido dinámico.</span
+                Tailwind CSS
+              </h4>
+              <p class="text-sm text-gray-700 dark:text-gray-300">
+                Diseño moderno, accesible y consistente.
+              </p>
+            </div>
+
+            <div
+              class="p-4 bg-gray-100 dark:bg-gray-800/20 rounded-xl shadow-sm"
+            >
+              <h4
+                class="font-semibold text-purple-500 dark:text-purple-400 mb-1"
               >
-            </li>
-            <li class="flex items-start gap-2">
-              <span class="text-purple-600 dark:text-purple-400">•</span>
-              <span
-                ><strong>MariaDB</strong> para la gestión de base de datos.</span
-              >
-            </li>
-          </ul>
+                Mustache
+              </h4>
+              <p class="text-sm text-gray-700 dark:text-gray-300">
+                Sistema de plantillas para contenido dinámico.
+              </p>
+            </div>
+          </div>
         </div>
       </article>
     </SectionContainer>

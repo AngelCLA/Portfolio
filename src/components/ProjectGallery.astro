@@ -22,22 +22,60 @@ const { images, title } = Astro.props;
     <!-- Thumbnails laterales -->
     <div class="w-full md:w-1/4 flex md:flex-col gap-4 md:h-[500px]">
       {
-        images.map((image, index) => (
-          <button
-            type="button"
-            class="thumbnail-btn flex-1 overflow-hidden rounded-lg border-2 border-gray-300 dark:border-gray-700 hover:border-blue-500 dark:hover:border-blue-400 transition-all cursor-pointer"
-            data-image={image}
-          >
-            <img
-              src={image}
-              alt={`${title} - Thumbnail ${index + 1}`}
-              class="w-full h-full object-cover"
-            />
-          </button>
-        ))
+        images.map((image, index) => {
+          const isMoreThanFour = index === 3 && images.length > 4;
+          const remainingImages = images.length - 4;
+
+          return (
+            <button
+              type="button"
+              class="thumbnail-btn flex-1 overflow-hidden rounded-lg border-2 border-gray-300 dark:border-gray-700 hover:border-blue-500 dark:hover:border-blue-400 transition-all cursor-pointer relative group"
+              data-image={image}
+            >
+              <img
+                src={image}
+                alt={`${title} - Thumbnail ${index + 1}`}
+                class="w-full h-full object-cover"
+              />
+              {isMoreThanFour && (
+                <div class="absolute inset-0 bg-black/60 flex items-center justify-center group-hover:bg-black/70 transition-all">
+                  <span class="text-white text-2xl font-bold">
+                    +{remainingImages}
+                  </span>
+                </div>
+              )}
+            </button>
+          );
+        })
       }
     </div>
   </div>
+
+  <!-- Galería adicional para imágenes más allá de la 4ta -->
+  {
+    images.length > 4 && (
+      <div id="additionalGallery" class="hidden mt-4">
+        <h3 class="text-lg font-semibold text-gray-900 dark:text-gray-100 mb-4">
+          Más imágenes
+        </h3>
+        <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+          {images.slice(4).map((image, index) => (
+            <button
+              type="button"
+              class="additional-thumbnail flex-1 overflow-hidden rounded-lg border-2 border-gray-300 dark:border-gray-700 hover:border-blue-500 dark:hover:border-blue-400 transition-all cursor-pointer aspect-square"
+              data-image={image}
+            >
+              <img
+                src={image}
+                alt={`${title} - Additional ${index + 1}`}
+                class="w-full h-full object-cover"
+              />
+            </button>
+          ))}
+        </div>
+      </div>
+    )
+  }
 </div>
 
 <!-- Modal para vista completa de la imagen -->
@@ -46,49 +84,94 @@ const { images, title } = Astro.props;
   class="fixed inset-0 bg-black z-50 hidden items-center justify-center p-4 transition-all duration-500 ease-out"
   style="background-color: rgba(0, 0, 0, 0);"
 >
+  <!-- Botón cerrar -->
   <button
     id="closeModal"
-    class="absolute top-4 right-4 text-white text-4xl hover:text-gray-300 hover:rotate-90 transition-all duration-300 z-10"
+    class="absolute top-4 right-4 text-white text-4xl hover:text-gray-200 hover:rotate-90 transition-all duration-300 z-10 bg-black/60 hover:bg-black/80 rounded-full w-12 h-12 flex items-center justify-center backdrop-blur-sm"
     aria-label="Cerrar"
   >
     &times;
   </button>
+
+  <!-- Flecha izquierda -->
+  <button
+    id="prevImage"
+    class="absolute left-4 text-white text-4xl hover:text-gray-200 hover:scale-125 transition-all duration-300 z-10 p-2 bg-black/60 hover:bg-black/80 rounded-full w-14 h-14 flex items-center justify-center backdrop-blur-sm shadow-lg"
+    aria-label="Imagen anterior"
+  >
+    &#10094;
+  </button>
+
+  <!-- Imagen en modal -->
   <img
     id="modalImage"
     src=""
     alt=""
-    class="max-w-full max-h-full object-contain transform scale-75 opacity-0 transition-all duration-300 ease-out"
+    class="max-w-full max-h-full object-contain transform scale-75 opacity-0 transition-all duration-300 ease-out cursor-pointer"
   />
+
+  <!-- Flecha derecha -->
+  <button
+    id="nextImage"
+    class="absolute right-4 text-white text-4xl hover:text-gray-200 hover:scale-125 transition-all duration-300 z-10 p-2 bg-black/60 hover:bg-black/80 rounded-full w-14 h-14 flex items-center justify-center backdrop-blur-sm shadow-lg"
+    aria-label="Siguiente imagen"
+  >
+    &#10095;
+  </button>
+
+  <!-- Contador de imágenes -->
+  <div class="absolute bottom-4 left-1/2 transform -translate-x-1/2 text-white text-sm bg-black/70 hover:bg-black/80 px-4 py-2 rounded-full backdrop-blur-sm shadow-lg">
+    <span id="imageCounter">1</span> / <span id="totalImages">1</span>
+  </div>
 </div>
 
 <script>
   document.addEventListener("DOMContentLoaded", () => {
     const mainImage = document.getElementById("mainImage") as HTMLImageElement;
     const thumbnails = document.querySelectorAll(".thumbnail-btn");
+    const additionalThumbnails = document.querySelectorAll(".additional-thumbnail");
     const imageModal = document.getElementById("imageModal");
     const modalImage = document.getElementById(
       "modalImage"
     ) as HTMLImageElement;
     const closeModal = document.getElementById("closeModal");
+    const prevImageBtn = document.getElementById("prevImage");
+    const nextImageBtn = document.getElementById("nextImage");
+    const imageCounter = document.getElementById("imageCounter");
+    const totalImages = document.getElementById("totalImages");
+    const additionalGallery = document.getElementById("additionalGallery");
+
+    const images = Array.from(thumbnails).map(
+      (t) => t.getAttribute("data-image") || ""
+    );
+    const allImages = [
+      ...images,
+      ...Array.from(additionalThumbnails).map((t) => t.getAttribute("data-image") || ""),
+    ];
+    let currentImageIndex = 0;
+
+    // Actualizar contador
+    const updateCounter = () => {
+      if (imageCounter && totalImages) {
+        imageCounter.textContent = (currentImageIndex + 1).toString();
+        totalImages.textContent = allImages.length.toString();
+      }
+    };
 
     // Cambiar imagen principal al hacer clic en thumbnails
-    thumbnails.forEach((thumbnail) => {
+    const setupThumbnailClick = (thumbnail: Element, index: number) => {
       thumbnail.addEventListener("click", () => {
         const newImage = thumbnail.getAttribute("data-image");
         if (newImage && mainImage) {
-          // Fade out
-          mainImage.style.opacity = "0";
-          mainImage.style.transform = "scale(0.95)";
-
-          setTimeout(() => {
-            mainImage.src = newImage;
-            // Fade in
-            mainImage.style.opacity = "1";
-            mainImage.style.transform = "scale(1)";
-          }, 300);
+          currentImageIndex = index;
+          updateMainImage(newImage);
 
           // Remover borde activo de todos los thumbnails
           thumbnails.forEach((t) => {
+            t.classList.remove("border-blue-500", "dark:border-blue-400");
+            t.classList.add("border-gray-300", "dark:border-gray-700");
+          });
+          additionalThumbnails.forEach((t) => {
             t.classList.remove("border-blue-500", "dark:border-blue-400");
             t.classList.add("border-gray-300", "dark:border-gray-700");
           });
@@ -96,15 +179,88 @@ const { images, title } = Astro.props;
           // Agregar borde activo al thumbnail seleccionado
           thumbnail.classList.remove("border-gray-300", "dark:border-gray-700");
           thumbnail.classList.add("border-blue-500", "dark:border-blue-400");
+
+          // Mostrar galería adicional si es necesario
+          if (index >= 4 && additionalGallery) {
+            additionalGallery.classList.remove("hidden");
+          }
         }
       });
+    };
+
+    // Configurar clicks en thumbnails principales
+    thumbnails.forEach((thumbnail, index) => {
+      setupThumbnailClick(thumbnail, index);
     });
+
+    // Configurar clicks en thumbnails adicionales
+    additionalThumbnails.forEach((thumbnail, index) => {
+      setupThumbnailClick(thumbnail, index + 4);
+    });
+
+    // Mostrar galería adicional al hacer clic en el botón +
+    const moreButton = thumbnails[3];
+    if (moreButton && images.length > 4) {
+      moreButton.addEventListener("click", () => {
+        if (additionalGallery) {
+          additionalGallery.classList.toggle("hidden");
+        }
+      });
+    }
+
+    // Función para actualizar imagen principal
+    const updateMainImage = (newImage: string) => {
+      if (mainImage) {
+        mainImage.style.opacity = "0";
+        mainImage.style.transform = "scale(0.95)";
+
+        setTimeout(() => {
+          mainImage.src = newImage;
+          mainImage.style.opacity = "1";
+          mainImage.style.transform = "scale(1)";
+        }, 300);
+      }
+    };
 
     // Marcar el primer thumbnail como activo por defecto
     if (thumbnails.length > 0) {
       thumbnails[0].classList.remove("border-gray-300", "dark:border-gray-700");
       thumbnails[0].classList.add("border-blue-500", "dark:border-blue-400");
+      updateCounter();
     }
+
+    // Función para navegar a la siguiente imagen
+    const showNextImage = () => {
+      currentImageIndex = (currentImageIndex + 1) % allImages.length;
+      updateModalImage();
+    };
+
+    // Función para navegar a la imagen anterior
+    const showPrevImage = () => {
+      currentImageIndex =
+        (currentImageIndex - 1 + allImages.length) % allImages.length;
+      updateModalImage();
+    };
+
+    // Actualizar imagen en el modal
+    const updateModalImage = () => {
+      const newImage = allImages[currentImageIndex];
+      if (modalImage) {
+        modalImage.style.opacity = "0";
+        modalImage.style.transform = "scale(0.9)";
+
+        setTimeout(() => {
+          modalImage.src = newImage;
+          modalImage.style.opacity = "1";
+          modalImage.style.transform = "scale(1)";
+          updateCounter();
+        }, 200);
+      }
+    };
+
+    // Event listeners para botones de navegación
+    nextImageBtn?.addEventListener("click", showNextImage);
+    prevImageBtn?.addEventListener("click", showPrevImage);
 
     // Abrir modal al hacer clic en la imagen principal
     mainImage?.addEventListener("click", () => {
@@ -113,9 +269,9 @@ const { images, title } = Astro.props;
         modalImage.alt = mainImage.alt;
         imageModal.classList.remove("hidden");
         imageModal.classList.add("flex");
-        document.body.style.overflow = "hidden"; // Prevenir scroll
+        document.body.style.overflow = "hidden";
+        updateCounter();
 
-        // Animar entrada del modal
         requestAnimationFrame(() => {
           requestAnimationFrame(() => {
             (imageModal as HTMLElement).style.backgroundColor =
@@ -130,7 +286,6 @@ const { images, title } = Astro.props;
     // Cerrar modal
     const closeModalFunc = () => {
       if (imageModal && modalImage) {
-        // Animar salida del modal
         (imageModal as HTMLElement).style.backgroundColor = "rgba(0, 0, 0, 0)";
         modalImage.style.transform = "scale(0.75)";
         modalImage.style.opacity = "0";
@@ -138,7 +293,7 @@ const { images, title } = Astro.props;
         setTimeout(() => {
           imageModal.classList.add("hidden");
           imageModal.classList.remove("flex");
-          document.body.style.overflow = ""; // Restaurar scroll
+          document.body.style.overflow = "";
         }, 500);
       }
     };
@@ -152,14 +307,19 @@ const { images, title } = Astro.props;
       }
     });
 
-    // Cerrar modal con la tecla Escape
+    // Navegación con teclas del teclado
     document.addEventListener("keydown", (e) => {
       if (
-        e.key === "Escape" &&
         imageModal &&
         !imageModal.classList.contains("hidden")
       ) {
-        closeModalFunc();
+        if (e.key === "Escape") {
+          closeModalFunc();
+        } else if (e.key === "ArrowRight") {
+          showNextImage();
+        } else if (e.key === "ArrowLeft") {
+          showPrevImage();
+        }
       }
     });
   });
