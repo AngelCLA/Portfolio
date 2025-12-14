@@ -1,0 +1,227 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import SectionContainer from "@/components/SectionContainer.astro";
+import LinkButton from "@/components/LinkButton.astro";
+import Link from "@/components/icons/Link.astro";
+import GitHub from "@/components/icons/GitHub.astro";
+import Python from "@/components/icons/Python.astro";
+import ProjectGallery from "@/components/ProjectGallery.astro";
+
+const project = {
+  title: "CLA WinConfig – Automatización de PCs con Windows",
+  subtitle:
+    "Herramienta de automatización para la configuración y estandarización de PCs con Windows en centros de cómputo.",
+  description:
+    "CLA WinConfig es una herramienta desarrollada en Python para automatizar la configuración inicial de equipos con Windows en centros de cómputo. Permite ejecutar tareas repetitivas como ajustes del sistema, activación de servicios, configuración visual y preparación del entorno de trabajo, reduciendo errores humanos y tiempos de instalación. Está pensada para entornos educativos e institucionales donde se requiere consistencia, rapidez y control en la preparación de múltiples equipos.",
+  link: "https://cla-winconfig.claangel.site/",
+  link2: "https://github.com/AngelCLA/CLA-WinConfig",
+  images: [
+    "https://images.claangel.site/cla-winconfig/CLA-WinConfig-1.png",
+    "https://images.claangel.site/cla-winconfig/CLA-WinConfig-2.png",
+    "https://images.claangel.site/cla-winconfig/CLA-WinConfig-3.png",
+  ],
+  tags: [
+    {
+      name: "Python",
+      class: "bg-[#2b5b84]/60 text-white",
+      icon: Python,
+    },
+  ],
+};
+---
+
+<Layout
+  title={`${project.title} – Proyecto de CLAAngel`}
+  description={project.description}
+>
+  <main class="px-4">
+    <SectionContainer class="py-16 md:py-24">
+      <a
+        href="javascript:history.back()"
+        class="inline-flex items-center text-sm text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 mb-8 transition-colors"
+      >
+        ← Volver a proyectos
+      </a>
+
+      <article class="max-w-4xl mx-auto">
+        <header class="mb-8">
+          <h1
+            class="text-4xl md:text-5xl font-bold text-gray-900 dark:text-gray-100 mb-4"
+          >
+            {project.title}
+          </h1>
+          <p class="text-xl text-gray-600 dark:text-gray-400 mb-6">
+            {project.subtitle}
+          </p>
+
+          <ul class="flex flex-wrap gap-2 mb-6">
+            {
+              project.tags.map((tag) => (
+                <li>
+                  <span
+                    class={`flex gap-x-2 rounded-full text-xs ${tag.class} py-2 px-3`}
+                  >
+                    <tag.icon className="size-4" />
+                    {tag.name}
+                  </span>
+                </li>
+              ))
+            }
+          </ul>
+        </header>
+
+        <ProjectGallery images={project.images} title={project.title} />
+
+        <div class="flex w-full items-center justify-center gap-4 mb-10">
+          <LinkButton href={project.link}>
+            <Link class="size-4" />
+            Ir al sitio
+          </LinkButton>
+          <LinkButton href={project.link2} variant="secondary">
+            <GitHub class="size-4" />
+            Código
+          </LinkButton>
+        </div>
+
+        <div class="prose prose-lg max-w-none">
+          <h2
+            class="text-2xl mb-2 font-bold text-purple-600 dark:text-purple-500"
+          >
+            Sobre el proyecto
+          </h2>
+
+          <p class="text-gray-800 dark:text-gray-300">
+            CLA WinConfig nace de la necesidad de estandarizar y agilizar la
+            preparación de equipos de cómputo en entornos educativos e
+            institucionales. El proyecto automatiza procesos que
+            tradicionalmente se realizan de forma manual, como configuraciones
+            del sistema, ajustes visuales y ejecución de scripts
+            administrativos.
+          </p>
+
+          <p class="text-gray-800 dark:text-gray-300 mt-4">
+            La herramienta cuenta con una interfaz gráfica clara y estructurada,
+            diseñada bajo un enfoque tipo <strong>Bento Grid</strong>, lo que
+            permite una experiencia de uso intuitiva incluso para personal
+            técnico sin conocimientos avanzados de programación.
+          </p>
+
+          <h2
+            class="text-2xl mb-2 mt-6 font-bold text-purple-600 dark:text-purple-500"
+          >
+            Características principales
+          </h2>
+
+          <div class="grid md:grid-cols-2 gap-4 mt-4">
+            <div
+              class="p-4 bg-gray-100 dark:bg-gray-800/20 rounded-xl shadow-sm"
+            >
+              <h4
+                class="font-semibold text-purple-500 dark:text-purple-400 mb-1"
+              >
+                Herramientas gratuitas y de código abierto
+              </h4>
+              <p class="text-sm">
+                Uso de herramientas open source que permiten auditoría,
+                personalización y mejora continua del sistema.
+              </p>
+            </div>
+
+            <div
+              class="p-4 bg-gray-100 dark:bg-gray-800/20 rounded-xl shadow-sm"
+            >
+              <h4
+                class="font-semibold text-purple-500 dark:text-purple-400 mb-1"
+              >
+                Automatización de tareas repetitivas
+              </h4>
+              <p class="text-sm">
+                Reducción significativa del tiempo de configuración y
+                minimización de errores humanos.
+              </p>
+            </div>
+
+            <div
+              class="p-4 bg-gray-100 dark:bg-gray-800/20 rounded-xl shadow-sm"
+            >
+              <h4
+                class="font-semibold text-purple-500 dark:text-purple-400 mb-1"
+              >
+                Ejecución directa
+              </h4>
+              <p class="text-sm">
+                No requiere instalación previa; se ejecuta directamente mediante
+                un archivo ejecutable con permisos administrativos.
+              </p>
+            </div>
+
+            <div
+              class="p-4 bg-gray-100 dark:bg-gray-800/20 rounded-xl shadow-sm"
+            >
+              <h4
+                class="font-semibold text-purple-500 dark:text-purple-400 mb-1"
+              >
+                Proyecto de código abierto
+              </h4>
+              <p class="text-sm">
+                Código disponible en GitHub, permitiendo contribuciones y uso
+                como base para otros proyectos institucionales.
+              </p>
+            </div>
+          </div>
+
+          <h2
+            class="text-2xl mb-2 mt-6 font-bold text-purple-600 dark:text-purple-500"
+          >
+            Tecnologías y herramientas
+          </h2>
+
+          <div class="grid md:grid-cols-2 gap-4 mt-4">
+            <div
+              class="p-4 bg-gray-100 dark:bg-gray-800/20 rounded-xl shadow-sm"
+            >
+              <h4
+                class="font-semibold text-purple-500 dark:text-purple-400 mb-1"
+              >
+                Python
+              </h4>
+              <p class="text-sm text-gray-700 dark:text-gray-300">
+                Lenguaje principal del proyecto, utilizado para la
+                automatización de procesos, ejecución de scripts del sistema y
+                control del flujo de configuración.
+              </p>
+            </div>
+
+            <div
+              class="p-4 bg-gray-100 dark:bg-gray-800/20 rounded-xl shadow-sm"
+            >
+              <h4
+                class="font-semibold text-purple-500 dark:text-purple-400 mb-1"
+              >
+                Tkinter / CustomTkinter
+              </h4>
+              <p class="text-sm text-gray-700 dark:text-gray-300">
+                Biblioteca utilizada para la interfaz gráfica de escritorio,
+                enfocada en usabilidad y claridad visual.
+              </p>
+            </div>
+
+            <div
+              class="p-4 bg-gray-100 dark:bg-gray-800/20 rounded-xl shadow-sm"
+            >
+              <h4
+                class="font-semibold text-purple-500 dark:text-purple-400 mb-1"
+              >
+                PowerShell
+              </h4>
+              <p class="text-sm text-gray-700 dark:text-gray-300">
+                Integración para la ejecución de comandos administrativos y
+                configuraciones avanzadas del sistema operativo Windows.
+              </p>
+            </div>
+          </div>
+        </div>
+      </article>
+    </SectionContainer>
+  </main>
+</Layout>

@@ -8,6 +8,7 @@ import NextJS from "./icons/NextJS.astro";
 import JavaScript from "./icons/JavaScript.astro";
 import Mustache from "./icons/Mustache.astro";
 import Supabase from "./icons/Supabase.astro";
+import Python from "./icons/Python.astro";
 
 const TAGS = {
   PHP: {
@@ -41,6 +42,11 @@ const TAGS = {
     class: "bg-[#121212] text-white",
     icon: Supabase,
   },
+  PYTHON: {
+    name: "Python",
+    class: "bg-[#003159] text-white",
+    icon: Python,
+  },
 };
 const PROJECTS = [
   {
@@ -70,6 +76,16 @@ const PROJECTS = [
     github: "https://github.com/AngelCLA/CLA-Tools",
     image: "/projects/tools-cla/tools-cla.png",
     tags: [TAGS.TAILWIND, TAGS.JAVASCRIPT],
+  },
+  {
+    slug: "cla-winconfig",
+    title: "CLA WinConfig - Configuración automática de PCs",
+    description:
+      "Herramienta para la configuración automática de PCs con Windows en centros de cómputo.",
+    link: "https://cla-winconfig.claangel.site/",
+    github: "https://github.com/AngelCLA/CLA-WinConfig",
+    image: "/projects/cla-winconfig/CLA-WinConfig.png",
+    tags: [TAGS.PYTHON],
   },
 ];
 ---
