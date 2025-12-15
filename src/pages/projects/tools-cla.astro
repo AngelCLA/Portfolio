@@ -9,22 +9,28 @@ import Mustache from "@/components/icons/Mustache.astro";
 import Tailwind from "@/components/icons/Tailwind.astro";
 import JavaScript from "@/components/icons/JavaScript.astro";
 import ProjectGallery from "@/components/ProjectGallery.astro";
+import AstroIcon from "@/components/icons/AstroIcon.astro";
 
 const project = {
   title: "ToolsCLA - Colección de herramientas",
   subtitle:
-    "Plataforma gratuita con herramientas para agilizar la carga de actividades.",
+    "Plataforma gratuita con herramientas para agilizar la carga de actividades y optimizar procesos académicos de forma rápida y sencilla.",
   description:
-    "Plataforma gratuita con herramientas para agilizar la carga de actividades. Creada desde cero con HTML, JS y Tailwind CSS..",
+    "CLA Tools es una plataforma web gratuita que reúne un conjunto de herramientas especializadas para agilizar procesos educativos. Desde la conversión de documentos hasta la gestión de archivos PDF, cada herramienta está diseñada pensando en la simplicidad y eficiencia.",
   link: "https://tools.claangel.site/",
   link2: "https://github.com/AngelCLA/CLA-Tools",
   images: [
-    "https://images.claangel.site/tools-cla/tools-cla-1.png",
-    "https://images.claangel.site/tools-cla/tools-cla-2.png",
-    "https://images.claangel.site/tools-cla/tools-cla-3.png",
-    "https://images.claangel.site/tools-cla/tools-cla-4.png",
+    "https://images.claangel.site/tools-cla/tools_cla-1.png",
+    "https://images.claangel.site/tools-cla/tools_cla-2.png",
+    "https://images.claangel.site/tools-cla/tools_cla-3.png",
+    "https://images.claangel.site/tools-cla/tools_cla-4.png",
   ],
   tags: [
+    {
+      name: "Astro",
+      class: "bg-[#23262F]/80 text-white",
+      icon: AstroIcon,
+    },
     {
       name: "Tailwind CSS",
       class: "bg-[#003159]/80 text-white",
@@ -176,7 +182,7 @@ const project = {
               <h4
                 class="font-semibold text-purple-500 dark:text-purple-400 mb-1"
               >
-                HTML5
+                Astro
               </h4>
               <p class="text-sm text-gray-700 dark:text-gray-300">
                 Estructura semántica clara y optimizada para accesibilidad.
@@ -202,10 +208,10 @@ const project = {
               <h4
                 class="font-semibold text-purple-500 dark:text-purple-400 mb-1"
               >
-                Mustache
+                JavaScript
               </h4>
               <p class="text-sm text-gray-700 dark:text-gray-300">
-                Sistema de plantillas para contenido dinámico.
+                Funcionalidades interactivas y dinámicas para mejorar la UX.
               </p>
             </div>
           </div>
