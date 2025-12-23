@@ -36,16 +36,16 @@ const TAGS = {
     class: "bg-gray-100/80 text-black",
     icon: Mustache,
   },
-    SUPABASE: {
-      name: "Supabase",
-      class: "bg-[#121212] text-white",
-      icon: Supabase,
-    },
-    ASTROICON: {
-      name: "Astro",
-      class: "bg-[#23262F]/80 text-white",
-      icon: AstroIcon,
-    },
+  SUPABASE: {
+    name: "Supabase",
+    class: "bg-[#121212] text-white",
+    icon: Supabase,
+  },
+  ASTROICON: {
+    name: "Astro",
+    class: "bg-[#23262F]/80 text-white",
+    icon: AstroIcon,
+  },
 };
 const PROJECTS = [
   {
@@ -54,7 +54,7 @@ const PROJECTS = [
     description:
       "Plataforma integral para evaluar conocimientos y habilidades académicas dentro de la Universidad Politécnica del Mar y la Sierra, diseñada para ofrecer una experiencia clara, fluida y eficiente tanto para estudiantes como para profesores.",
     link: "https://edi.upmys.edu.mx/",
-    image: "https://images.claangel.site/tools-cla/tools-cla.png",
+    image: "/projects/edi-upmys/edi.png",
     tags: [TAGS.PHP, TAGS.TAILWIND, TAGS.MUSTACHE, TAGS.JAVASCRIPT],
   },
   {
@@ -74,7 +74,7 @@ const PROJECTS = [
     link: "https://tools.claangel.site/",
     github: "https://github.com/AngelCLA/CLA-Tools",
     image: "/projects/tools-cla/tools-cla.png",
-    tags: [TAGS.ASTROICON ,TAGS.TAILWIND, TAGS.JAVASCRIPT],
+    tags: [TAGS.ASTROICON, TAGS.TAILWIND, TAGS.JAVASCRIPT],
   },
 ];
 ---
@@ -96,7 +96,7 @@ const PROJECTS = [
 
         <div class="w-full md:w-1/2 md:max-w-lg">
           <a href={`/projects/${slug}`} class="group/title">
-            <h3 class="text-2xl font-bold text-gray-800 dark:text-gray-100 group-hover/title:text-blue-600 dark:group-hover/title:text-blue-400 transition-colors">
+            <h3 class="text-2xl font-bold text-gray-800 dark:text-gray-100 group-hover/title:text-purple-600 dark:group-hover/title:text-purple-400 transition-colors">
               {title}
             </h3>
           </a>
