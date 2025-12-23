@@ -8,6 +8,7 @@ import NextJS from "./icons/NextJS.astro";
 import JavaScript from "./icons/JavaScript.astro";
 import Mustache from "./icons/Mustache.astro";
 import Supabase from "./icons/Supabase.astro";
+import AstroIcon from "./icons/AstroIcon.astro";
 
 const TAGS = {
   PHP: {
@@ -35,11 +36,16 @@ const TAGS = {
     class: "bg-gray-100/80 text-black",
     icon: Mustache,
   },
-  SUPABASE: {
-    name: "Supabase",
-    class: "bg-[#121212] text-white",
-    icon: Supabase,
-  },
+    SUPABASE: {
+      name: "Supabase",
+      class: "bg-[#121212] text-white",
+      icon: Supabase,
+    },
+    ASTROICON: {
+      name: "Astro",
+      class: "bg-[#23262F]/80 text-white",
+      icon: AstroIcon,
+    },
 };
 const PROJECTS = [
   {
@@ -48,7 +54,7 @@ const PROJECTS = [
     description:
       "Plataforma integral para evaluar conocimientos y habilidades académicas dentro de la Universidad Politécnica del Mar y la Sierra, diseñada para ofrecer una experiencia clara, fluida y eficiente tanto para estudiantes como para profesores.",
     link: "https://edi.upmys.edu.mx/",
-    image: "/projects/edi-upmys/edi.png",
+    image: "https://images.claangel.site/tools-cla/tools-cla.png",
     tags: [TAGS.PHP, TAGS.TAILWIND, TAGS.MUSTACHE, TAGS.JAVASCRIPT],
   },
   {
@@ -62,13 +68,13 @@ const PROJECTS = [
   },
   {
     slug: "tools-cla",
-    title: "ToolsCLA - Colección de herramientas",
+    title: "CLA Tools - Colección de herramientas",
     description:
-      "Herramienta gratuita y de código abierto pensada para acelerar la carga de actividades y reducir procesos repetitivos, brindando una experiencia más fluida.",
+      "Plataforma gratuita con herramientas para agilizar la carga de actividades y optimizar procesos académicos de forma rápida y sencilla.",
     link: "https://tools.claangel.site/",
     github: "https://github.com/AngelCLA/CLA-Tools",
     image: "/projects/tools-cla/tools-cla.png",
-    tags: [TAGS.TAILWIND, TAGS.JAVASCRIPT],
+    tags: [TAGS.ASTROICON ,TAGS.TAILWIND, TAGS.JAVASCRIPT],
   },
 ];
 ---
