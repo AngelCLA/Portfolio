@@ -1,0 +1,273 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import SectionContainer from "@/components/SectionContainer.astro";
+import LinkButton from "@/components/LinkButton.astro";
+import Link from "@/components/icons/Link.astro";
+import GitHub from "@/components/icons/GitHub.astro";
+import ReactIcon from "@/components/icons/React.astro";
+import Firebase from "@/components/icons/Firebase.astro";
+import Tailwind from "@/components/icons/Tailwind.astro";
+import ProjectGallery from "@/components/ProjectGallery.astro";
+
+const project = {
+  title: "CLA-Kahoot – Plataforma de cuestionarios interactivos",
+  subtitle:
+    "Aplicación web para la creación y ejecución de cuestionarios interactivos en tiempo real con enfoque en gamificación educativa",
+  description:
+    "Aplicación web desarrollada con React, Firebase y Tailwind CSS para crear y ejecutar cuestionarios interactivos en tiempo real.",
+  link: "https://kahoot.claangel.site/",
+  link2: "https://github.com/AngelCLA/CLA-Kahoot",
+  images: [
+    "https://images.claangel.site/cla-kahoot/CLA-Kahoot-1.png",
+    "https://images.claangel.site/cla-kahoot/CLA-Kahoot-2.png",
+    "https://images.claangel.site/cla-kahoot/CLA-Kahoot-3.png",
+    "https://images.claangel.site/cla-kahoot/CLA-Kahoot-4.png",
+  ],
+  tags: [
+    {
+      name: "React",
+      class: "bg-[#003159]/90 text-white",
+      icon: ReactIcon,
+    },
+    {
+      name: "Firebase",
+      class: "bg-[#ffca28]/60 text-zinc-900",
+      icon: Firebase,
+    },
+    {
+      name: "Tailwind CSS",
+      class: "bg-[#003159]/70 text-white",
+      icon: Tailwind,
+    },
+  ],
+};
+---
+
+<Layout
+  title={`${project.title} – Proyecto de CLAAngel`}
+  description={project.description}
+>
+  <main class="px-4">
+    <SectionContainer class="py-16 md:py-24">
+      <a
+        href="javascript:history.back()"
+        class="inline-flex items-center text-sm text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 mb-8 transition-colors"
+      >
+        ← Volver a proyectos
+      </a>
+
+      <article class="max-w-4xl mx-auto">
+        <header class="mb-8">
+          <h1
+            class="text-4xl md:text-5xl font-bold text-gray-900 dark:text-gray-100 mb-4"
+          >
+            {project.title}
+          </h1>
+          <p class="text-xl text-gray-600 dark:text-gray-400 mb-6">
+            {project.subtitle}
+          </p>
+
+          <ul class="flex flex-wrap gap-2 mb-6">
+            {
+              project.tags.map((tag) => (
+                <li>
+                  <span
+                    class={`flex gap-x-2 rounded-full text-xs ${tag.class} py-2 px-3`}
+                  >
+                    <tag.icon className="size-4" />
+                    {tag.name}
+                  </span>
+                </li>
+              ))
+            }
+          </ul>
+        </header>
+
+        <ProjectGallery images={project.images} title={project.title} />
+
+        <div class="flex w-full items-center justify-center gap-4 mb-10">
+          <LinkButton href={project.link}>
+            <Link class="size-4" />
+            Ir al sitio
+          </LinkButton>
+          <LinkButton href={project.link2} variant="secondary">
+            <GitHub class="size-4" />
+            Código
+          </LinkButton>
+        </div>
+
+        <div class="prose prose-lg max-w-none">
+          <!-- SOBRE EL PROYECTO -->
+          <h2
+            class="text-2xl mb-2 font-bold text-purple-600 dark:text-purple-500"
+          >
+            Sobre el proyecto
+          </h2>
+
+          <p class="text-gray-800 dark:text-gray-300">
+            CLA-Kahoot es una aplicación web tipo Single Page Application (SPA)
+            orientada a la creación y ejecución de cuestionarios interactivos en
+            tiempo real, con un enfoque en gamificación, evaluación inmediata y
+            sincronización multiusuario.
+          </p>
+
+          <p class="text-gray-800 dark:text-gray-300 mt-4">
+            El frontend fue desarrollado con React y Tailwind CSS, priorizando
+            una interfaz responsiva, clara y optimizada para distintos contextos
+            de uso (móvil, escritorio y proyección). El backend se apoya en
+            Firebase / Firestore como Backend as a Service (BaaS), eliminando la
+            necesidad de infraestructura propia y permitiendo actualización de
+            datos en tiempo real mediante listeners.
+          </p>
+
+          <p class="text-gray-800 dark:text-gray-300 mt-4">
+            La plataforma gestiona sesiones activas de cuestionarios,
+            temporizadores por pregunta, recolección de respuestas y cálculo
+            dinámico de rankings, ofreciendo retroalimentación inmediata a los
+            participantes y una experiencia fluida para el moderador.
+          </p>
+
+          <!-- ARQUITECTURA -->
+          <h2
+            class="text-2xl mb-2 mt-6 font-bold text-purple-600 dark:text-purple-500"
+          >
+            Arquitectura del sistema
+          </h2>
+
+          <ul class="list-disc pl-6 text-gray-800 dark:text-gray-300">
+            <li>
+              <strong>Frontend:</strong> SPA en React con manejo de estado para preguntas,
+              temporizador, progreso del usuario y ranking.
+            </li>
+            <li>
+              <strong>Base de datos:</strong> Firestore como base de datos NoSQL para
+              cuestionarios, sesiones, respuestas y resultados.
+            </li>
+            <li>
+              <strong>Tiempo real:</strong> Sincronización instantánea mediante listeners
+              de Firestore para mantener consistencia entre todos los clientes conectados.
+            </li>
+            <li>
+              <strong>UI:</strong> TTailwind CSS bajo un enfoque utility-first para
+              escalabilidad y mantenibilidad del diseño.
+            </li>
+          </ul>
+
+          <!-- CARACTERÍSTICAS -->
+          <h2
+            class="text-2xl mb-2 mt-6 font-bold text-purple-600 dark:text-purple-500"
+          >
+            Características técnicas
+          </h2>
+
+          <div class="grid md:grid-cols-2 gap-4 mt-4">
+            <div
+              class="p-4 bg-gray-100 dark:bg-gray-800/20 rounded-xl shadow-sm"
+            >
+              <h4
+                class="font-semibold text-purple-500 dark:text-purple-400 mb-1"
+              >
+                Sincronización en tiempo real
+              </h4>
+              <p class="text-sm">
+                Sincronización en tiempo real de estado global del cuestionario.
+              </p>
+            </div>
+
+            <div
+              class="p-4 bg-gray-100 dark:bg-gray-800/20 rounded-xl shadow-sm"
+            >
+              <h4
+                class="font-semibold text-purple-500 dark:text-purple-400 mb-1"
+              >
+                Gestión de estado en React
+              </h4>
+              <p class="text-sm">
+                Control preciso del temporizador por pregunta.
+              </p>
+            </div>
+
+            <div
+              class="p-4 bg-gray-100 dark:bg-gray-800/20 rounded-xl shadow-sm"
+            >
+              <h4
+                class="font-semibold text-purple-500 dark:text-purple-400 mb-1"
+              >
+                Ranking dinámico
+              </h4>
+              <p class="text-sm">
+                Cálculo automático de puntuación considerando exactitud y tiempo
+                de respuesta.
+              </p>
+            </div>
+
+            <div
+              class="p-4 bg-gray-100 dark:bg-gray-800/20 rounded-xl shadow-sm"
+            >
+              <h4
+                class="font-semibold text-purple-500 dark:text-purple-400 mb-1"
+              >
+                Diseño responsivo
+              </h4>
+              <p class="text-sm">
+                Diseño responsive optimizado para distintos dispositivos y
+                pantallas compartidas.
+              </p>
+            </div>
+          </div>
+
+          <!-- TECNOLOGÍAS -->
+          <h2
+            class="text-2xl mb-2 mt-6 font-bold text-purple-600 dark:text-purple-500"
+          >
+            Tecnologías utilizadas
+          </h2>
+
+          <div class="grid md:grid-cols-2 gap-4 mt-4">
+            <div
+              class="p-4 bg-gray-100 dark:bg-gray-800/20 rounded-xl shadow-sm"
+            >
+              <h4
+                class="font-semibold text-purple-500 dark:text-purple-400 mb-1"
+              >
+                React
+              </h4>
+              <p class="text-sm text-gray-700 dark:text-gray-300">
+                Componentes reutilizables, manejo de estado y renderizado
+                eficiente.
+              </p>
+            </div>
+
+            <div
+              class="p-4 bg-gray-100 dark:bg-gray-800/20 rounded-xl shadow-sm"
+            >
+              <h4
+                class="font-semibold text-purple-500 dark:text-purple-400 mb-1"
+              >
+                Firebase / Firestore
+              </h4>
+              <p class="text-sm text-gray-700 dark:text-gray-300">
+                Persistencia de datos, sincronización en tiempo real y
+                escalabilidad sin backend propio.
+              </p>
+            </div>
+
+            <div
+              class="p-4 bg-gray-100 dark:bg-gray-800/20 rounded-xl shadow-sm"
+            >
+              <h4
+                class="font-semibold text-purple-500 dark:text-purple-400 mb-1"
+              >
+                Tailwind CSS
+              </h4>
+              <p class="text-sm text-gray-700 dark:text-gray-300">
+                Framework utility-first para una UI moderna, accesible y
+                mantenible.
+              </p>
+            </div>
+          </div>
+        </div>
+      </article>
+    </SectionContainer>
+  </main>
+</Layout>

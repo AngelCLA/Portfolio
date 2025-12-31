@@ -9,6 +9,9 @@ import JavaScript from "./icons/JavaScript.astro";
 import Mustache from "./icons/Mustache.astro";
 import Supabase from "./icons/Supabase.astro";
 import Python from "./icons/Python.astro";
+import Firebase from "./icons/Firebase.astro";
+import ReactIcon from "./icons/React.astro";
+import AstroIcon from "./icons/AstroIcon.astro";
 
 const TAGS = {
   PHP: {
@@ -47,8 +50,33 @@ const TAGS = {
     class: "bg-[#003159] text-white",
     icon: Python,
   },
+  FIREBASE: {
+    name: "Firebase",
+    class: "bg-[#ffca28]/60 text-zinc-900",
+    icon: Firebase,
+  },
+  REACT: {
+    name: "React",
+    class: "bg-[#003159]/90 text-white",
+    icon: ReactIcon,
+  },
+  ASTROICON: {
+    name: "Astro",
+    class: "bg-[#23262F]/80 text-white",
+    icon: AstroIcon,
+  },
 };
 const PROJECTS = [
+  {
+    slug: "tools-cla",
+    title: "CLA Tools - Colección de herramientas",
+    description:
+      "Herramienta gratuita y de código abierto pensada para acelerar la carga de actividades y reducir procesos repetitivos, brindando una experiencia más fluida.",
+    link: "https://tools.claangel.site/",
+    github: "https://github.com/AngelCLA/CLA-Tools",
+    image: "https://images.claangel.site/tools-cla/tools-cla.png",
+    tags: [TAGS.ASTROICON, TAGS.TAILWIND, TAGS.JAVASCRIPT],
+  },
   {
     slug: "edi-upmys",
     title: "EDI-UPMYS - Plataforma para la evaluación de conocimientos",
@@ -58,6 +86,17 @@ const PROJECTS = [
     image: "/projects/edi-upmys/edi.png",
     tags: [TAGS.PHP, TAGS.TAILWIND, TAGS.MUSTACHE, TAGS.JAVASCRIPT],
   },
+
+  {
+    slug: "cla-kahoot",
+    title: "CLA Kahoot – Generador de cuestionarios Kahoot",
+    description:
+      "Aplicación web SPA para generar y ejecutar quizzes educativos interactivos en tiempo real, inspirados en Kahoot!, usando React, Firebase/Firestore y Tailwind CSS.",
+    link: "https://kahoot.claangel.site/",
+    github: "https://github.com/AngelCLA/CLA-Kahoot",
+    image: "https://images.claangel.site/cla-kahoot/CLA-Kahoot.png",
+    tags: [TAGS.REACT, TAGS.FIREBASE, TAGS.TAILWIND],
+  },
   {
     slug: "tf-clinica",
     title: "TF-Clinica - Sistema de gestión para clínica de fisioterapia",
@@ -66,16 +105,6 @@ const PROJECTS = [
     link: "",
     image: "/projects/tf-clinica/TF-Clinica.png",
     tags: [TAGS.PHP, TAGS.TAILWIND, TAGS.JAVASCRIPT, TAGS.SUPABASE],
-  },
-  {
-    slug: "tools-cla",
-    title: "ToolsCLA - Colección de herramientas",
-    description:
-      "Herramienta gratuita y de código abierto pensada para acelerar la carga de actividades y reducir procesos repetitivos, brindando una experiencia más fluida.",
-    link: "https://tools.claangel.site/",
-    github: "https://github.com/AngelCLA/CLA-Tools",
-    image: "https://images.claangel.site/tools-cla/tools-cla.png",
-    tags: [TAGS.TAILWIND, TAGS.JAVASCRIPT],
   },
   {
     slug: "cla-winconfig",
