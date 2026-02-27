@@ -8,11 +8,12 @@ import Python from "@/components/icons/Python.astro";
 import ProjectGallery from "@/components/ProjectGallery.astro";
 
 const project = {
-  title: "CLA WinConfig – Automatización de PCs con Windows",
+  title: "CLA WinConfig",
+  titleSuffix: "Automatización de PCs Windows para entornos educativos",
   subtitle:
-    "Herramienta open source para automatizar la configuración de equipos Windows en centros de cómputo educativos e institucionales.",
+    "Herramienta de escritorio open source para estandarizar y configurar múltiples equipos Windows de forma rápida, consistente y sin errores — construida con Python.",
   description:
-    "CLA WinConfig es una herramienta de escritorio desarrollada en Python que automatiza la configuración inicial y estandarización de PCs con Windows. Está orientada a centros de cómputo educativos e instituciones que requieren preparar múltiples equipos de forma rápida, consistente y controlada, reduciendo errores humanos y tiempos de implementación.",
+    "Herramienta de escritorio desarrollada en Python que automatiza la configuración inicial y estandarización de PCs con Windows, orientada a centros de cómputo educativos e institucionales.",
   link: "https://cla-winconfig.claangel.site/",
   link2: "https://github.com/AngelCLA/CLA-WinConfig",
   images: [
@@ -27,41 +28,145 @@ const project = {
       icon: Python,
     },
   ],
+  stats: [
+    { value: "Sin instalación", label: "Ejecutable portable" },
+    { value: "Open Source", label: "Código abierto en GitHub" },
+    { value: "Multi-equipo", label: "Configuración en lote" },
+  ],
 };
 ---
+
+<style>
+  .card-lift {
+    transition:
+      transform 0.22s ease,
+      box-shadow 0.22s ease;
+  }
+  .card-lift:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 28px -6px rgba(147, 51, 234, 0.12);
+  }
+
+  .section-number {
+    font-variant-numeric: tabular-nums;
+    letter-spacing: -0.03em;
+  }
+
+  .divider {
+    height: 1px;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      currentColor 20%,
+      currentColor 80%,
+      transparent
+    );
+    opacity: 0.1;
+  }
+
+  .accent-left {
+    border-left: 2px solid rgba(147, 51, 234, 0.35);
+  }
+
+  .tag-item {
+    transition: opacity 0.18s ease;
+  }
+  .tag-item:hover {
+    opacity: 0.8;
+  }
+
+  .back-link {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+  }
+  .back-link::after {
+    content: "";
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 1px;
+    background: currentColor;
+    transition: width 0.2s ease;
+  }
+  .back-link:hover::after {
+    width: 100%;
+  }
+
+  @keyframes fadeUp {
+    from {
+      opacity: 0;
+      transform: translateY(14px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  .fade-up {
+    animation: fadeUp 0.5s ease both;
+  }
+  .delay-1 {
+    animation-delay: 0.08s;
+  }
+  .delay-2 {
+    animation-delay: 0.16s;
+  }
+  .delay-3 {
+    animation-delay: 0.24s;
+  }
+  .delay-4 {
+    animation-delay: 0.32s;
+  }
+</style>
 
 <Layout
   title={`${project.title} – Proyecto de CLAAngel`}
   description={project.description}
 >
   <main class="px-4">
-    <SectionContainer class="py-16 md:py-24">
-      <a
-        href="javascript:history.back()"
-        class="inline-flex items-center text-sm text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 mb-8 transition-colors"
-      >
-        ← Volver a proyectos
-      </a>
+    <SectionContainer class="py-26 md:py-20">
+      <!-- ── BACK NAVIGATION ── -->
+      <div class="max-w-4xl mx-auto mb-12 fade-up">
+        <a
+          href="javascript:history.back()"
+          class="back-link text-sm text-gray-500 dark:text-gray-500 hover:text-purple-600 dark:hover:text-purple-400 transition-colors"
+        >
+          ← Proyectos
+        </a>
+      </div>
 
       <article class="max-w-4xl mx-auto">
-        <header class="mb-8">
+        <!-- ══ HEADER ══ -->
+        <header class="mb-6 fade-up delay-1">
+          <p
+            class="text-xs font-semibold tracking-widest uppercase text-purple-500 dark:text-purple-400 mb-4"
+          >
+            Proyecto personal · Desktop + Automatización de sistemas
+          </p>
+
           <h1
-            class="text-4xl md:text-5xl font-bold text-gray-900 dark:text-gray-100 mb-4"
+            class="text-5xl md:text-6xl font-bold text-gray-900 dark:text-gray-100 leading-none tracking-tight mb-5"
           >
             {project.title}
           </h1>
-          <p class="text-xl text-gray-600 dark:text-gray-400 mb-6">
+
+          <p
+            class="text-lg md:text-xl text-gray-600 dark:text-gray-400 leading-relaxed mb-8"
+          >
             {project.subtitle}
           </p>
 
-          <ul class="flex flex-wrap gap-2 mb-6">
+          <ul class="flex flex-wrap gap-3 mb-10" role="list">
             {
               project.tags.map((tag) => (
                 <li>
                   <span
-                    class={`flex gap-x-2 rounded-full text-xs ${tag.class} py-2 px-3`}
+                    class={`tag-item flex gap-x-2 items-center rounded-full text-xs font-medium ${tag.class} py-2 px-4`}
                   >
-                    <tag.icon className="size-4" />
+                    <tag.icon className="size-3.5" />
                     {tag.name}
                   </span>
                 </li>
@@ -70,168 +175,386 @@ const project = {
           </ul>
         </header>
 
-        <ProjectGallery images={project.images} title={project.title} />
+        <!-- ══ GALLERY ══ -->
+        <div class="fade-up delay-2 mb-8">
+          <ProjectGallery images={project.images} title={project.title} />
+        </div>
 
-        <div class="flex w-full items-center justify-center gap-4 mb-10">
+        <!-- ── CTAs ── -->
+        <div
+          class="flex w-full items-center justify-center gap-4 mb-8 p-6 rounded-2xl bg-gray-50 dark:bg-gray-800/20 fade-up delay-3"
+        >
           <LinkButton href={project.link}>
             <Link class="size-4" />
-            Ir al sitio
+            Ver demo en vivo
           </LinkButton>
           <LinkButton href={project.link2} variant="secondary">
             <GitHub class="size-4" />
-            Código
+            Ver código fuente
           </LinkButton>
         </div>
 
-        <div class="prose prose-lg max-w-none">
-          <h2
-            class="text-2xl mb-2 font-bold text-purple-600 dark:text-purple-500"
-          >
-            Sobre el proyecto
-          </h2>
-
-          <p class="text-gray-800 dark:text-gray-300">
-            CLA WinConfig surge como respuesta a la necesidad de preparar y
-            estandarizar equipos de cómputo en entornos educativos, donde la
-            configuración manual de cada PC representa una pérdida significativa
-            de tiempo y una alta probabilidad de errores humanos.
-          </p>
-
-          <p class="text-gray-800 dark:text-gray-300 mt-4">
-            El proyecto centraliza y automatiza tareas administrativas comunes
-            en Windows, como ajustes del sistema, configuraciones visuales,
-            activación de servicios y ejecución de scripts, permitiendo que la
-            preparación de múltiples equipos se realice de forma consistente y
-            repetible.
-          </p>
-
-          <p class="text-gray-800 dark:text-gray-300 mt-4">
-            La herramienta fue diseñada pensando en su uso en centros de
-            cómputo, laboratorios académicos y entornos institucionales, donde
-            la estandarización, la confiabilidad y el control del sistema son
-            factores críticos.
-          </p>
-
-          <h2
-            class="text-2xl mb-2 mt-6 font-bold text-purple-600 dark:text-purple-500"
-          >
-            Características principales
-          </h2>
-
-          <div class="grid md:grid-cols-2 gap-4 mt-4">
-            <div
-              class="p-4 bg-gray-100 dark:bg-gray-800/20 rounded-xl shadow-sm"
-            >
-              <h4
-                class="font-semibold text-purple-500 dark:text-purple-400 mb-1"
+        <!-- ══ CONTENIDO ══ -->
+        <div class="space-y-14 fade-up delay-4">
+          <!-- 01 · CONTEXTO -->
+          <section>
+            <div class="flex items-baseline gap-4 mb-6">
+              <span
+                class="section-number text-4xl font-bold text-gray-200 dark:text-gray-800 select-none"
+                >01</span
               >
-                Enfoque open source y auditable
-              </h4>
-              <p class="text-sm">
-                Uso de tecnologías de código abierto que permiten auditoría,
-                personalización y adaptación del sistema a distintos entornos
-                institucionales.
+              <h2
+                class="text-2xl font-bold text-purple-600 dark:text-purple-500"
+              >
+                Contexto y objetivo
+              </h2>
+            </div>
+            <div
+              class="accent-left pl-6 space-y-4 text-gray-700 dark:text-gray-300 leading-relaxed"
+            >
+              <p>
+                CLA WinConfig surge como respuesta a una necesidad concreta en
+                centros de cómputo educativos: preparar y estandarizar múltiples
+                equipos Windows representa horas de trabajo repetitivo con alta
+                probabilidad de inconsistencias entre máquinas. La herramienta
+                centraliza y automatiza ese proceso, permitiendo que la
+                configuración de un laboratorio completo sea reproducible,
+                auditable y ejecutable por personal sin conocimientos avanzados.
               </p>
+              <p>
+                El proyecto demuestra criterio de ingeniería aplicada —
+                identificar un problema real, elegir el stack adecuado para el
+                entorno objetivo (Python + APIs nativas de Windows) y entregar
+                una solución empaquetada como ejecutable portable que no
+                requiere instalación previa ni dependencias externas.
+              </p>
+            </div>
+          </section>
+
+          <div class="divider text-gray-400 dark:text-gray-700"></div>
+
+          <!-- 02 · ARQUITECTURA -->
+          <section>
+            <div class="flex items-baseline gap-4 mb-8">
+              <span
+                class="section-number text-4xl font-bold text-gray-200 dark:text-gray-800 select-none"
+                >02</span
+              >
+              <h2
+                class="text-2xl font-bold text-purple-600 dark:text-purple-500"
+              >
+                Arquitectura del sistema
+              </h2>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-4 mb-4">
+              <div
+                class="card-lift p-6 bg-gray-100 dark:bg-gray-800/20 rounded-2xl accent-left pl-7"
+              >
+                <h4
+                  class="font-semibold text-purple-500 dark:text-purple-400 mb-2 text-sm uppercase tracking-wide"
+                >
+                  Aplicación de escritorio
+                </h4>
+                <p
+                  class="text-gray-700 dark:text-gray-300 text-sm leading-relaxed"
+                >
+                  Interfaz gráfica construida con CustomTkinter, diseñada para
+                  ser clara y operable por personal técnico y administrativo sin
+                  requerir conocimientos de programación.
+                </p>
+              </div>
+              <div
+                class="card-lift p-6 bg-gray-100 dark:bg-gray-800/20 rounded-2xl accent-left pl-7"
+              >
+                <h4
+                  class="font-semibold text-purple-500 dark:text-purple-400 mb-2 text-sm uppercase tracking-wide"
+                >
+                  Módulos de automatización
+                </h4>
+                <p
+                  class="text-gray-700 dark:text-gray-300 text-sm leading-relaxed"
+                >
+                  Lógica organizada en módulos independientes por área de
+                  configuración — ajustes del sistema, servicios de Windows,
+                  configuraciones visuales y ejecución de scripts — facilitando
+                  mantenimiento y extensión.
+                </p>
+              </div>
+              <div
+                class="card-lift p-6 bg-gray-100 dark:bg-gray-800/20 rounded-2xl accent-left pl-7"
+              >
+                <h4
+                  class="font-semibold text-purple-500 dark:text-purple-400 mb-2 text-sm uppercase tracking-wide"
+                >
+                  Integración con PowerShell
+                </h4>
+                <p
+                  class="text-gray-700 dark:text-gray-300 text-sm leading-relaxed"
+                >
+                  Comandos administrativos de alto nivel delegados a PowerShell
+                  mediante subprocesos controlados desde Python, aprovechando
+                  herramientas nativas de Windows para operaciones seguras sobre
+                  el sistema operativo.
+                </p>
+              </div>
+              <div
+                class="card-lift p-6 bg-gray-100 dark:bg-gray-800/20 rounded-2xl accent-left pl-7"
+              >
+                <h4
+                  class="font-semibold text-purple-500 dark:text-purple-400 mb-2 text-sm uppercase tracking-wide"
+                >
+                  Distribución portable
+                </h4>
+                <p
+                  class="text-gray-700 dark:text-gray-300 text-sm leading-relaxed"
+                >
+                  Empaquetado como ejecutable único mediante PyInstaller,
+                  eliminando dependencias de entorno Python en los equipos
+                  objetivo y permitiendo distribución por USB o red local.
+                </p>
+              </div>
             </div>
 
             <div
-              class="p-4 bg-gray-100 dark:bg-gray-800/20 rounded-xl shadow-sm"
+              class="card-lift p-6 bg-gray-100 dark:bg-gray-800/20 rounded-2xl border border-purple-500/15"
             >
-              <h4
-                class="font-semibold text-purple-500 dark:text-purple-400 mb-1"
+              <p
+                class="text-gray-700 dark:text-gray-300 text-sm leading-relaxed"
               >
-                Automatización de procesos administrativos
-              </h4>
-              <p class="text-sm">
-                Estandariza configuraciones del sistema operativo, reduciendo
-                tiempos de preparación y minimizando errores derivados de
-                configuraciones manuales.
+                <span class="font-semibold text-purple-500 dark:text-purple-400"
+                  >Filosofía de ejecución:</span
+                >{" "}
+                La herramienta se ejecuta con permisos administrativos sobre el equipo
+                local, sin conexión a internet ni comunicación con servidores externos
+                — garantizando control total del proceso y operabilidad en entornos
+                de red restringida.
               </p>
+            </div>
+          </section>
+
+          <div class="divider text-gray-400 dark:text-gray-700"></div>
+
+          <!-- 03 · RETOS TÉCNICOS -->
+          <section>
+            <div class="flex items-baseline gap-4 mb-8">
+              <span
+                class="section-number text-4xl font-bold text-gray-200 dark:text-gray-800 select-none"
+                >03</span
+              >
+              <h2
+                class="text-2xl font-bold text-purple-600 dark:text-purple-500"
+              >
+                Retos técnicos resueltos
+              </h2>
+            </div>
+            <div class="grid md:grid-cols-2 gap-4">
+              {
+                [
+                  {
+                    title: "Ejecución segura con permisos elevados",
+                    body: "Gestión de operaciones que requieren permisos de administrador de Windows sin exponer superficie de ataque, validando entradas antes de cada llamada al sistema.",
+                  },
+                  {
+                    title: "Empaquetado sin dependencias",
+                    body: "Compilación como ejecutable portable con PyInstaller que incluye todas las dependencias internas, eliminando la necesidad de un entorno Python preinstalado en los equipos.",
+                  },
+                  {
+                    title: "Interfaz usable por personal no técnico",
+                    body: "Diseño de UX que presenta operaciones complejas del sistema operativo como acciones simples y comprensibles, con feedback visual claro del estado de cada configuración.",
+                  },
+                  {
+                    title: "Reproducibilidad entre equipos",
+                    body: "Garantizar que la misma secuencia de configuraciones produce resultados idénticos en distintos equipos, independientemente del estado previo del sistema operativo.",
+                  },
+                ].map((item) => (
+                  <div class="card-lift p-6 bg-gray-100 dark:bg-gray-800/20 rounded-2xl">
+                    <h4 class="font-semibold text-purple-500 dark:text-purple-400 mb-3 text-sm">
+                      {item.title}
+                    </h4>
+                    <p class="text-gray-700 dark:text-gray-300 text-sm leading-relaxed">
+                      {item.body}
+                    </p>
+                  </div>
+                ))
+              }
+            </div>
+          </section>
+
+          <div class="divider text-gray-400 dark:text-gray-700"></div>
+
+          <!-- 04 · DECISIONES TÉCNICAS -->
+          <section>
+            <div class="flex items-baseline gap-4 mb-8">
+              <span
+                class="section-number text-4xl font-bold text-gray-200 dark:text-gray-800 select-none"
+                >04</span
+              >
+              <h2
+                class="text-2xl font-bold text-purple-600 dark:text-purple-500"
+              >
+                Decisiones técnicas clave
+              </h2>
             </div>
 
-            <div
-              class="p-4 bg-gray-100 dark:bg-gray-800/20 rounded-xl shadow-sm"
-            >
-              <h4
-                class="font-semibold text-purple-500 dark:text-purple-400 mb-1"
+            <div class="grid md:grid-cols-2 gap-4">
+              {
+                [
+                  "Python elegido por su madurez en automatización de sistemas, amplio ecosistema de librerías para Windows y facilidad de integración con APIs nativas del SO.",
+                  "CustomTkinter sobre soluciones web-based para garantizar ejecución nativa sin dependencias de navegador ni servidores locales en entornos con conectividad limitada.",
+                  "PowerShell como capa de comandos avanzados del SO en lugar de llamadas directas al registro, aprovechando herramientas auditables y documentadas de Windows.",
+                  "Arquitectura modular por área de configuración para permitir añadir, modificar o deshabilitar módulos específicos sin afectar el resto de la herramienta.",
+                ].map((text) => (
+                  <div class="card-lift flex gap-3 p-5 bg-gray-100 dark:bg-gray-800/20 rounded-2xl items-start">
+                    <span class="mt-1 flex-shrink-0 w-1.5 h-1.5 rounded-full bg-purple-500 opacity-70" />
+                    <p class="text-gray-700 dark:text-gray-300 text-sm leading-relaxed">
+                      {text}
+                    </p>
+                  </div>
+                ))
+              }
+            </div>
+          </section>
+
+          <div class="divider text-gray-400 dark:text-gray-700"></div>
+
+          <!-- 05 + 06 · CONSIDERACIONES + CAPACIDADES -->
+          <section>
+            <div class="grid md:grid-cols-2 gap-x-12 gap-y-10">
+              <div>
+                <div class="flex items-baseline gap-3 mb-6">
+                  <span
+                    class="section-number text-3xl font-bold text-gray-200 dark:text-gray-800 select-none"
+                    >05</span
+                  >
+                  <h2
+                    class="text-xl font-bold text-purple-600 dark:text-purple-500"
+                  >
+                    Consideraciones técnicas
+                  </h2>
+                </div>
+                <ul class="space-y-3">
+                  {
+                    [
+                      "Compatibilidad con versiones de Windows 10 y 11",
+                      "Validación de permisos antes de ejecutar operaciones críticas",
+                      "Manejo de errores con feedback claro al operador",
+                      "Operación sin conexión a internet ni servicios externos",
+                      "Diseño de UX orientado a reducir errores de operación",
+                      "Código estructurado para facilitar auditoría y contribuciones",
+                    ].map((item) => (
+                      <li class="flex gap-3 items-start text-sm text-gray-700 dark:text-gray-300">
+                        <span class="mt-1.5 flex-shrink-0 w-1 h-1 rounded-full bg-purple-400 opacity-60" />
+                        {item}
+                      </li>
+                    ))
+                  }
+                </ul>
+              </div>
+
+              <div>
+                <div class="flex items-baseline gap-3 mb-6">
+                  <span
+                    class="section-number text-3xl font-bold text-gray-200 dark:text-gray-800 select-none"
+                    >06</span
+                  >
+                  <h2
+                    class="text-xl font-bold text-purple-600 dark:text-purple-500"
+                  >
+                    Capacidades demostradas
+                  </h2>
+                </div>
+                <ul class="space-y-3">
+                  {
+                    [
+                      "Desarrollo de aplicaciones de escritorio con Python",
+                      "Automatización de operaciones de sistema operativo Windows",
+                      "Integración de interfaces gráficas con lógica de sistema",
+                      "Empaquetado y distribución de herramientas portables",
+                      "Diseño de UX para usuarios no técnicos",
+                      "Resolución de problemas reales en entornos institucionales",
+                    ].map((item) => (
+                      <li class="flex gap-3 items-start text-sm text-gray-700 dark:text-gray-300">
+                        <span class="mt-1.5 flex-shrink-0 w-1 h-1 rounded-full bg-purple-400 opacity-60" />
+                        {item}
+                      </li>
+                    ))
+                  }
+                </ul>
+              </div>
+            </div>
+          </section>
+
+          <div class="divider text-gray-400 dark:text-gray-700"></div>
+
+          <!-- 07 · STACK TÉCNICO -->
+          <section>
+            <div class="flex items-baseline gap-4 mb-8">
+              <span
+                class="section-number text-4xl font-bold text-gray-200 dark:text-gray-800 select-none"
+                >07</span
               >
-                Ejecución local sin dependencias
-              </h4>
-              <p class="text-sm">
-                Se ejecuta directamente en el equipo mediante un archivo
-                ejecutable con permisos administrativos, sin requerir
-                instalación previa ni conexión a internet.
-              </p>
+              <h2
+                class="text-2xl font-bold text-purple-600 dark:text-purple-500"
+              >
+                Stack técnico
+              </h2>
             </div>
 
-            <div
-              class="p-4 bg-gray-100 dark:bg-gray-800/20 rounded-xl shadow-sm"
-            >
-              <h4
-                class="font-semibold text-purple-500 dark:text-purple-400 mb-1"
-              >
-                Proyecto de código abierto
-              </h4>
-              <p class="text-sm">
-                Código disponible en GitHub, permitiendo contribuciones y uso
-                como base para otros proyectos institucionales.
-              </p>
+            <div class="grid sm:grid-cols-2 md:grid-cols-3 gap-4">
+              {
+                [
+                  {
+                    name: "Python",
+                    desc: "Lenguaje principal. Elegido por su ecosistema de automatización y capacidad de integración con APIs nativas de Windows.",
+                  },
+                  {
+                    name: "Tkinter / CustomTkinter",
+                    desc: "Interfaz gráfica de escritorio estructurada y usable por personal técnico y administrativo.",
+                  },
+                  {
+                    name: "PowerShell",
+                    desc: "Capa de comandos administrativos avanzados del SO, invocados de forma controlada desde Python.",
+                  },
+                ].map((tech) => (
+                  <div class="card-lift p-5 bg-gray-100 dark:bg-gray-800/20 rounded-2xl border-t-2 border-purple-500/20">
+                    <p class="font-bold text-gray-900 dark:text-gray-100 mb-2 text-sm">
+                      {tech.name}
+                    </p>
+                    <p class="text-xs text-gray-600 dark:text-gray-400 leading-relaxed">
+                      {tech.desc}
+                    </p>
+                  </div>
+                ))
+              }
             </div>
+          </section>
+        </div>
+
+        <!-- ── BOTTOM CTA ── -->
+        <div
+          class="mt-24 pt-10 border-t border-gray-200 dark:border-gray-800 flex flex-col sm:flex-row items-center justify-between gap-6"
+        >
+          <div>
+            <p class="text-sm text-gray-500 dark:text-gray-500">
+              ¿Quieres ver más proyectos?
+            </p>
+            <a
+              href="javascript:history.back()"
+              class="back-link text-purple-600 dark:text-purple-400 font-semibold hover:opacity-80 transition-opacity"
+            >
+              ← Volver al portafolio
+            </a>
           </div>
-
-          <h2
-            class="text-2xl mb-2 mt-6 font-bold text-purple-600 dark:text-purple-500"
-          >
-            Tecnologías y herramientas
-          </h2>
-
-          <div class="grid md:grid-cols-2 gap-4 mt-4">
-            <div
-              class="p-4 bg-gray-100 dark:bg-gray-800/20 rounded-xl shadow-sm"
-            >
-              <h4
-                class="font-semibold text-purple-500 dark:text-purple-400 mb-1"
-              >
-                Python
-              </h4>
-              <p class="text-sm text-gray-700 dark:text-gray-300">
-                Lenguaje principal del proyecto, elegido por su flexibilidad
-                para la automatización, su facilidad de mantenimiento y su
-                capacidad de integrarse con herramientas nativas del sistema
-                operativo Windows.
-              </p>
-            </div>
-
-            <div
-              class="p-4 bg-gray-100 dark:bg-gray-800/20 rounded-xl shadow-sm"
-            >
-              <h4
-                class="font-semibold text-purple-500 dark:text-purple-400 mb-1"
-              >
-                Tkinter / CustomTkinter
-              </h4>
-              <p class="text-sm text-gray-700 dark:text-gray-300">
-                Utilizado para construir una interfaz gráfica clara y
-                estructurada, priorizando la usabilidad para personal técnico y
-                administrativo sin necesidad de conocimientos avanzados de
-                programación.
-              </p>
-            </div>
-
-            <div
-              class="p-4 bg-gray-100 dark:bg-gray-800/20 rounded-xl shadow-sm"
-            >
-              <h4
-                class="font-semibold text-purple-500 dark:text-purple-400 mb-1"
-              >
-                PowerShell
-              </h4>
-              <p class="text-sm text-gray-700 dark:text-gray-300">
-                Integrado para ejecutar comandos administrativos y
-                configuraciones avanzadas del sistema, aprovechando herramientas
-                nativas de Windows para una automatización segura y controlada.
-              </p>
-            </div>
+          <div class="flex gap-3">
+            <LinkButton href={project.link}>
+              <Link class="size-4" />
+              Ver demo
+            </LinkButton>
+            <LinkButton href={project.link2} variant="secondary">
+              <GitHub class="size-4" />
+              GitHub
+            </LinkButton>
           </div>
         </div>
       </article>

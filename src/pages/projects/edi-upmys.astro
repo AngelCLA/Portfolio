@@ -3,7 +3,6 @@ import Layout from "@/layouts/Layout.astro";
 import SectionContainer from "@/components/SectionContainer.astro";
 import LinkButton from "@/components/LinkButton.astro";
 import Link from "@/components/icons/Link.astro";
-import GitHub from "@/components/icons/GitHub.astro";
 import Php from "@/components/icons/Php.astro";
 import Mustache from "@/components/icons/Mustache.astro";
 import Tailwind from "@/components/icons/Tailwind.astro";
@@ -12,10 +11,11 @@ import Moodle from "@/components/icons/Moodle.astro";
 
 const project = {
   title: "EDI-UPMYS",
+  titleSuffix: "Plataforma integral de evaluación diagnóstica institucional",
   subtitle:
-    "Plataforma integral para la evaluación de conocimientos y habilidades académicas",
+    "LMS académico personalizado para modernizar la gestión y aplicación del Examen Diagnóstico de Ingreso — construido sobre Moodle con PHP, Mustache y Tailwind CSS.",
   description:
-    "La Plataforma Integral para la Evaluación del Examen Diagnóstico de Ingreso (EDI) de la Universidad Politécnica del Mar y la Sierra es un entorno diseñado para modernizar la forma en que se gestionan y aplican las evaluaciones académicas institucionales. Construida sobre Moodle y personalizada con PHP, Mustache y Tailwind CSS, esta solución ofrece un sistema robusto, confiable y visualmente actualizado, alineado con las necesidades de profesores, administradores y aspirantes de nuevo ingreso.<br><br> El proyecto no solo adapta la funcionalidad tradicional de Moodle, sino que la transforma para ofrecer una experiencia más limpia, intuitiva y eficiente. Se optimizaron elementos clave como la navegación, la presentación de cuestionarios, el flujo de calificaciones y la experiencia general del usuario, permitiendo que cada evaluación sea más clara, rápida y accesible desde cualquier dispositivo.<br><br>Gracias a su estructura modular y al uso de tecnologías flexibles, la plataforma facilita tareas como el seguimiento del rendimiento, la generación de reportes y la gestión de estudiantes y profesores. En conjunto, se convierte en una herramienta académica sólida y moderna, preparada para sostener evaluaciones a gran escala dentro de la institución.",
+    "Plataforma diseñada para modernizar la forma en que se gestionan y aplican las evaluaciones académicas institucionales de la Universidad Politécnica del Mar y la Sierra.",
   link: "https://edi.upmys.edu.mx/",
   images: [
     "https://images.claangel.site/edi-upmys/edi-1.png",
@@ -33,41 +33,145 @@ const project = {
       icon: Tailwind,
     },
   ],
+  stats: [
+    { value: "Multi-rol", label: "Aspirantes, docentes y admins" },
+    { value: "Personalizado", label: "Tema institucional a medida" },
+    { value: "Escalable", label: "Evaluaciones a gran escala" },
+  ],
 };
 ---
 
+<style>
+  .card-lift {
+    transition:
+      transform 0.22s ease,
+      box-shadow 0.22s ease;
+  }
+  .card-lift:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 28px -6px rgba(147, 51, 234, 0.12);
+  }
+
+  .section-number {
+    font-variant-numeric: tabular-nums;
+    letter-spacing: -0.03em;
+  }
+
+  .divider {
+    height: 1px;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      currentColor 20%,
+      currentColor 80%,
+      transparent
+    );
+    opacity: 0.1;
+  }
+
+  .accent-left {
+    border-left: 2px solid rgba(147, 51, 234, 0.35);
+  }
+
+  .tag-item {
+    transition: opacity 0.18s ease;
+  }
+  .tag-item:hover {
+    opacity: 0.8;
+  }
+
+  .back-link {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+  }
+  .back-link::after {
+    content: "";
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 1px;
+    background: currentColor;
+    transition: width 0.2s ease;
+  }
+  .back-link:hover::after {
+    width: 100%;
+  }
+
+  @keyframes fadeUp {
+    from {
+      opacity: 0;
+      transform: translateY(14px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  .fade-up {
+    animation: fadeUp 0.5s ease both;
+  }
+  .delay-1 {
+    animation-delay: 0.08s;
+  }
+  .delay-2 {
+    animation-delay: 0.16s;
+  }
+  .delay-3 {
+    animation-delay: 0.24s;
+  }
+  .delay-4 {
+    animation-delay: 0.32s;
+  }
+</style>
+
 <Layout
-  title={`${project.title} - Proyecto de CLAAngel`}
+  title={`${project.title} – Proyecto de CLAAngel`}
   description={project.description}
 >
   <main class="px-4">
-    <SectionContainer class="py-16 md:py-24">
-      <a
-        href="/projects"
-        class="inline-flex items-center text-sm text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 mb-8 transition-colors"
-      >
-        ← Volver a proyectos
-      </a>
+    <SectionContainer class="py-26 md:py-20">
+      <!-- ── BACK NAVIGATION ── -->
+      <div class="max-w-4xl mx-auto mb-12 fade-up">
+        <a
+          href="javascript:history.back()"
+          class="back-link text-sm text-gray-500 dark:text-gray-500 hover:text-purple-600 dark:hover:text-purple-400 transition-colors"
+        >
+          ← Proyectos
+        </a>
+      </div>
 
       <article class="max-w-4xl mx-auto">
-        <header class="mb-8">
+        <!-- ══ HEADER ══ -->
+        <header class="mb-6 fade-up delay-1">
+          <p
+            class="text-xs font-semibold tracking-widest uppercase text-purple-500 dark:text-purple-400 mb-4"
+          >
+            Proyecto institucional · LMS + Evaluación académica
+          </p>
+
           <h1
-            class="text-4xl md:text-5xl font-bold text-gray-900 dark:text-gray-100 mb-4"
+            class="text-5xl md:text-6xl font-bold text-gray-900 dark:text-gray-100 leading-none tracking-tight mb-5"
           >
             {project.title}
           </h1>
-          <p class="text-xl text-gray-600 dark:text-gray-400 mb-6">
+
+          <p
+            class="text-lg md:text-xl text-gray-600 dark:text-gray-400 leading-relaxed mb-8"
+          >
             {project.subtitle}
           </p>
 
-          <ul class="flex flex-wrap gap-2 mb-6">
+          <ul class="flex flex-wrap gap-3 mb-10" role="list">
             {
               project.tags.map((tag) => (
                 <li>
                   <span
-                    class={`flex gap-x-2 rounded-full text-xs ${tag.class} py-2 px-3`}
+                    class={`tag-item flex gap-x-2 items-center rounded-full text-xs font-medium ${tag.class} py-2 px-4`}
                   >
-                    <tag.icon class="size-4" />
+                    <tag.icon class="size-3.5" />
                     {tag.name}
                   </span>
                 </li>
@@ -76,211 +180,385 @@ const project = {
           </ul>
         </header>
 
-        <ProjectGallery images={project.images} title={project.title} />
+        <!-- ══ GALLERY ══ -->
+        <div class="fade-up delay-2 mb-8">
+          <ProjectGallery images={project.images} title={project.title} />
+        </div>
 
-        <div class="flex w-full items-center justify-center gap-4 mb-10">
+        <!-- ── CTAs ── -->
+        <div
+          class="flex w-full items-center justify-center gap-4 mb-8 p-6 rounded-2xl bg-gray-50 dark:bg-gray-800/20 fade-up delay-3"
+        >
           <LinkButton href={project.link}>
             <Link class="size-4" />
-            Ir al sitio
+            Ver demo en vivo
           </LinkButton>
         </div>
-        <div class="prose prose-lg max-w-none">
-          <h2
-            class="text-2xl mb-2 font-bold text-purple-600 dark:text-purple-500"
-          >
-            Sobre el proyecto
-          </h2>
-          <p
-            class="text-gray-800 dark:text-gray-300"
-            set:html={project.description}
-          />
 
-          <h2
-            class="text-2xl mb-2 mt-6 font-bold text-purple-600 dark:text-purple-500"
-          >
-            Características principales
-          </h2>
-
-          <div class="grid md:grid-cols-2 gap-4 mt-4">
-            <div
-              class="p-4 bg-gray-100 dark:bg-gray-800/20 rounded-xl shadow-sm"
-            >
-              <h4
-                class="font-semibold text-purple-500 dark:text-purple-400 mb-1"
+        <!-- ══ CONTENIDO ══ -->
+        <div class="space-y-14 fade-up delay-4">
+          <!-- 01 · CONTEXTO -->
+          <section>
+            <div class="flex items-baseline gap-4 mb-6">
+              <span
+                class="section-number text-4xl font-bold text-gray-200 dark:text-gray-800 select-none"
+                >01</span
               >
-                Sistema de evaluación integral
-              </h4>
-              <p class="text-sm">
-                Plataforma completa basada en Moodle para gestionar exámenes y
-                evaluaciones institucionales.
+              <h2
+                class="text-2xl font-bold text-purple-600 dark:text-purple-500"
+              >
+                Contexto y objetivo
+              </h2>
+            </div>
+            <div
+              class="accent-left pl-6 space-y-4 text-gray-700 dark:text-gray-300 leading-relaxed"
+            >
+              <p>
+                EDI-UPMYS nació para modernizar el proceso de evaluación
+                diagnóstica de nuevo ingreso en la Universidad Politécnica del
+                Mar y la Sierra. El reto fue transformar una instancia de Moodle
+                estándar en una plataforma institucional a medida: visualmente
+                alineada con la identidad de la universidad, funcionalmente
+                optimizada para el flujo de evaluación y técnicamente adaptada
+                para soportar múltiples usuarios concurrentes durante los
+                periodos de admisión.
               </p>
+              <p>
+                El proyecto demuestra capacidad de trabajo sobre bases de código
+                existentes a gran escala — comprender la arquitectura interna de
+                Moodle, extenderla sin romper su núcleo y aplicar capas de
+                personalización que mejoran la experiencia sin comprometer la
+                estabilidad del sistema.
+              </p>
+            </div>
+          </section>
+
+          <div class="divider text-gray-400 dark:text-gray-700"></div>
+
+          <!-- 02 · ARQUITECTURA -->
+          <section>
+            <div class="flex items-baseline gap-4 mb-8">
+              <span
+                class="section-number text-4xl font-bold text-gray-200 dark:text-gray-800 select-none"
+                >02</span
+              >
+              <h2
+                class="text-2xl font-bold text-purple-600 dark:text-purple-500"
+              >
+                Arquitectura del sistema
+              </h2>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-4 mb-4">
+              <div
+                class="card-lift p-6 bg-gray-100 dark:bg-gray-800/20 rounded-2xl accent-left pl-7"
+              >
+                <h4
+                  class="font-semibold text-purple-500 dark:text-purple-400 mb-2 text-sm uppercase tracking-wide"
+                >
+                  LMS como base
+                </h4>
+                <p
+                  class="text-gray-700 dark:text-gray-300 text-sm leading-relaxed"
+                >
+                  Moodle actúa como núcleo del sistema educativo, proveyendo
+                  gestión de usuarios, cuestionarios, calificaciones y
+                  seguimiento de actividad. La personalización se construyó
+                  sobre sus APIs internas sin modificar el core.
+                </p>
+              </div>
+              <div
+                class="card-lift p-6 bg-gray-100 dark:bg-gray-800/20 rounded-2xl accent-left pl-7"
+              >
+                <h4
+                  class="font-semibold text-purple-500 dark:text-purple-400 mb-2 text-sm uppercase tracking-wide"
+                >
+                  Tema personalizado
+                </h4>
+                <p
+                  class="text-gray-700 dark:text-gray-300 text-sm leading-relaxed"
+                >
+                  Desarrollo de un tema Moodle desde cero con Mustache como
+                  motor de plantillas y Tailwind CSS para el sistema de diseño,
+                  reemplazando la interfaz genérica con una experiencia visual
+                  institucional coherente.
+                </p>
+              </div>
+              <div
+                class="card-lift p-6 bg-gray-100 dark:bg-gray-800/20 rounded-2xl accent-left pl-7"
+              >
+                <h4
+                  class="font-semibold text-purple-500 dark:text-purple-400 mb-2 text-sm uppercase tracking-wide"
+                >
+                  Backend PHP
+                </h4>
+                <p
+                  class="text-gray-700 dark:text-gray-300 text-sm leading-relaxed"
+                >
+                  Extensiones y plugins PHP adaptados a los flujos de evaluación
+                  institucional: control de acceso por roles, lógica de
+                  calificación automática y generación de reportes de
+                  rendimiento académico.
+                </p>
+              </div>
+              <div
+                class="card-lift p-6 bg-gray-100 dark:bg-gray-800/20 rounded-2xl accent-left pl-7"
+              >
+                <h4
+                  class="font-semibold text-purple-500 dark:text-purple-400 mb-2 text-sm uppercase tracking-wide"
+                >
+                  Base de datos relacional
+                </h4>
+                <p
+                  class="text-gray-700 dark:text-gray-300 text-sm leading-relaxed"
+                >
+                  MariaDB como almacén relacional para usuarios, resultados y
+                  registros académicos. Diseño de consultas optimizadas para
+                  reportes y consultas de rendimiento sobre grandes volúmenes de
+                  evaluaciones.
+                </p>
+              </div>
             </div>
 
             <div
-              class="p-4 bg-gray-100 dark:bg-gray-800/20 rounded-xl shadow-sm"
+              class="card-lift p-6 bg-gray-100 dark:bg-gray-800/20 rounded-2xl border border-purple-500/15"
             >
-              <h4
-                class="font-semibold text-purple-500 dark:text-purple-400 mb-1"
+              <p
+                class="text-gray-700 dark:text-gray-300 text-sm leading-relaxed"
               >
-                Interfaz moderna y responsive
-              </h4>
-              <p class="text-sm">
-                Diseño actualizado con Tailwind CSS, accesible desde cualquier
-                dispositivo.
+                <span class="font-semibold text-purple-500 dark:text-purple-400"
+                  >Enfoque de personalización:</span
+                >{" "}
+                La arquitectura respeta las convenciones de extensibilidad de Moodle
+                — hooks, events API y el sistema de temas — garantizando compatibilidad
+                con futuras actualizaciones del LMS sin necesidad de reescribir las
+                personalizaciones.
               </p>
+            </div>
+          </section>
+
+          <div class="divider text-gray-400 dark:text-gray-700"></div>
+
+          <!-- 03 · RETOS TÉCNICOS -->
+          <section>
+            <div class="flex items-baseline gap-4 mb-8">
+              <span
+                class="section-number text-4xl font-bold text-gray-200 dark:text-gray-800 select-none"
+                >03</span
+              >
+              <h2
+                class="text-2xl font-bold text-purple-600 dark:text-purple-500"
+              >
+                Retos técnicos resueltos
+              </h2>
+            </div>
+            <div class="grid md:grid-cols-2 gap-4">
+              {
+                [
+                  {
+                    title: "Personalización sin tocar el core",
+                    body: "Implementar cambios visuales y funcionales profundos manteniendo la integridad del núcleo de Moodle, usando exclusivamente sus APIs de extensión para garantizar actualizabilidad.",
+                  },
+                  {
+                    title: "Sistema multi-rol diferenciado",
+                    body: "Vistas y flujos distintos para aspirantes, docentes y administradores — cada rol con su propio contexto de navegación, permisos y acceso a información relevante.",
+                  },
+                  {
+                    title: "Calificación automática confiable",
+                    body: "Lógica de evaluación determinística para cuestionarios de admisión, con validación de integridad de respuestas y generación automática de resultados finales.",
+                  },
+                  {
+                    title: "Identidad institucional coherente",
+                    body: "Rediseño visual completo con Tailwind CSS sobre plantillas Mustache, manteniendo consistencia con la imagen de la universidad en todos los módulos y flujos de la plataforma.",
+                  },
+                ].map((item) => (
+                  <div class="card-lift p-6 bg-gray-100 dark:bg-gray-800/20 rounded-2xl">
+                    <h4 class="font-semibold text-purple-500 dark:text-purple-400 mb-3 text-sm">
+                      {item.title}
+                    </h4>
+                    <p class="text-gray-700 dark:text-gray-300 text-sm leading-relaxed">
+                      {item.body}
+                    </p>
+                  </div>
+                ))
+              }
+            </div>
+          </section>
+
+          <div class="divider text-gray-400 dark:text-gray-700"></div>
+
+          <!-- 04 · DECISIONES TÉCNICAS -->
+          <section>
+            <div class="flex items-baseline gap-4 mb-8">
+              <span
+                class="section-number text-4xl font-bold text-gray-200 dark:text-gray-800 select-none"
+                >04</span
+              >
+              <h2
+                class="text-2xl font-bold text-purple-600 dark:text-purple-500"
+              >
+                Decisiones técnicas clave
+              </h2>
             </div>
 
-            <div
-              class="p-4 bg-gray-100 dark:bg-gray-800/20 rounded-xl shadow-sm"
-            >
-              <h4
-                class="font-semibold text-purple-500 dark:text-purple-400 mb-1"
+            <div class="grid md:grid-cols-2 gap-4">
+              {
+                [
+                  "Moodle como base elimina la necesidad de construir desde cero un LMS completo, permitiendo enfocar el desarrollo en la capa de personalización y experiencia.",
+                  "Mustache como motor de plantillas se integra nativamente con Moodle, garantizando compatibilidad con el renderizado del servidor sin capas de abstracción adicionales.",
+                  "Tailwind CSS aplicado sobre los templates Mustache permite mantener un sistema de diseño utilitario sin conflictos con los estilos base de Moodle.",
+                  "Separación explícita entre lógica de negocio (PHP/plugins) y presentación (Mustache/Tailwind) para simplificar el mantenimiento y facilitar cambios visuales futuros.",
+                ].map((text) => (
+                  <div class="card-lift flex gap-3 p-5 bg-gray-100 dark:bg-gray-800/20 rounded-2xl items-start">
+                    <span class="mt-1 flex-shrink-0 w-1.5 h-1.5 rounded-full bg-purple-500 opacity-70" />
+                    <p class="text-gray-700 dark:text-gray-300 text-sm leading-relaxed">
+                      {text}
+                    </p>
+                  </div>
+                ))
+              }
+            </div>
+          </section>
+
+          <div class="divider text-gray-400 dark:text-gray-700"></div>
+
+          <!-- 05 + 06 · CONSIDERACIONES + CAPACIDADES -->
+          <section>
+            <div class="grid md:grid-cols-2 gap-x-12 gap-y-10">
+              <div>
+                <div class="flex items-baseline gap-3 mb-6">
+                  <span
+                    class="section-number text-3xl font-bold text-gray-200 dark:text-gray-800 select-none"
+                    >05</span
+                  >
+                  <h2
+                    class="text-xl font-bold text-purple-600 dark:text-purple-500"
+                  >
+                    Consideraciones técnicas
+                  </h2>
+                </div>
+                <ul class="space-y-3">
+                  {
+                    [
+                      "Compatibilidad con la versión institucional de Moodle",
+                      "Control de acceso basado en roles y contextos académicos",
+                      "Validación de datos antes de toda escritura en base de datos",
+                      "Diseño responsivo adaptable a móvil y escritorio",
+                      "Generación de reportes sin degradar el rendimiento del servidor",
+                      "Estructura de plugins preparada para extensiones futuras",
+                    ].map((item) => (
+                      <li class="flex gap-3 items-start text-sm text-gray-700 dark:text-gray-300">
+                        <span class="mt-1.5 flex-shrink-0 w-1 h-1 rounded-full bg-purple-400 opacity-60" />
+                        {item}
+                      </li>
+                    ))
+                  }
+                </ul>
+              </div>
+
+              <div>
+                <div class="flex items-baseline gap-3 mb-6">
+                  <span
+                    class="section-number text-3xl font-bold text-gray-200 dark:text-gray-800 select-none"
+                    >06</span
+                  >
+                  <h2
+                    class="text-xl font-bold text-purple-600 dark:text-purple-500"
+                  >
+                    Capacidades demostradas
+                  </h2>
+                </div>
+                <ul class="space-y-3">
+                  {
+                    [
+                      "Trabajo sobre bases de código existentes y a gran escala",
+                      "Personalización de LMS sin comprometer su estabilidad",
+                      "Desarrollo de temas y plugins Moodle desde cero",
+                      "Diseño de interfaces institucionales accesibles y responsive",
+                      "Integración de sistemas de evaluación con lógica de negocio compleja",
+                      "Entrega de proyectos reales en producción para instituciones educativas",
+                    ].map((item) => (
+                      <li class="flex gap-3 items-start text-sm text-gray-700 dark:text-gray-300">
+                        <span class="mt-1.5 flex-shrink-0 w-1 h-1 rounded-full bg-purple-400 opacity-60" />
+                        {item}
+                      </li>
+                    ))
+                  }
+                </ul>
+              </div>
+            </div>
+          </section>
+
+          <div class="divider text-gray-400 dark:text-gray-700"></div>
+
+          <!-- 07 · STACK TÉCNICO -->
+          <section>
+            <div class="flex items-baseline gap-4 mb-8">
+              <span
+                class="section-number text-4xl font-bold text-gray-200 dark:text-gray-800 select-none"
+                >07</span
               >
-                Gestión académica eficiente
-              </h4>
-              <p class="text-sm">
-                Control completo de estudiantes, profesores y grupos académicos.
-              </p>
+              <h2
+                class="text-2xl font-bold text-purple-600 dark:text-purple-500"
+              >
+                Stack técnico
+              </h2>
             </div>
 
-            <div
-              class="p-4 bg-gray-100 dark:bg-gray-800/20 rounded-xl shadow-sm"
-            >
-              <h4
-                class="font-semibold text-purple-500 dark:text-purple-400 mb-1"
-              >
-                Reportes automatizados
-              </h4>
-              <p class="text-sm">
-                Generación de estadísticas y reportes de rendimiento en tiempo
-                real.
-              </p>
+            <div class="grid sm:grid-cols-2 md:grid-cols-4 gap-4">
+              {
+                [
+                  {
+                    name: "Moodle LMS",
+                    desc: "Núcleo del sistema educativo. Gestión de usuarios, cuestionarios, calificaciones y seguimiento académico.",
+                  },
+                  {
+                    name: "PHP",
+                    desc: "Extensiones y plugins para lógica de evaluación, control de acceso por roles y generación de reportes.",
+                  },
+                  {
+                    name: "Mustache",
+                    desc: "Motor de plantillas nativo de Moodle para renderizado del tema personalizado en el servidor.",
+                  },
+                  {
+                    name: "Tailwind CSS",
+                    desc: "Sistema de diseño utility-first aplicado sobre las plantillas para una interfaz institucional coherente.",
+                  },
+                ].map((tech) => (
+                  <div class="card-lift p-5 bg-gray-100 dark:bg-gray-800/20 rounded-2xl border-t-2 border-purple-500/20">
+                    <p class="font-bold text-gray-900 dark:text-gray-100 mb-2 text-sm">
+                      {tech.name}
+                    </p>
+                    <p class="text-xs text-gray-600 dark:text-gray-400 leading-relaxed">
+                      {tech.desc}
+                    </p>
+                  </div>
+                ))
+              }
             </div>
+          </section>
+        </div>
 
-            <div
-              class="p-4 bg-gray-100 dark:bg-gray-800/20 rounded-xl shadow-sm"
+        <!-- ── BOTTOM CTA ── -->
+        <div
+          class="mt-24 pt-10 border-t border-gray-200 dark:border-gray-800 flex flex-col sm:flex-row items-center justify-between gap-6"
+        >
+          <div>
+            <p class="text-sm text-gray-500 dark:text-gray-500">
+              ¿Quieres ver más proyectos?
+            </p>
+            <a
+              href="javascript:history.back()"
+              class="back-link text-purple-600 dark:text-purple-400 font-semibold hover:opacity-80 transition-opacity"
             >
-              <h4
-                class="font-semibold text-purple-500 dark:text-purple-400 mb-1"
-              >
-                Calificaciones automáticas
-              </h4>
-              <p class="text-sm">
-                Sistema inteligente para evaluar y asignar calificaciones de
-                forma rápida.
-              </p>
-            </div>
-
-            <div
-              class="p-4 bg-gray-100 dark:bg-gray-800/20 rounded-xl shadow-sm"
-            >
-              <h4
-                class="font-semibold text-purple-500 dark:text-purple-400 mb-1"
-              >
-                Personalización institucional
-              </h4>
-              <p class="text-sm">
-                Adaptado específicamente a las necesidades de la Universidad
-                Politécnica.
-              </p>
-            </div>
+              ← Volver al portafolio
+            </a>
           </div>
-
-          <h2
-            class="text-2xl mb-2 mt-6 font-bold text-purple-600 dark:text-purple-500"
-          >
-            Tecnologías utilizadas
-          </h2>
-
-          <p class="text-gray-700 dark:text-gray-300 mb-3">
-            El desarrollo integra tecnologías modernas que garantizan
-            flexibilidad, personalización y una experiencia de usuario
-            intuitiva. Cada herramienta fue seleccionada para construir una
-            plataforma educativa robusta y escalable.
-          </p>
-
-          <div class="grid md:grid-cols-2 gap-4">
-            <div
-              class="p-4 bg-gray-100 dark:bg-gray-800/20 rounded-xl shadow-sm"
-            >
-              <h4
-                class="font-semibold text-purple-500 dark:text-purple-400 mb-1"
-              >
-                Moodle LMS
-              </h4>
-              <p class="text-sm text-gray-700 dark:text-gray-300">
-                Fundamento del sistema educativo, adaptado a las necesidades
-                institucionales.
-              </p>
-            </div>
-
-            <div
-              class="p-4 bg-gray-100 dark:bg-gray-800/20 rounded-xl shadow-sm"
-            >
-              <h4
-                class="font-semibold text-purple-500 dark:text-purple-400 mb-1"
-              >
-                PHP personalizado
-              </h4>
-              <p class="text-sm text-gray-700 dark:text-gray-300">
-                Lógica backend adaptada específicamente a los procesos de
-                evaluación.
-              </p>
-            </div>
-
-            <div
-              class="p-4 bg-gray-100 dark:bg-gray-800/20 rounded-xl shadow-sm"
-            >
-              <h4
-                class="font-semibold text-purple-500 dark:text-purple-400 mb-1"
-              >
-                Tailwind CSS
-              </h4>
-              <p class="text-sm text-gray-700 dark:text-gray-300">
-                Diseño moderno, accesible y completamente responsive.
-              </p>
-            </div>
-
-            <div
-              class="p-4 bg-gray-100 dark:bg-gray-800/20 rounded-xl shadow-sm"
-            >
-              <h4
-                class="font-semibold text-purple-500 dark:text-purple-400 mb-1"
-              >
-                Mustache Templates
-              </h4>
-              <p class="text-sm text-gray-700 dark:text-gray-300">
-                Sistema de plantillas para generación dinámica de contenido.
-              </p>
-            </div>
-
-            <div
-              class="p-4 bg-gray-100 dark:bg-gray-800/20 rounded-xl shadow-sm"
-            >
-              <h4
-                class="font-semibold text-purple-500 dark:text-purple-400 mb-1"
-              >
-                MariaDB
-              </h4>
-              <p class="text-sm text-gray-700 dark:text-gray-300">
-                Base de datos robusta para gestión de usuarios y resultados
-                académicos.
-              </p>
-            </div>
-
-            <div
-              class="p-4 bg-gray-100 dark:bg-gray-800/20 rounded-xl shadow-sm"
-            >
-              <h4
-                class="font-semibold text-purple-500 dark:text-purple-400 mb-1"
-              >
-                JavaScript
-              </h4>
-              <p class="text-sm text-gray-700 dark:text-gray-300">
-                Interactividad y validaciones en tiempo real para mejor
-                experiencia.
-              </p>
-            </div>
+          <div class="flex gap-3">
+            <LinkButton href={project.link}>
+              <Link class="size-4" />
+              Ver demo
+            </LinkButton>
           </div>
         </div>
       </article>

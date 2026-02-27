@@ -4,19 +4,18 @@ import SectionContainer from "@/components/SectionContainer.astro";
 import LinkButton from "@/components/LinkButton.astro";
 import Link from "@/components/icons/Link.astro";
 import GitHub from "@/components/icons/GitHub.astro";
-import Php from "@/components/icons/Php.astro";
-import Mustache from "@/components/icons/Mustache.astro";
 import Tailwind from "@/components/icons/Tailwind.astro";
 import JavaScript from "@/components/icons/JavaScript.astro";
 import ProjectGallery from "@/components/ProjectGallery.astro";
 import AstroIcon from "@/components/icons/AstroIcon.astro";
 
 const project = {
-  title: "ToolsCLA - Colección de herramientas",
+  title: "ToolsCLA",
+  titleSuffix: "Colección de herramientas académicas gratuitas",
   subtitle:
-    "Plataforma gratuita con herramientas para agilizar la carga de actividades y optimizar procesos académicos de forma rápida y sencilla.",
+    "Plataforma de acceso libre diseñada para optimizar procesos educativos repetitivos — construida con Astro, JavaScript y Tailwind CSS.",
   description:
-    "CLA Tools es una plataforma web gratuita que reúne un conjunto de herramientas especializadas para agilizar procesos educativos. Desde la conversión de documentos hasta la gestión de archivos PDF, cada herramienta está diseñada pensando en la simplicidad y eficiencia.",
+    "Plataforma web gratuita y de código abierto que reúne herramientas especializadas para agilizar procesos educativos. Desde la conversión de documentos hasta la gestión de archivos PDF, cada herramienta está diseñada pensando en la simplicidad y eficiencia.",
   link: "https://tools.claangel.site/",
   link2: "https://github.com/AngelCLA/CLA-Tools",
   images: [
@@ -42,41 +41,154 @@ const project = {
       icon: JavaScript,
     },
   ],
+  stats: [
+    { value: "0 registro", label: "Sin barreras de acceso" },
+    { value: "Open Source", label: "Código abierto en GitHub" },
+    { value: "Multi-herramienta", label: "Plataforma extensible" },
+  ],
 };
 ---
 
+<style>
+  /* ── Microinteracciones sutiles ── */
+  .card-lift {
+    transition:
+      transform 0.22s ease,
+      box-shadow 0.22s ease;
+  }
+  .card-lift:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 28px -6px rgba(147, 51, 234, 0.12);
+  }
+
+  .section-number {
+    font-variant-numeric: tabular-nums;
+    letter-spacing: -0.03em;
+  }
+
+  .divider {
+    height: 1px;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      currentColor 20%,
+      currentColor 80%,
+      transparent
+    );
+    opacity: 0.1;
+  }
+
+  .accent-left {
+    border-left: 2px solid rgba(147, 51, 234, 0.35);
+  }
+
+  .tag-item {
+    transition: opacity 0.18s ease;
+  }
+  .tag-item:hover {
+    opacity: 0.8;
+  }
+
+  /* Subtle underline on back link */
+  .back-link {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+  }
+  .back-link::after {
+    content: "";
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 1px;
+    background: currentColor;
+    transition: width 0.2s ease;
+  }
+  .back-link:hover::after {
+    width: 100%;
+  }
+
+  /* Staggered entry animation */
+  @keyframes fadeUp {
+    from {
+      opacity: 0;
+      transform: translateY(14px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  .fade-up {
+    animation: fadeUp 0.5s ease both;
+  }
+  .delay-1 {
+    animation-delay: 0.08s;
+  }
+  .delay-2 {
+    animation-delay: 0.16s;
+  }
+  .delay-3 {
+    animation-delay: 0.24s;
+  }
+  .delay-4 {
+    animation-delay: 0.32s;
+  }
+</style>
+
 <Layout
-  title={`${project.title} - Proyecto de CLAAngel`}
+  title={`${project.title} – Proyecto de CLAAngel`}
   description={project.description}
 >
   <main class="px-4">
-    <SectionContainer class="py-16 md:py-24">
-      <a
-        href="javascript:history.back()"
-        class="inline-flex items-center text-sm text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 mb-8 transition-colors"
-      >
-        ← Volver a proyectos
-      </a>
+    <SectionContainer class="py-26 md:py-20">
+      <!-- ── BACK NAVIGATION ── -->
+      <div class="max-w-4xl mx-auto mb-12 fade-up">
+        <a
+          href="javascript:history.back()"
+          class="back-link text-sm text-gray-500 dark:text-gray-500 hover:text-purple-600 dark:hover:text-purple-400 transition-colors"
+        >
+          ← Proyectos
+        </a>
+      </div>
 
       <article class="max-w-4xl mx-auto">
-        <header class="mb-8">
+        <!-- ══════════════════════════════════════
+             HEADER — Jerarquía editorial clara
+        ══════════════════════════════════════ -->
+        <header class="mb-6 fade-up delay-1">
+          <!-- Eyebrow / categoría -->
+          <p
+            class="text-xs font-semibold tracking-widest uppercase text-purple-500 dark:text-purple-400 mb-4"
+          >
+            Proyecto personal · Frontend + Utilidades académicas
+          </p>
+
+          <!-- Título principal: peso máximo -->
           <h1
-            class="text-4xl md:text-5xl font-bold text-gray-900 dark:text-gray-100 mb-4"
+            class="text-5xl md:text-6xl font-bold text-gray-900 dark:text-gray-100 leading-none tracking-tight mb-5"
           >
             {project.title}
           </h1>
-          <p class="text-xl text-gray-600 dark:text-gray-400 mb-6">
+
+          <!-- Subtítulo descriptivo -->
+          <p
+            class="text-lg md:text-xl text-gray-600 dark:text-gray-400 leading-relaxed mb-8"
+          >
             {project.subtitle}
           </p>
 
-          <ul class="flex flex-wrap gap-2 mb-6">
+          <!-- Tags -->
+          <ul class="flex flex-wrap gap-3 mb-10" role="list">
             {
               project.tags.map((tag) => (
                 <li>
                   <span
-                    class={`flex gap-x-2 rounded-full text-xs ${tag.class} py-2 px-3`}
+                    class={`tag-item flex gap-x-2 items-center rounded-full text-xs font-medium ${tag.class} py-2 px-4`}
                   >
-                    <tag.icon className="size-4" />
+                    <tag.icon className="size-3.5" />
                     {tag.name}
                   </span>
                 </li>
@@ -85,135 +197,393 @@ const project = {
           </ul>
         </header>
 
-        <ProjectGallery images={project.images} title={project.title} />
+        <!-- ══════════════════════════════════════
+             GALLERY
+        ══════════════════════════════════════ -->
+        <div class="fade-up delay-2 mb-8">
+          <ProjectGallery images={project.images} title={project.title} />
+        </div>
 
-        <div class="flex w-full items-center justify-center gap-4 mb-10">
+        <!-- ── CTAs ── -->
+        <div
+          class="flex w-full items-center justify-center gap-4 mb-8 p-6 rounded-2xl bg-gray-50 dark:bg-gray-800/20 fade-up delay-3"
+        >
           <LinkButton href={project.link}>
             <Link class="size-4" />
-            Ir al sitio
+            Ver demo en vivo
           </LinkButton>
           <LinkButton href={project.link2} variant="secondary">
             <GitHub class="size-4" />
-            Código
+            Ver código fuente
           </LinkButton>
         </div>
-        <div class="prose prose-lg max-w-none">
-          <h2
-            class="text-2xl mb-2 font-bold text-purple-600 dark:text-purple-500"
-          >
-            Sobre el proyecto
-          </h2>
-          <p
-            class="text-gray-800 dark:text-gray-300"
-            set:html={project.description}
-          />
 
-          <h2
-            class="text-2xl mb-2 mt-6 font-bold text-purple-600 dark:text-purple-500"
-          >
-            Características principales
-          </h2>
-
-          <div class="grid md:grid-cols-2 gap-4 mt-4">
-            <div
-              class="p-4 bg-gray-100 dark:bg-gray-800/20 rounded-xl shadow-sm"
-            >
-              <h4
-                class="font-semibold text-purple-500 dark:text-purple-400 mb-1"
+        <!-- ══════════════════════════════════════
+             CONTENIDO — Layout editorial
+        ══════════════════════════════════════ -->
+        <div class="space-y-14 fade-up delay-4">
+          <!-- ── 01 · CONTEXTO ── -->
+          <section>
+            <div class="flex items-baseline gap-4 mb-6">
+              <span
+                class="section-number text-4xl font-bold text-gray-200 dark:text-gray-800 select-none"
+                >01</span
               >
-                Herramientas gratuitas y de código abierto
-              </h4>
-              <p class="text-sm">Interfaz intuitiva y fácil de usar.</p>
+              <h2
+                class="text-2xl font-bold text-purple-600 dark:text-purple-500"
+              >
+                Contexto y objetivo
+              </h2>
             </div>
-
             <div
-              class="p-4 bg-gray-100 dark:bg-gray-800/20 rounded-xl shadow-sm"
+              class="accent-left pl-6 space-y-4 text-gray-700 dark:text-gray-300 leading-relaxed"
             >
-              <h4
-                class="font-semibold text-purple-500 dark:text-purple-400 mb-1"
-              >
-                Optimización de tareas repetitivas
-              </h4>
-              <p class="text-sm">Completamente responsive y accesible.</p>
-            </div>
-
-            <div
-              class="p-4 bg-gray-100 dark:bg-gray-800/20 rounded-xl shadow-sm"
-            >
-              <h4
-                class="font-semibold text-purple-500 dark:text-purple-400 mb-1"
-              >
-                Sin necesidad de registro o instalación
-              </h4>
-              <p class="text-sm">
-                Actualizaciones constantes con nuevas herramientas.
+              <p>
+                ToolsCLA nació para resolver una fricción real: los flujos de
+                trabajo académicos están plagados de tareas repetitivas —
+                conversión de formatos, manipulación de PDFs, organización de
+                archivos — que consumen tiempo sin aportar valor cognitivo. La
+                plataforma centraliza herramientas de uso frecuente en una
+                interfaz unificada, gratuita y sin necesidad de registro.
+              </p>
+              <p>
+                El proyecto demuestra criterio en la selección de stack y
+                arquitectura: Astro como framework orientado a contenido
+                estático con hidratación selectiva, permitiendo tiempos de carga
+                mínimos y una experiencia de usuario inmediata sin sacrificar
+                interactividad donde se necesita.
               </p>
             </div>
+          </section>
 
-            <div
-              class="p-4 bg-gray-100 dark:bg-gray-800/20 rounded-xl shadow-sm"
-            >
-              <h4
-                class="font-semibold text-purple-500 dark:text-purple-400 mb-1"
+          <div class="divider text-gray-400 dark:text-gray-700"></div>
+
+          <!-- ── 02 · ARQUITECTURA ── -->
+          <section>
+            <div class="flex items-baseline gap-4 mb-8">
+              <span
+                class="section-number text-4xl font-bold text-gray-200 dark:text-gray-800 select-none"
+                >02</span
               >
-                Proyecto de código abierto
-              </h4>
-              <p class="text-sm">
-                Puedes contribuir en el repositorio de GitHub.
+              <h2
+                class="text-2xl font-bold text-purple-600 dark:text-purple-500"
+              >
+                Arquitectura del sistema
+              </h2>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-4 mb-4">
+              <div
+                class="card-lift p-6 bg-gray-100 dark:bg-gray-800/20 rounded-2xl accent-left pl-7"
+              >
+                <h4
+                  class="font-semibold text-purple-500 dark:text-purple-400 mb-2 text-sm uppercase tracking-wide"
+                >
+                  Framework estático
+                </h4>
+                <p
+                  class="text-gray-700 dark:text-gray-300 text-sm leading-relaxed"
+                >
+                  Construido sobre Astro con arquitectura MPA orientada a
+                  contenido. Cada herramienta es una página independiente con
+                  hidratación selectiva, maximizando rendimiento y reduciendo
+                  JavaScript enviado al cliente.
+                </p>
+              </div>
+              <div
+                class="card-lift p-6 bg-gray-100 dark:bg-gray-800/20 rounded-2xl accent-left pl-7"
+              >
+                <h4
+                  class="font-semibold text-purple-500 dark:text-purple-400 mb-2 text-sm uppercase tracking-wide"
+                >
+                  Lógica de herramientas
+                </h4>
+                <p
+                  class="text-gray-700 dark:text-gray-300 text-sm leading-relaxed"
+                >
+                  Cada herramienta encapsula su propia lógica en JavaScript
+                  vanilla o módulos ES, sin dependencias globales. Separación
+                  clara entre interfaz y procesamiento para facilitar extensión
+                  y mantenimiento.
+                </p>
+              </div>
+              <div
+                class="card-lift p-6 bg-gray-100 dark:bg-gray-800/20 rounded-2xl accent-left pl-7"
+              >
+                <h4
+                  class="font-semibold text-purple-500 dark:text-purple-400 mb-2 text-sm uppercase tracking-wide"
+                >
+                  Sin backend propio
+                </h4>
+                <p
+                  class="text-gray-700 dark:text-gray-300 text-sm leading-relaxed"
+                >
+                  Procesamiento completamente en el lado del cliente mediante
+                  APIs nativas del navegador. Sin servidores, sin costes de
+                  infraestructura, sin dependencias externas que puedan
+                  interrumpir el servicio.
+                </p>
+              </div>
+              <div
+                class="card-lift p-6 bg-gray-100 dark:bg-gray-800/20 rounded-2xl accent-left pl-7"
+              >
+                <h4
+                  class="font-semibold text-purple-500 dark:text-purple-400 mb-2 text-sm uppercase tracking-wide"
+                >
+                  Sistema de diseño consistente
+                </h4>
+                <p
+                  class="text-gray-700 dark:text-gray-300 text-sm leading-relaxed"
+                >
+                  Componentes Astro reutilizables con Tailwind CSS como sistema
+                  de diseño utility-first, garantizando coherencia visual entre
+                  todas las herramientas de la plataforma.
+                </p>
+              </div>
+            </div>
+
+            <!-- Highlight card full-width -->
+            <div
+              class="card-lift p-6 bg-gray-100 dark:bg-gray-800/20 rounded-2xl border border-purple-500/15"
+            >
+              <p
+                class="text-gray-700 dark:text-gray-300 text-sm leading-relaxed"
+              >
+                <span class="font-semibold text-purple-500 dark:text-purple-400"
+                  >Filosofía de diseño:</span
+                >{" "}
+                La plataforma prioriza accesibilidad sin fricciones — cero registro,
+                cero instalación, cero coste. Cualquier herramienta está a un clic
+                de distancia desde cualquier dispositivo con navegador.
               </p>
             </div>
+          </section>
+
+          <div class="divider text-gray-400 dark:text-gray-700"></div>
+
+          <!-- ── 03 · CARACTERÍSTICAS ── -->
+          <section>
+            <div class="flex items-baseline gap-4 mb-8">
+              <span
+                class="section-number text-4xl font-bold text-gray-200 dark:text-gray-800 select-none"
+                >03</span
+              >
+              <h2
+                class="text-2xl font-bold text-purple-600 dark:text-purple-500"
+              >
+                Características principales
+              </h2>
+            </div>
+            <div class="grid md:grid-cols-2 gap-4">
+              {
+                [
+                  {
+                    title: "Herramientas gratuitas y sin registro",
+                    body: "Acceso inmediato a todas las funcionalidades sin barreras de autenticación. El usuario llega, usa y sale — sin fricción, sin datos personales requeridos.",
+                  },
+                  {
+                    title: "Procesamiento local en el cliente",
+                    body: "Los archivos no se suben a ningún servidor externo. Todo el procesamiento ocurre en el navegador del usuario, garantizando privacidad y disponibilidad offline.",
+                  },
+                  {
+                    title: "Diseño responsivo y accesible",
+                    body: "Interfaz adaptada a dispositivos móviles y escritorio con estructura semántica y navegación accesible desde teclado.",
+                  },
+                  {
+                    title: "Plataforma extensible y de código abierto",
+                    body: "Arquitectura modular que facilita la incorporación de nuevas herramientas. El repositorio está abierto a contribuciones externas.",
+                  },
+                ].map((item) => (
+                  <div class="card-lift p-6 bg-gray-100 dark:bg-gray-800/20 rounded-2xl">
+                    <h4 class="font-semibold text-purple-500 dark:text-purple-400 mb-3 text-sm">
+                      {item.title}
+                    </h4>
+                    <p class="text-gray-700 dark:text-gray-300 text-sm leading-relaxed">
+                      {item.body}
+                    </p>
+                  </div>
+                ))
+              }
+            </div>
+          </section>
+
+          <div class="divider text-gray-400 dark:text-gray-700"></div>
+
+          <!-- ── 04 · DECISIONES TÉCNICAS ── -->
+          <section>
+            <div class="flex items-baseline gap-4 mb-8">
+              <span
+                class="section-number text-4xl font-bold text-gray-200 dark:text-gray-800 select-none"
+                >04</span
+              >
+              <h2
+                class="text-2xl font-bold text-purple-600 dark:text-purple-500"
+              >
+                Decisiones técnicas clave
+              </h2>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-4">
+              {
+                [
+                  "Astro como framework prioriza el envío de HTML estático al navegador, reduciendo el bundle JavaScript al mínimo indispensable.",
+                  "JavaScript vanilla sobre frameworks reactivos para herramientas simples, evitando overhead innecesario donde no hay gestión de estado compleja.",
+                  "Cada herramienta como página independiente garantiza aislamiento completo: un error en una utilidad no afecta al resto de la plataforma.",
+                  "Diseño centrado en accesibilidad desde el inicio, no como capa posterior — semántica HTML correcta, contrastes WCAG y navegación por teclado.",
+                ].map((text) => (
+                  <div class="card-lift flex gap-3 p-5 bg-gray-100 dark:bg-gray-800/20 rounded-2xl items-start">
+                    <span class="mt-1 flex-shrink-0 w-1.5 h-1.5 rounded-full bg-purple-500 opacity-70" />
+                    <p class="text-gray-700 dark:text-gray-300 text-sm leading-relaxed">
+                      {text}
+                    </p>
+                  </div>
+                ))
+              }
+            </div>
+          </section>
+
+          <div class="divider text-gray-400 dark:text-gray-700"></div>
+
+          <!-- ── 05 · CONSIDERACIONES + CAPACIDADES (side by side) ── -->
+          <section>
+            <div class="grid md:grid-cols-2 gap-x-12 gap-y-10">
+              <!-- Consideraciones técnicas -->
+              <div>
+                <div class="flex items-baseline gap-3 mb-6">
+                  <span
+                    class="section-number text-3xl font-bold text-gray-200 dark:text-gray-800 select-none"
+                    >05</span
+                  >
+                  <h2
+                    class="text-xl font-bold text-purple-600 dark:text-purple-500"
+                  >
+                    Consideraciones técnicas
+                  </h2>
+                </div>
+                <ul class="space-y-3">
+                  {
+                    [
+                      "Compatibilidad con navegadores modernos sin polyfills",
+                      "Gestión de errores en operaciones de archivo del cliente",
+                      "Validación de tipos y tamaños de archivo antes del procesamiento",
+                      "Rendimiento en archivos de gran tamaño mediante procesamiento asíncrono",
+                      "Diseño responsivo adaptable a móvil y escritorio",
+                      "Estructura modular preparada para incorporar nuevas herramientas",
+                    ].map((item) => (
+                      <li class="flex gap-3 items-start text-sm text-gray-700 dark:text-gray-300">
+                        <span class="mt-1.5 flex-shrink-0 w-1 h-1 rounded-full bg-purple-400 opacity-60" />
+                        {item}
+                      </li>
+                    ))
+                  }
+                </ul>
+              </div>
+
+              <!-- Capacidades demostradas -->
+              <div>
+                <div class="flex items-baseline gap-3 mb-6">
+                  <span
+                    class="section-number text-3xl font-bold text-gray-200 dark:text-gray-800 select-none"
+                    >06</span
+                  >
+                  <h2
+                    class="text-xl font-bold text-purple-600 dark:text-purple-500"
+                  >
+                    Capacidades demostradas
+                  </h2>
+                </div>
+                <ul class="space-y-3">
+                  {
+                    [
+                      "Selección de stack orientada a rendimiento y simplicidad",
+                      "Desarrollo de herramientas de procesamiento en el cliente",
+                      "Diseño de interfaces accesibles y responsivas",
+                      "Arquitectura modular con separación clara de responsabilidades",
+                      "Despliegue y mantenimiento autónomo de producto en producción",
+                      "Criterio para priorizar experiencia de usuario sobre complejidad técnica",
+                    ].map((item) => (
+                      <li class="flex gap-3 items-start text-sm text-gray-700 dark:text-gray-300">
+                        <span class="mt-1.5 flex-shrink-0 w-1 h-1 rounded-full bg-purple-400 opacity-60" />
+                        {item}
+                      </li>
+                    ))
+                  }
+                </ul>
+              </div>
+            </div>
+          </section>
+
+          <div class="divider text-gray-400 dark:text-gray-700"></div>
+
+          <!-- ── 07 · STACK TÉCNICO ── -->
+          <section>
+            <div class="flex items-baseline gap-4 mb-8">
+              <span
+                class="section-number text-4xl font-bold text-gray-200 dark:text-gray-800 select-none"
+                >07</span
+              >
+              <h2
+                class="text-2xl font-bold text-purple-600 dark:text-purple-500"
+              >
+                Stack técnico
+              </h2>
+            </div>
+
+            <div class="grid sm:grid-cols-2 md:grid-cols-3 gap-4">
+              {
+                [
+                  {
+                    name: "Astro",
+                    desc: "Framework MPA orientado a contenido estático con hidratación selectiva y envío mínimo de JavaScript.",
+                  },
+                  {
+                    name: "Tailwind CSS",
+                    desc: "Sistema de diseño utility-first para interfaces responsivas, consistentes y mantenibles.",
+                  },
+                  {
+                    name: "JavaScript",
+                    desc: "Lógica de herramientas encapsulada en módulos ES sin dependencias de framework donde no se requieren.",
+                  },
+                ].map((tech) => (
+                  <div class="card-lift p-5 bg-gray-100 dark:bg-gray-800/20 rounded-2xl border-t-2 border-purple-500/20">
+                    <p class="font-bold text-gray-900 dark:text-gray-100 mb-2 text-sm">
+                      {tech.name}
+                    </p>
+                    <p class="text-xs text-gray-600 dark:text-gray-400 leading-relaxed">
+                      {tech.desc}
+                    </p>
+                  </div>
+                ))
+              }
+            </div>
+          </section>
+        </div>
+        <!-- /content -->
+
+        <!-- ── BOTTOM CTA ── -->
+        <div
+          class="mt-24 pt-10 border-t border-gray-200 dark:border-gray-800 flex flex-col sm:flex-row items-center justify-between gap-6"
+        >
+          <div>
+            <p class="text-sm text-gray-500 dark:text-gray-500">
+              ¿Quieres ver más proyectos?
+            </p>
+            <a
+              href="javascript:history.back()"
+              class="back-link text-purple-600 dark:text-purple-400 font-semibold hover:opacity-80 transition-opacity"
+            >
+              ← Volver al portafolio
+            </a>
           </div>
-
-          <h2
-            class="text-2xl mb-2 mt-6 font-bold text-purple-600 dark:text-purple-500"
-          >
-            Tecnologías utilizadas
-          </h2>
-
-          <p class="text-gray-700 dark:text-gray-300 mb-3">
-            El desarrollo se realizó integrando herramientas que permiten
-            flexibilidad, personalización y una interfaz intuitiva.
-          </p>
-
-          <div class="grid md:grid-cols-2 gap-4">
-            <div
-              class="p-4 bg-gray-100 dark:bg-gray-800/20 rounded-xl shadow-sm"
-            >
-              <h4
-                class="font-semibold text-purple-500 dark:text-purple-400 mb-1"
-              >
-                Astro
-              </h4>
-              <p class="text-sm text-gray-700 dark:text-gray-300">
-                Estructura semántica clara y optimizada para accesibilidad.
-              </p>
-            </div>
-
-            <div
-              class="p-4 bg-gray-100 dark:bg-gray-800/20 rounded-xl shadow-sm"
-            >
-              <h4
-                class="font-semibold text-purple-500 dark:text-purple-400 mb-1"
-              >
-                Tailwind CSS
-              </h4>
-              <p class="text-sm text-gray-700 dark:text-gray-300">
-                Diseño moderno, accesible y consistente.
-              </p>
-            </div>
-
-            <div
-              class="p-4 bg-gray-100 dark:bg-gray-800/20 rounded-xl shadow-sm"
-            >
-              <h4
-                class="font-semibold text-purple-500 dark:text-purple-400 mb-1"
-              >
-                JavaScript
-              </h4>
-              <p class="text-sm text-gray-700 dark:text-gray-300">
-                Funcionalidades interactivas y dinámicas para mejorar la UX.
-              </p>
-            </div>
+          <div class="flex gap-3">
+            <LinkButton href={project.link}>
+              <Link class="size-4" />
+              Ver demo
+            </LinkButton>
+            <LinkButton href={project.link2} variant="secondary">
+              <GitHub class="size-4" />
+              GitHub
+            </LinkButton>
           </div>
         </div>
       </article>

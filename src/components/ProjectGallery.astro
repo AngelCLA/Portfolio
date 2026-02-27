@@ -7,7 +7,7 @@ interface Props {
 const { images, title } = Astro.props;
 ---
 
-<div class="mb-12">
+<div class="mb-8">
   <div class="flex flex-col md:flex-row gap-4">
     <!-- Imagen principal -->
     <div class="w-full md:w-3/4">
@@ -120,7 +120,9 @@ const { images, title } = Astro.props;
   </button>
 
   <!-- Contador de imágenes -->
-  <div class="absolute bottom-4 left-1/2 transform -translate-x-1/2 text-white text-sm bg-black/70 hover:bg-black/80 px-4 py-2 rounded-full backdrop-blur-sm shadow-lg">
+  <div
+    class="absolute bottom-4 left-1/2 transform -translate-x-1/2 text-white text-sm bg-black/70 hover:bg-black/80 px-4 py-2 rounded-full backdrop-blur-sm shadow-lg"
+  >
     <span id="imageCounter">1</span> / <span id="totalImages">1</span>
   </div>
 </div>
@@ -129,10 +131,12 @@ const { images, title } = Astro.props;
   document.addEventListener("DOMContentLoaded", () => {
     const mainImage = document.getElementById("mainImage") as HTMLImageElement;
     const thumbnails = document.querySelectorAll(".thumbnail-btn");
-    const additionalThumbnails = document.querySelectorAll(".additional-thumbnail");
+    const additionalThumbnails = document.querySelectorAll(
+      ".additional-thumbnail",
+    );
     const imageModal = document.getElementById("imageModal");
     const modalImage = document.getElementById(
-      "modalImage"
+      "modalImage",
     ) as HTMLImageElement;
     const closeModal = document.getElementById("closeModal");
     const prevImageBtn = document.getElementById("prevImage");
@@ -142,11 +146,13 @@ const { images, title } = Astro.props;
     const additionalGallery = document.getElementById("additionalGallery");
 
     const images = Array.from(thumbnails).map(
-      (t) => t.getAttribute("data-image") || ""
+      (t) => t.getAttribute("data-image") || "",
     );
     const allImages = [
       ...images,
-      ...Array.from(additionalThumbnails).map((t) => t.getAttribute("data-image") || ""),
+      ...Array.from(additionalThumbnails).map(
+        (t) => t.getAttribute("data-image") || "",
+      ),
     ];
     let currentImageIndex = 0;
 
@@ -309,10 +315,7 @@ const { images, title } = Astro.props;
 
     // Navegación con teclas del teclado
     document.addEventListener("keydown", (e) => {
-      if (
-        imageModal &&
-        !imageModal.classList.contains("hidden")
-      ) {
+      if (imageModal && !imageModal.classList.contains("hidden")) {
         if (e.key === "Escape") {
           closeModalFunc();
         } else if (e.key === "ArrowRight") {

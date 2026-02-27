@@ -2,8 +2,6 @@
 import Layout from "@/layouts/Layout.astro";
 import SectionContainer from "@/components/SectionContainer.astro";
 import LinkButton from "@/components/LinkButton.astro";
-import Link from "@/components/icons/Link.astro";
-import GitHub from "@/components/icons/GitHub.astro";
 import Php from "@/components/icons/Php.astro";
 import Supabase from "@/components/icons/Supabase.astro";
 import Tailwind from "@/components/icons/Tailwind.astro";
@@ -11,11 +9,12 @@ import ProjectGallery from "@/components/ProjectGallery.astro";
 import JavaScript from "@/components/icons/JavaScript.astro";
 
 const project = {
-  title: "TF-Clinica - Sistema de gestión para clínica de fisioterapia",
+  title: "TF-Clínica",
+  titleSuffix: "Sistema de gestión para clínica de fisioterapia universitaria",
   subtitle:
-    "Plataforma integral para la gestión de la clínica de fisioterapia de la Universidad Politécnica del Mar y la Sierra.",
+    "Plataforma clínica centralizada para gestionar pacientes, sesiones y reportes de la clínica de fisioterapia de la UPMyS — construida con PHP, Supabase, JavaScript y Tailwind CSS.",
   description:
-    "La Plataforma Integral para la Gestión de la Clínica de Fisioterapia de la Universidad Politécnica del Mar y la Sierra es un sistema diseñado para transformar la manera en que se organizan y administran los procesos clínicos. Desarrollado con PHP puro, Tailwind CSS y Supabase, este proyecto busca agilizar las tareas diarias, facilitar el acceso a la información y ofrecer una experiencia clara y eficiente tanto para terapeutas como para estudiantes y personal administrativo.<br><br>Más que una herramienta de registro, la plataforma funciona como un espacio centralizado donde se integra el historial de pacientes, la programación de sesiones, los reportes clínicos y la colaboración entre los miembros de la clínica. Gracias a su arquitectura modular y a una interfaz ligera y responsiva, el sistema ofrece una navegación fluida desde cualquier dispositivo, permitiendo trabajar de manera cómoda, rápida y organizada.<br><br>En conjunto, la plataforma se convierte en un recurso moderno, escalable y seguro, pensado para apoyar el crecimiento académico y operativo de la clínica. Si quieres, puedo generar una versión más corta, más técnica o incluso una más narrativa.",
+    "Sistema integral diseñado para transformar la organización y administración de los procesos clínicos de la Universidad Politécnica del Mar y la Sierra.",
   link: "blank",
   images: [
     "https://images.claangel.site/tf-clinica/TF-Clinica-1.png",
@@ -37,41 +36,145 @@ const project = {
       icon: JavaScript,
     },
   ],
+  stats: [
+    { value: "Multi-rol", label: "Terapeutas, alumnos y admins" },
+    { value: "Tiempo real", label: "Supabase Realtime" },
+    { value: "Centralizado", label: "Historial clínico unificado" },
+  ],
 };
 ---
 
+<style>
+  .card-lift {
+    transition:
+      transform 0.22s ease,
+      box-shadow 0.22s ease;
+  }
+  .card-lift:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 28px -6px rgba(147, 51, 234, 0.12);
+  }
+
+  .section-number {
+    font-variant-numeric: tabular-nums;
+    letter-spacing: -0.03em;
+  }
+
+  .divider {
+    height: 1px;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      currentColor 20%,
+      currentColor 80%,
+      transparent
+    );
+    opacity: 0.1;
+  }
+
+  .accent-left {
+    border-left: 2px solid rgba(147, 51, 234, 0.35);
+  }
+
+  .tag-item {
+    transition: opacity 0.18s ease;
+  }
+  .tag-item:hover {
+    opacity: 0.8;
+  }
+
+  .back-link {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+  }
+  .back-link::after {
+    content: "";
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 1px;
+    background: currentColor;
+    transition: width 0.2s ease;
+  }
+  .back-link:hover::after {
+    width: 100%;
+  }
+
+  @keyframes fadeUp {
+    from {
+      opacity: 0;
+      transform: translateY(14px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  .fade-up {
+    animation: fadeUp 0.5s ease both;
+  }
+  .delay-1 {
+    animation-delay: 0.08s;
+  }
+  .delay-2 {
+    animation-delay: 0.16s;
+  }
+  .delay-3 {
+    animation-delay: 0.24s;
+  }
+  .delay-4 {
+    animation-delay: 0.32s;
+  }
+</style>
+
 <Layout
-  title={`${project.title} - Proyecto de CLAAngel`}
+  title={`${project.title} – Proyecto de CLAAngel`}
   description={project.description}
 >
   <main class="px-4">
-    <SectionContainer class="py-16 md:py-24">
-      <a
-        href="javascript:history.back()"
-        class="inline-flex items-center text-sm text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 mb-8 transition-colors"
-      >
-        ← Volver a proyectos
-      </a>
+    <SectionContainer class="py-26 md:py-20">
+      <!-- ── BACK NAVIGATION ── -->
+      <div class="max-w-4xl mx-auto mb-12 fade-up">
+        <a
+          href="javascript:history.back()"
+          class="back-link text-sm text-gray-500 dark:text-gray-500 hover:text-purple-600 dark:hover:text-purple-400 transition-colors"
+        >
+          ← Proyectos
+        </a>
+      </div>
 
       <article class="max-w-4xl mx-auto">
-        <header class="mb-8">
+        <!-- ══ HEADER ══ -->
+        <header class="mb-6 fade-up delay-1">
+          <p
+            class="text-xs font-semibold tracking-widest uppercase text-purple-500 dark:text-purple-400 mb-4"
+          >
+            Proyecto institucional · Fullstack + Gestión clínica
+          </p>
+
           <h1
-            class="text-4xl md:text-5xl font-bold text-gray-900 dark:text-gray-100 mb-4"
+            class="text-5xl md:text-6xl font-bold text-gray-900 dark:text-gray-100 leading-none tracking-tight mb-5"
           >
             {project.title}
           </h1>
-          <p class="text-xl text-gray-600 dark:text-gray-400 mb-6">
+
+          <p
+            class="text-lg md:text-xl text-gray-600 dark:text-gray-400 leading-relaxed mb-8"
+          >
             {project.subtitle}
           </p>
 
-          <ul class="flex flex-wrap gap-2 mb-6">
+          <ul class="flex flex-wrap gap-3 mb-10" role="list">
             {
               project.tags.map((tag) => (
                 <li>
                   <span
-                    class={`flex gap-x-2 rounded-full text-xs ${tag.class} py-2 px-3`}
+                    class={`tag-item flex gap-x-2 items-center rounded-full text-xs font-medium ${tag.class} py-2 px-4`}
                   >
-                    <tag.icon class="size-4" />
+                    <tag.icon class="size-3.5" />
                     {tag.name}
                   </span>
                 </li>
@@ -80,231 +183,379 @@ const project = {
           </ul>
         </header>
 
-        <ProjectGallery images={project.images} title={project.title} />
-
-        <div class="flex w-full items-center justify-center gap-4 mb-10">
-          <LinkButton> Nota: Proyecto cerrado al público </LinkButton>
+        <!-- ══ GALLERY ══ -->
+        <div class="fade-up delay-2 mb-8">
+          <ProjectGallery images={project.images} title={project.title} />
         </div>
-        <div class="prose prose-lg max-w-none">
-          <h2
-            class="text-2xl mb-2 font-bold text-purple-600 dark:text-purple-500"
-          >
-            Sobre el proyecto
-          </h2>
-          <p
-            class="text-gray-800 dark:text-gray-300"
-            set:html={project.description}
-          />
 
-          <h2
-            class="text-2xl mb-2 mt-6 font-bold text-purple-600 dark:text-purple-500"
-          >
-            Características principales
-          </h2>
+        <!-- ── CTAs ── -->
+        <div
+          class="flex w-full items-center justify-center gap-4 mb-8 p-6 rounded-2xl bg-gray-50 dark:bg-gray-800/20 fade-up delay-3"
+        >
+          <LinkButton> Proyecto cerrado al público </LinkButton>
+        </div>
 
-          <div class="grid md:grid-cols-2 gap-4 mt-4">
-            <div
-              class="p-4 bg-gray-100 dark:bg-gray-800/20 rounded-xl shadow-sm"
-            >
-              <h4
-                class="font-semibold text-purple-500 dark:text-purple-400 mb-1"
+        <!-- ══ CONTENIDO ══ -->
+        <div class="space-y-14 fade-up delay-4">
+          <!-- 01 · CONTEXTO -->
+          <section>
+            <div class="flex items-baseline gap-4 mb-6">
+              <span
+                class="section-number text-4xl font-bold text-gray-200 dark:text-gray-800 select-none"
+                >01</span
               >
-                Gestión completa de pacientes
-              </h4>
-              <p class="text-sm">
-                Registros clínicos, evolución terapéutica y datos personales.
+              <h2
+                class="text-2xl font-bold text-purple-600 dark:text-purple-500"
+              >
+                Contexto y objetivo
+              </h2>
+            </div>
+            <div
+              class="accent-left pl-6 space-y-4 text-gray-700 dark:text-gray-300 leading-relaxed"
+            >
+              <p>
+                TF-Clínica fue desarrollada para resolver la fragmentación de
+                los procesos clínicos de la clínica de fisioterapia de la UPMyS:
+                expedientes en papel, agendas dispersas y sin trazabilidad del
+                historial terapéutico. El sistema unifica en una sola plataforma
+                el registro de pacientes, la programación de sesiones, los
+                reportes clínicos y la colaboración entre terapeutas y
+                estudiantes.
               </p>
+              <p>
+                El proyecto demuestra capacidad de desarrollo fullstack completo
+                sobre requerimientos clínicos reales: modelado de datos
+                sensibles, control de acceso por rol, diseño de flujos
+                multi-actor y entrega de un sistema en producción para una
+                institución educativa.
+              </p>
+            </div>
+          </section>
+
+          <div class="divider text-gray-400 dark:text-gray-700"></div>
+
+          <!-- 02 · ARQUITECTURA -->
+          <section>
+            <div class="flex items-baseline gap-4 mb-8">
+              <span
+                class="section-number text-4xl font-bold text-gray-200 dark:text-gray-800 select-none"
+                >02</span
+              >
+              <h2
+                class="text-2xl font-bold text-purple-600 dark:text-purple-500"
+              >
+                Arquitectura del sistema
+              </h2>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-4 mb-4">
+              <div
+                class="card-lift p-6 bg-gray-100 dark:bg-gray-800/20 rounded-2xl accent-left pl-7"
+              >
+                <h4
+                  class="font-semibold text-purple-500 dark:text-purple-400 mb-2 text-sm uppercase tracking-wide"
+                >
+                  Frontend PHP + JS
+                </h4>
+                <p
+                  class="text-gray-700 dark:text-gray-300 text-sm leading-relaxed"
+                >
+                  Vistas renderizadas en servidor con PHP puro y enriquecidas
+                  con JavaScript vanilla para interactividad, validaciones en
+                  cliente y actualizaciones dinámicas sin recarga completa de
+                  página.
+                </p>
+              </div>
+              <div
+                class="card-lift p-6 bg-gray-100 dark:bg-gray-800/20 rounded-2xl accent-left pl-7"
+              >
+                <h4
+                  class="font-semibold text-purple-500 dark:text-purple-400 mb-2 text-sm uppercase tracking-wide"
+                >
+                  Backend Supabase
+                </h4>
+                <p
+                  class="text-gray-700 dark:text-gray-300 text-sm leading-relaxed"
+                >
+                  Supabase actúa como BaaS completo: autenticación segura con
+                  JWT, API auto-generada sobre PostgreSQL, suscripciones en
+                  tiempo real y almacenamiento de archivos clínicos, todo bajo
+                  un modelo serverless gestionado.
+                </p>
+              </div>
+              <div
+                class="card-lift p-6 bg-gray-100 dark:bg-gray-800/20 rounded-2xl accent-left pl-7"
+              >
+                <h4
+                  class="font-semibold text-purple-500 dark:text-purple-400 mb-2 text-sm uppercase tracking-wide"
+                >
+                  Modelo de datos clínico
+                </h4>
+                <p
+                  class="text-gray-700 dark:text-gray-300 text-sm leading-relaxed"
+                >
+                  PostgreSQL estructurado para gestión de expedientes, sesiones,
+                  evoluciones terapéuticas y usuarios con roles diferenciados.
+                  Diseño relacional orientado a trazabilidad y consultas
+                  eficientes sobre el historial de cada paciente.
+                </p>
+              </div>
+              <div
+                class="card-lift p-6 bg-gray-100 dark:bg-gray-800/20 rounded-2xl accent-left pl-7"
+              >
+                <h4
+                  class="font-semibold text-purple-500 dark:text-purple-400 mb-2 text-sm uppercase tracking-wide"
+                >
+                  Control de acceso por roles
+                </h4>
+                <p
+                  class="text-gray-700 dark:text-gray-300 text-sm leading-relaxed"
+                >
+                  Sistema de permisos diferenciados para terapeutas, estudiantes
+                  y administradores — cada rol accede exclusivamente a los
+                  módulos, datos y operaciones correspondientes a su función
+                  dentro de la clínica.
+                </p>
+              </div>
             </div>
 
             <div
-              class="p-4 bg-gray-100 dark:bg-gray-800/20 rounded-xl shadow-sm"
+              class="card-lift p-6 bg-gray-100 dark:bg-gray-800/20 rounded-2xl border border-purple-500/15"
             >
-              <h4
-                class="font-semibold text-purple-500 dark:text-purple-400 mb-1"
+              <p
+                class="text-gray-700 dark:text-gray-300 text-sm leading-relaxed"
               >
-                Historial centralizado
-              </h4>
-              <p class="text-sm">
-                Accesible desde cualquier dispositivo, siempre actualizado.
+                <span class="font-semibold text-purple-500 dark:text-purple-400"
+                  >Infraestructura:</span
+                >{" "}
+                Supabase elimina la necesidad de gestionar servidores de base de datos
+                o servicios de autenticación propios, permitiendo enfocar el desarrollo
+                en la lógica clínica y la experiencia de usuario. El almacenamiento
+                de documentos y archivos se gestiona de forma segura mediante Supabase
+                Storage.
               </p>
+            </div>
+          </section>
+
+          <div class="divider text-gray-400 dark:text-gray-700"></div>
+
+          <!-- 03 · RETOS TÉCNICOS -->
+          <section>
+            <div class="flex items-baseline gap-4 mb-8">
+              <span
+                class="section-number text-4xl font-bold text-gray-200 dark:text-gray-800 select-none"
+                >03</span
+              >
+              <h2
+                class="text-2xl font-bold text-purple-600 dark:text-purple-500"
+              >
+                Retos técnicos resueltos
+              </h2>
+            </div>
+            <div class="grid md:grid-cols-2 gap-4">
+              {
+                [
+                  {
+                    title: "Gestión de datos clínicos sensibles",
+                    body: "Modelado y almacenamiento seguro de expedientes médicos con trazabilidad completa, validación de integridad y acceso restringido por política de roles en base de datos.",
+                  },
+                  {
+                    title: "Agenda dinámica con conflictos",
+                    body: "Sistema de programación de sesiones que detecta y previene solapamientos de horario, con soporte para reprogramación y cancelación manteniendo el historial de cambios.",
+                  },
+                  {
+                    title: "Dashboard clínico en tiempo real",
+                    body: "Indicadores de sesiones, pacientes activos y progreso terapéutico actualizados mediante suscripciones Supabase Realtime, sin necesidad de recargas manuales.",
+                  },
+                  {
+                    title: "Integración PHP puro + Supabase API",
+                    body: "Consumo de la API REST de Supabase desde PHP sin frameworks intermedios, implementando autenticación JWT, manejo de errores y renovación de tokens de forma manual.",
+                  },
+                ].map((item) => (
+                  <div class="card-lift p-6 bg-gray-100 dark:bg-gray-800/20 rounded-2xl">
+                    <h4 class="font-semibold text-purple-500 dark:text-purple-400 mb-3 text-sm">
+                      {item.title}
+                    </h4>
+                    <p class="text-gray-700 dark:text-gray-300 text-sm leading-relaxed">
+                      {item.body}
+                    </p>
+                  </div>
+                ))
+              }
+            </div>
+          </section>
+
+          <div class="divider text-gray-400 dark:text-gray-700"></div>
+
+          <!-- 04 · DECISIONES TÉCNICAS -->
+          <section>
+            <div class="flex items-baseline gap-4 mb-8">
+              <span
+                class="section-number text-4xl font-bold text-gray-200 dark:text-gray-800 select-none"
+                >04</span
+              >
+              <h2
+                class="text-2xl font-bold text-purple-600 dark:text-purple-500"
+              >
+                Decisiones técnicas clave
+              </h2>
             </div>
 
-            <div
-              class="p-4 bg-gray-100 dark:bg-gray-800/20 rounded-xl shadow-sm"
-            >
-              <h4
-                class="font-semibold text-purple-500 dark:text-purple-400 mb-1"
+            <div class="grid md:grid-cols-2 gap-4">
+              {
+                [
+                  "PHP puro seleccionado para mantener control total sobre el ciclo de vida de las peticiones sin la abstracción de frameworks, facilitando la integración directa con la API de Supabase.",
+                  "Supabase como BaaS elimina la complejidad operativa de gestionar autenticación, base de datos y almacenamiento de forma independiente, reduciendo superficie de fallos.",
+                  "JavaScript vanilla para interactividad del cliente, evitando dependencias de frameworks en una aplicación cuyo estado complejo reside en el servidor.",
+                  "Tailwind CSS garantiza consistencia visual en todos los módulos del sistema sin CSS personalizado que acumule deuda técnica en una plataforma con múltiples vistas.",
+                ].map((text) => (
+                  <div class="card-lift flex gap-3 p-5 bg-gray-100 dark:bg-gray-800/20 rounded-2xl items-start">
+                    <span class="mt-1 flex-shrink-0 w-1.5 h-1.5 rounded-full bg-purple-500 opacity-70" />
+                    <p class="text-gray-700 dark:text-gray-300 text-sm leading-relaxed">
+                      {text}
+                    </p>
+                  </div>
+                ))
+              }
+            </div>
+          </section>
+
+          <div class="divider text-gray-400 dark:text-gray-700"></div>
+
+          <!-- 05 + 06 · CONSIDERACIONES + CAPACIDADES -->
+          <section>
+            <div class="grid md:grid-cols-2 gap-x-12 gap-y-10">
+              <div>
+                <div class="flex items-baseline gap-3 mb-6">
+                  <span
+                    class="section-number text-3xl font-bold text-gray-200 dark:text-gray-800 select-none"
+                    >05</span
+                  >
+                  <h2
+                    class="text-xl font-bold text-purple-600 dark:text-purple-500"
+                  >
+                    Consideraciones técnicas
+                  </h2>
+                </div>
+                <ul class="space-y-3">
+                  {
+                    [
+                      "Protección de datos clínicos con autenticación JWT y RLS en Supabase",
+                      "Validación de datos en cliente y servidor antes de toda escritura",
+                      "Manejo de estados de carga y errores en todas las operaciones async",
+                      "Diseño responsivo accesible desde móvil y escritorio",
+                      "Buscador con filtros múltiples sin degradar el rendimiento",
+                      "Estructura modular preparada para incorporar nuevas funcionalidades clínicas",
+                    ].map((item) => (
+                      <li class="flex gap-3 items-start text-sm text-gray-700 dark:text-gray-300">
+                        <span class="mt-1.5 flex-shrink-0 w-1 h-1 rounded-full bg-purple-400 opacity-60" />
+                        {item}
+                      </li>
+                    ))
+                  }
+                </ul>
+              </div>
+
+              <div>
+                <div class="flex items-baseline gap-3 mb-6">
+                  <span
+                    class="section-number text-3xl font-bold text-gray-200 dark:text-gray-800 select-none"
+                    >06</span
+                  >
+                  <h2
+                    class="text-xl font-bold text-purple-600 dark:text-purple-500"
+                  >
+                    Capacidades demostradas
+                  </h2>
+                </div>
+                <ul class="space-y-3">
+                  {
+                    [
+                      "Desarrollo fullstack sin frameworks con PHP y JavaScript vanilla",
+                      "Integración con BaaS (Supabase) desde backend propio",
+                      "Modelado de datos relacionales para dominios clínicos complejos",
+                      "Implementación de autenticación y control de acceso por roles",
+                      "Diseño de sistemas de gestión para instituciones educativas",
+                      "Entrega de productos en producción con usuarios reales",
+                    ].map((item) => (
+                      <li class="flex gap-3 items-start text-sm text-gray-700 dark:text-gray-300">
+                        <span class="mt-1.5 flex-shrink-0 w-1 h-1 rounded-full bg-purple-400 opacity-60" />
+                        {item}
+                      </li>
+                    ))
+                  }
+                </ul>
+              </div>
+            </div>
+          </section>
+
+          <div class="divider text-gray-400 dark:text-gray-700"></div>
+
+          <!-- 07 · STACK TÉCNICO -->
+          <section>
+            <div class="flex items-baseline gap-4 mb-8">
+              <span
+                class="section-number text-4xl font-bold text-gray-200 dark:text-gray-800 select-none"
+                >07</span
               >
-                Buscador inteligente
-              </h4>
-              <p class="text-sm">
-                Filtros por nombre, fecha, terapeuta o tipo de terapia.
-              </p>
+              <h2
+                class="text-2xl font-bold text-purple-600 dark:text-purple-500"
+              >
+                Stack técnico
+              </h2>
             </div>
 
-            <div
-              class="p-4 bg-gray-100 dark:bg-gray-800/20 rounded-xl shadow-sm"
-            >
-              <h4
-                class="font-semibold text-purple-500 dark:text-purple-400 mb-1"
-              >
-                Agenda dinámica
-              </h4>
-              <p class="text-sm">
-                Programación, reprogramación y cancelación rápida de sesiones.
-              </p>
+            <div class="grid sm:grid-cols-2 md:grid-cols-4 gap-4">
+              {
+                [
+                  {
+                    name: "PHP puro",
+                    desc: "Lógica de servidor, enrutamiento, renderizado de vistas y consumo de la API REST de Supabase.",
+                  },
+                  {
+                    name: "Supabase",
+                    desc: "BaaS completo: autenticación JWT, PostgreSQL, API auto-generada, Realtime y Storage.",
+                  },
+                  {
+                    name: "Tailwind CSS",
+                    desc: "Sistema de diseño utility-first para interfaz responsiva y consistente en todos los módulos.",
+                  },
+                  {
+                    name: "JavaScript",
+                    desc: "Interactividad en cliente, validaciones en tiempo real y consumo de actualizaciones Realtime.",
+                  },
+                ].map((tech) => (
+                  <div class="card-lift p-5 bg-gray-100 dark:bg-gray-800/20 rounded-2xl border-t-2 border-purple-500/20">
+                    <p class="font-bold text-gray-900 dark:text-gray-100 mb-2 text-sm">
+                      {tech.name}
+                    </p>
+                    <p class="text-xs text-gray-600 dark:text-gray-400 leading-relaxed">
+                      {tech.desc}
+                    </p>
+                  </div>
+                ))
+              }
             </div>
+          </section>
+        </div>
 
-            <div
-              class="p-4 bg-gray-100 dark:bg-gray-800/20 rounded-xl shadow-sm"
+        <!-- ── BOTTOM CTA ── -->
+        <div
+          class="mt-24 pt-10 border-t border-gray-200 dark:border-gray-800 flex flex-col sm:flex-row items-center justify-between gap-6"
+        >
+          <div>
+            <p class="text-sm text-gray-500 dark:text-gray-500">
+              ¿Quieres ver más proyectos?
+            </p>
+            <a
+              href="javascript:history.back()"
+              class="back-link text-purple-600 dark:text-purple-400 font-semibold hover:opacity-80 transition-opacity"
             >
-              <h4
-                class="font-semibold text-purple-500 dark:text-purple-400 mb-1"
-              >
-                Dashboard clínico
-              </h4>
-              <p class="text-sm">
-                Indicadores clave: sesiones, pacientes activos y progreso.
-              </p>
-            </div>
-
-            <div
-              class="p-4 bg-gray-100 dark:bg-gray-800/20 rounded-xl shadow-sm"
-            >
-              <h4
-                class="font-semibold text-purple-500 dark:text-purple-400 mb-1"
-              >
-                Supabase + PHP
-              </h4>
-              <p class="text-sm">
-                Autenticación segura, tiempo real y arquitectura escalable.
-              </p>
-            </div>
+              ← Volver al portafolio
+            </a>
           </div>
-
-          <h2
-            class="text-2xl mb-2 mt-6 font-bold text-purple-600 dark:text-purple-500"
-          >
-            Tecnologías utilizadas
-          </h2>
-
-          <p class="text-gray-700 dark:text-gray-300 mb-3">
-            El sistema fue desarrollado utilizando un conjunto de tecnologías
-            modernas que garantizan alto rendimiento, seguridad y una
-            experiencia fluida para todos los usuarios. Cada herramienta fue
-            seleccionada para construir una plataforma estable, flexible y capaz
-            de adaptarse a los procesos reales de una clínica de terapia física.
-          </p>
-
-          <div class="grid md:grid-cols-2 gap-4">
-            <div
-              class="p-4 bg-gray-100 dark:bg-gray-800/20 rounded-xl shadow-sm"
-            >
-              <h4
-                class="font-semibold text-purple-500 dark:text-purple-400 mb-1"
-              >
-                PHP puro
-              </h4>
-              <p class="text-sm text-gray-700 dark:text-gray-300">
-                Control total sobre la lógica, arquitectura y optimización del
-                sistema.
-              </p>
-            </div>
-
-            <div
-              class="p-4 bg-gray-100 dark:bg-gray-800/20 rounded-xl shadow-sm"
-            >
-              <h4
-                class="font-semibold text-purple-500 dark:text-purple-400 mb-1"
-              >
-                Tailwind CSS
-              </h4>
-              <p class="text-sm text-gray-700 dark:text-gray-300">
-                Interfaz moderna, completamente responsive y fácil de
-                personalizar.
-              </p>
-            </div>
-
-            <div
-              class="p-4 bg-gray-100 dark:bg-gray-800/20 rounded-xl shadow-sm"
-            >
-              <h4
-                class="font-semibold text-purple-500 dark:text-purple-400 mb-1"
-              >
-                Supabase Backend
-              </h4>
-              <p class="text-sm text-gray-700 dark:text-gray-300">
-                Autenticación segura, API automática y servicios cloud
-                gestionados.
-              </p>
-            </div>
-
-            <div
-              class="p-4 bg-gray-100 dark:bg-gray-800/20 rounded-xl shadow-sm"
-            >
-              <h4
-                class="font-semibold text-purple-500 dark:text-purple-400 mb-1"
-              >
-                Supabase Postgres
-              </h4>
-              <p class="text-sm text-gray-700 dark:text-gray-300">
-                Base de datos estructurada para historiales clínicos y
-                registros.
-              </p>
-            </div>
-
-            <div
-              class="p-4 bg-gray-100 dark:bg-gray-800/20 rounded-xl shadow-sm"
-            >
-              <h4
-                class="font-semibold text-purple-500 dark:text-purple-400 mb-1"
-              >
-                Supabase Storage
-              </h4>
-              <p class="text-sm text-gray-700 dark:text-gray-300">
-                Manejo seguro de imágenes, documentos y archivos clínicos.
-              </p>
-            </div>
-
-            <div
-              class="p-4 bg-gray-100 dark:bg-gray-800/20 rounded-xl shadow-sm"
-            >
-              <h4
-                class="font-semibold text-purple-500 dark:text-purple-400 mb-1"
-              >
-                JavaScript Vanilla
-              </h4>
-              <p class="text-sm text-gray-700 dark:text-gray-300">
-                Interactividad, validaciones y dinámica sin necesidad de
-                frameworks.
-              </p>
-            </div>
-
-            <div
-              class="p-4 bg-gray-100 dark:bg-gray-800/20 rounded-xl shadow-sm"
-            >
-              <h4
-                class="font-semibold text-purple-500 dark:text-purple-400 mb-1"
-              >
-                HTML5
-              </h4>
-              <p class="text-sm text-gray-700 dark:text-gray-300">
-                Estructura semántica clara y optimizada para accesibilidad.
-              </p>
-            </div>
-
-            <div
-              class="p-4 bg-gray-100 dark:bg-gray-800/20 rounded-xl shadow-sm"
-            >
-              <h4
-                class="font-semibold text-purple-500 dark:text-purple-400 mb-1"
-              >
-                Git & GitHub
-              </h4>
-              <p class="text-sm text-gray-700 dark:text-gray-300">
-                Control de versiones y flujo de desarrollo documentado.
-              </p>
-            </div>
+          <div class="flex gap-3">
+            <LinkButton> Proyecto cerrado al público </LinkButton>
           </div>
         </div>
       </article>
