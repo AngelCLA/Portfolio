@@ -273,6 +273,11 @@ const { images, title } = Astro.props;
       if (modalImage && imageModal) {
         modalImage.src = mainImage.src;
         modalImage.alt = mainImage.alt;
+
+        // Mover el modal al body para escapar del contexto de transform
+        const originalParent = imageModal.parentElement;
+        document.body.appendChild(imageModal);
+
         imageModal.classList.remove("hidden");
         imageModal.classList.add("flex");
         document.body.style.overflow = "hidden";
@@ -286,6 +291,9 @@ const { images, title } = Astro.props;
             modalImage.style.opacity = "1";
           });
         });
+
+        // Guardamos el padre original para retornar al cerrar
+        (imageModal as any).__originalParent = originalParent;
       }
     });
 
@@ -300,6 +308,12 @@ const { images, title } = Astro.props;
           imageModal.classList.add("hidden");
           imageModal.classList.remove("flex");
           document.body.style.overflow = "";
+
+          // Retornar el modal a su contenedor original
+          const originalParent = (imageModal as any).__originalParent;
+          if (originalParent && originalParent.parentElement) {
+            originalParent.appendChild(imageModal);
+          }
         }, 500);
       }
     };
