@@ -69,7 +69,7 @@ const TAGS = {
 const PROJECTS = [
   {
     slug: "tools-cla",
-    title: "CLA Tools - Colección de herramientas",
+    title: "CLA Tools - Colección de herramientas Web",
     description:
       "Herramienta gratuita y de código abierto pensada para acelerar la carga de actividades y reducir procesos repetitivos, brindando una experiencia más fluida.",
     link: "https://tools.claangel.site/",
@@ -102,7 +102,7 @@ const PROJECTS = [
     title: "TF-Clinica - Sistema de gestión para clínica de fisioterapia",
     description:
       "Plataforma integral para la gestión operativa de la clínica de fisioterapia de la Universidad Politécnica del Mar y la Sierra, optimizada para mejorar la organización, el seguimiento clínico y la atención al usuario.",
-    link: "",
+    link: "https://tf-clinica.netlify.app/",
     image: "https://www.claangel.site/projects/tf-clinica/TF-Clinica.png",
     tags: [TAGS.PHP, TAGS.TAILWIND, TAGS.JAVASCRIPT, TAGS.SUPABASE],
   },
@@ -119,60 +119,64 @@ const PROJECTS = [
 ];
 ---
 
-<div class="flex flex-col gap-y-16 items-center">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-8">
   {
     PROJECTS.map(({ slug, image, title, description, tags, link, github }) => (
-      <article class="flex flex-col space-x-0 space-y-8 group md:flex-row md:space-x-8 md:space-y-0">
-        <a href={`/projects/${slug}`} class="w-full md:w-1/2">
-          <div class="relative flex flex-col items-center col-span-6 row-span-5 gap-8 transition duration-500 ease-in-out transform shadow-xl overflow-clip rounded-xl sm:rounded-xl md:group-hover:-translate-y-1 md:group-hover:shadow-2xl lg:border lg:border-gray-800 lg:hover:border-gray-700 lg:hover:bg-gray-800/50 cursor-pointer">
+      <article class="flex flex-col h-full rounded-xl overflow-hidden shadow-xl lg:border lg:border-gray-800 lg:hover:border-gray-700 lg:hover:bg-gray-800/50 transition duration-300 ease-in-out hover:shadow-2xl group">
+        <a href={`/projects/${slug}`} class="flex flex-col flex-grow">
+          {/* Imagen */}
+          <div class="flex-shrink-0 overflow-hidden h-48 md:h-56">
             <img
               alt={title}
-              class="object-cover object-top w-full h-56 transition duration-500 sm:h-full md:scale-110 md:group-hover:scale-105"
+              class="w-full h-full object-cover object-top transition duration-500 group-hover:scale-105"
               loading="lazy"
               src={image}
             />
           </div>
-        </a>
 
-        <div class="w-full md:w-1/2 md:max-w-lg">
-          <a href={`/projects/${slug}`} class="group/title">
-            <h3 class="text-2xl font-bold text-gray-800 dark:text-gray-100 group-hover/title:text-purple-600 dark:group-hover/title:text-purple-400 transition-colors">
+          {/* Contenido */}
+          <div class="flex flex-col flex-grow p-6 gap-4">
+            {/* Título */}
+            <h3 class="text-xl font-bold text-gray-800 dark:text-gray-100 group-hover:text-purple-600 dark:group-hover:text-purple-400 transition-colors line-clamp-2">
               {title}
             </h3>
-          </a>
-          <div class="flex flex-wrap mt-2">
-            <ul class="flex flex-row mb-2 gap-x-2">
+
+            {/* Tags */}
+            <ul class="flex flex-row flex-wrap gap-2">
               {tags.map((tag) => (
                 <li>
                   <span
-                    class={`flex gap-x-2 rounded-full text-xs ${tag.class} py-1 px-2 `}
+                    class={`flex gap-x-1 rounded-full text-xs ${tag.class} py-1 px-2 w-fit`}
                   >
-                    <tag.icon class="size-4" />
+                    <tag.icon class="size-3.5" />
                     {tag.name}
                   </span>
                 </li>
               ))}
             </ul>
 
-            <div class="mt-2 text-gray-700 dark:text-gray-400">
+            {/* Descripción */}
+            <p class="text-sm text-gray-700 dark:text-gray-400 flex-grow line-clamp-3">
               {description}
-            </div>
-            <footer class="flex items-end justify-start mt-4 gap-x-4">
-              {github && (
-                <LinkButton href={github}>
-                  <GitHub class="size-6" />
-                  Code
-                </LinkButton>
-              )}
-              {link && (
-                <LinkButton href={link}>
-                  <Link class="size-4" />
-                  Preview
-                </LinkButton>
-              )}
-            </footer>
+            </p>
           </div>
-        </div>
+        </a>
+
+        {/* Botones */}
+        <footer class="flex items-center justify-start gap-3 pt-4 px-6 pb-4 border-t border-gray-200 dark:border-gray-700">
+          {github && (
+            <LinkButton href={github}>
+              <GitHub class="size-5" />
+              Code
+            </LinkButton>
+          )}
+          {link && (
+            <LinkButton href={link}>
+              <Link class="size-4" />
+              Preview
+            </LinkButton>
+          )}
+        </footer>
       </article>
     ))
   }
